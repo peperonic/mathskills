@@ -63,6 +63,7 @@
   .col h2 { font-size: 21px; font-weight: normal; margin: 0 0 4px; }
   .col .sub { color: var(--mute); font-size: 15px; margin: 0 0 14px; }
 
+  input.teach { width: 100%; background: none; border: 2px solid var(--fg); padding: 8px 10px; font-size: 19px; }
   .add { display: flex; gap: 0; }
   .add input { flex: 1; min-width: 0; background: none; border: 2px solid var(--fg); padding: 8px 10px; }
   .add button { border: 2px solid var(--fg); border-left: 0; background: var(--fg); color: var(--bg); padding: 0 14px; cursor: pointer; }
@@ -152,7 +153,11 @@
 <div class="cols">
   <section class="col" aria-labelledby="hL">
     <h2 id="hL">Languages in the classroom</h2>
-    <p class="sub">Every language your students speak.</p>
+    <div class="lbl" style="margin-top:12px">Teaching language</div>
+    <input id="teachIn" class="teach" placeholder="the language you teach in, e.g. English" autocomplete="off" aria-label="Teaching language">
+    <div class="meta" id="teachMeta"></div>
+    <div class="lbl" style="margin-top:18px">Students' languages</div>
+    <p class="sub">Every other language your students speak.</p>
     <form class="add" id="langForm"><input id="langIn" placeholder="e.g. Arabic, Dari, Ukrainian" autocomplete="off" aria-label="Add a language"><button type="submit">Add</button></form>
     <ul class="list" id="langs"></ul>
   </section>
@@ -300,7 +305,7 @@ function findSkill(txt) {
 
 /* ---------- state, kept in this browser ---------- */
 const KEY = "mathskills.builder.v2";
-const ST = Object.assign({ teacher: "", subject: "Mathematics", subjectOther: "", course: "", courseOther: "", board: "", curriculum: "", langs: [], topics: [], videos: {} },
+const ST = Object.assign({ teacher: "", teach: "", subject: "Mathematics", subjectOther: "", course: "", courseOther: "", board: "", curriculum: "", langs: [], topics: [], videos: {} },
   (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })());
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch (e) {} };
 
@@ -398,6 +403,14 @@ $("#langForm").addEventListener("submit", e => {
   if (!ST.langs.some(l => (l.code || l.name.toLowerCase()) === key)) ST.langs.push({ code, name: code ? enName(code) : txt });
   $("#langIn").value = ""; save(); drawLangs(); drawMatrix();
 });
+// the teaching language: typed like the others, matched to its CLDR code where the browser knows it
+const langMeta = code => [RTL.has(code) ? "right to left" : "left to right", "decimal " + decimalOf(code), IN_GAME[code] ? "in MathSkills" : "to translate"].join(" · ");
+function drawTeach() {
+  const code = findCode(ST.teach);
+  $("#teachMeta").textContent = !ST.teach.trim() ? "" : code ? langMeta(code) : "your own entry · to translate";
+}
+$("#teachIn").value = ST.teach;
+$("#teachIn").addEventListener("input", e => { ST.teach = e.target.value; save(); drawTeach(); drawMatrix(); });
 function drawLangs() {
   const ul = $("#langs"); ul.innerHTML = "";
   if (!ST.langs.length) { ul.appendChild(Object.assign(el("li", "empty", "No languages yet."), { style: "border:0" })); return; }
@@ -407,9 +420,7 @@ function drawLangs() {
     if (l.code) {
       const own = ownName(l.code);
       if (own && own.toLowerCase() !== l.name.toLowerCase()) { const o = el("span", "ownName", own); o.lang = l.code; o.dir = RTL.has(l.code) ? "rtl" : "ltr"; main.appendChild(o); }
-      const bits = [RTL.has(l.code) ? "right to left" : "left to right", "decimal " + decimalOf(l.code)];
-      bits.push(IN_GAME[l.code] ? "in MathSkills" : "to translate");
-      main.appendChild(el("div", "meta", bits.join(" · ")));
+      main.appendChild(el("div", "meta", langMeta(l.code)));
     } else main.appendChild(el("div", "meta", "your own entry · to translate"));
     li.append(main, xBtn("Remove " + l.name, () => { ST.langs.splice(i, 1); save(); drawLangs(); drawMatrix(); }));
     ul.appendChild(li);
@@ -539,7 +550,7 @@ function label(g, x, y, str, fs) {
   t.setAttribute("direction", /[֐-ࣿיִ-ﻼ]/.test(str) ? "rtl" : "ltr");
   t.textContent = str; g.appendChild(t);
 }
-function fit(svg) { svg.querySelectorAll("text").forEach(t => { t.setAttribute("font-size", t.dataset.fs); const n = t.getComputedTextLength(); if (n > 100) t.setAttribute("font-size", (t.dataset.fs * 100 / n).toFixed(1)); }); }
+function fit(svg) { svg.querySelectorAll("text").forEach(t => { t.setAttribute("font-size", t.dataset.fs); const n = t.getComputedTextLength(); if (n > 86) t.setAttribute("font-size", (t.dataset.fs * 86 / n).toFixed(1)); }); }
 function drawMatrix() {
   const svg = $("#matrix"); svg.innerHTML = "";
   svg.setAttribute("viewBox", `${(-W - R * .95).toFixed(0)} ${-R - 6} ${(2 * W + R * 1.9).toFixed(0)} ${180 + 2 * R + 12}`);
@@ -556,14 +567,15 @@ function drawMatrix() {
   });
   fit(svg);
   const all = allSkills(), who = ST.teacher.trim() || "Sensei";
-  const langs = ST.langs.map(l => l.name);
+  const teach = ST.teach.trim();
+  const langs = [...(teach ? [teach] : []), ...ST.langs.map(l => l.name).filter(n => n.toLowerCase() !== teach.toLowerCase())];
   const n = Math.min(all.length, 7);
   $("#mNote").textContent = !all.length
     ? "Add a topic and its prior skills; each skill becomes one hexagon."
-    : `${who}'s class starts with a short check: two questions for each of ${n === 1 ? "this skill" : "these " + n + " skills"}` +
+    : (teach ? `Taught in ${teach}. ` : "Choose the teaching language. ") + `${who}'s class starts with a short check: two questions for each of ${n === 1 ? "this skill" : "these " + n + " skills"}` +
       (langs.length ? ", in " + (langs.length > 1 ? langs.slice(0, -1).join(", ") + " or " + langs[langs.length - 1] : langs[0]) : "") + ". " +
       "Afterwards each hexagon turns white if a student knows the skill and black if they still need to learn it, and opens your videos and handouts." +
-      (all.length > 7 ? ` The matrix holds seven, so the first seven go into the check; the other ${all.length - 7} come in a second round.` : "");
+      (all.length > 7 ? ` The matrix holds seven, so the first seven go into the check; ${all.length === 8 ? "the last one comes" : "the other " + (all.length - 7) + " come"} in a second round.` : "");
 }
 
 /* ---------- the class plan ---------- */
@@ -574,6 +586,7 @@ $("#dl").addEventListener("click", () => {
     subject: ST.subject === "Other" ? (ST.subjectOther.trim() || "Other") : (ST.subject || null),
     curriculum: { board: ST.board || null, details: CUR_HINT[ST.board] && ST.curriculum.trim() || null },
     course: [ST.course, ST.courseOther.trim()].filter(Boolean).join(", ") || null,
+    teaching_language: ST.teach.trim() ? { name: ST.teach.trim(), code: findCode(ST.teach) } : null,
     languages: ST.langs.map(l => ({ name: l.name, code: l.code, direction: l.code && RTL.has(l.code) ? "rtl" : "ltr", in_mathskills: !!(l.code && IN_GAME[l.code]) })),
     topics: ST.topics.map(t => ({ name: t.name, prior_skills: t.skills })),
     skills: allSkills().map(id => ({
@@ -594,7 +607,7 @@ const setMode = m => { document.documentElement.dataset.mode = m; try { localSto
 try { if (localStorage.getItem("mathskills.builder.mode") === "light") setMode("light"); } catch (e) {}
 $("#toggle").addEventListener("click", () => setMode(document.documentElement.dataset.mode === "light" ? "dark" : "light"));
 
-function drawAll() { drawBoards(); drawSubjects(); drawLangs(); drawTopics(); drawSkills(); drawMatrix(); }
+function drawAll() { drawBoards(); drawSubjects(); drawTeach(); drawLangs(); drawTopics(); drawSkills(); drawMatrix(); }
 drawAll();
 openDb().then(drawSkills);
 if (document.fonts) document.fonts.ready.then(() => fit($("#matrix")));
