@@ -45,7 +45,8 @@
   .who small { display: block; color: var(--mute); margin-top: 8px; font-size: 15px; }
 
   .cur { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 22px; }
-  @media (min-width: 800px) { .cur { grid-template-columns: 6.5em auto minmax(0, 1fr); align-items: center; gap: 14px; } }
+  @media (min-width: 800px) { .cur { grid-template-columns: 6.5em minmax(0, 1fr); align-items: center; gap: 8px 14px; } .cur input { grid-column: 2; } }
+  .cur input { max-width: 640px; }
   .cur + .cur { margin-top: 12px; }
   .curL { color: var(--mute); font-size: 15px; }
   .boards { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -132,14 +133,19 @@
   <input id="teacher" type="text" placeholder="Sensei" aria-label="Teacher name" autocomplete="off" spellcheck="false">
   <small>Type your name, or stay Sensei.</small>
   <div class="cur">
-    <span class="curL">Subject</span>
-    <div class="boards" id="subjects" role="group" aria-label="Subject"></div>
-    <input id="subIn" type="text" placeholder="Your subject, if it isn't listed" aria-label="Your subject in your own words" autocomplete="off">
-  </div>
-  <div class="cur">
     <span class="curL">Curriculum</span>
     <div class="boards" id="boards" role="group" aria-label="Curriculum"></div>
-    <input id="curIn" type="text" placeholder="Course, level, year group… as much as you like" aria-label="Your curriculum in your own words" autocomplete="off">
+    <input id="curIn" type="text" placeholder="" aria-label="Your curriculum in your own words" autocomplete="off">
+  </div>
+  <div class="cur">
+    <span class="curL">Subject</span>
+    <div class="boards" id="subjects" role="group" aria-label="Subject"></div>
+    <input id="subIn" type="text" placeholder="Your subject" aria-label="Your subject in your own words" autocomplete="off">
+  </div>
+  <div class="cur">
+    <span class="curL">Course</span>
+    <div class="boards" id="courses" role="group" aria-label="Course"></div>
+    <input id="courseIn" type="text" placeholder="" aria-label="Your course in your own words" autocomplete="off">
   </div>
 </div>
 
@@ -147,17 +153,14 @@
   <section class="col" aria-labelledby="hL">
     <h2 id="hL">Languages in the classroom</h2>
     <p class="sub">Every language your students speak.</p>
-    <form class="add" id="langForm"><input id="langIn" list="langList" placeholder="e.g. Arabic, Dari, Ukrainian" autocomplete="off" aria-label="Add a language"><button type="submit">Add</button></form>
-    <datalist id="langList"></datalist>
+    <form class="add" id="langForm"><input id="langIn" placeholder="e.g. Arabic, Dari, Ukrainian" autocomplete="off" aria-label="Add a language"><button type="submit">Add</button></form>
     <ul class="list" id="langs"></ul>
   </section>
 
   <section class="col" aria-labelledby="hT">
     <h2 id="hT">Topics and prior knowledge</h2>
     <p class="sub">What you will teach, and the skills students need before it.</p>
-    <form class="add" id="topicForm"><input id="topicIn" list="topicList" placeholder="e.g. Sequences and series" autocomplete="off" aria-label="Add a topic"><button type="submit">Add</button></form>
-    <datalist id="topicList"></datalist>
-    <datalist id="skillList"></datalist>
+    <form class="add" id="topicForm"><input id="topicIn" placeholder="e.g. Sequences and series" autocomplete="off" aria-label="Add a topic"><button type="submit">Add</button></form>
     <div id="topics"></div>
   </section>
 
@@ -267,11 +270,37 @@ const skName = (id, short = false) => {
   if (s.ready) return short ? NAMES.en["s_" + id] : NAMES.en["t_" + id];
   return short ? s.s : s.name;
 };
-const findSkill = txt => { const t = txt.trim().toLowerCase(); return Object.keys(SKILLS).find(id => skName(id).toLowerCase() === t || skName(id, true).toLowerCase() === t) || txt.trim(); };
+// a typed skill is matched to a MathSkills skill (with its check questions) when it clearly names one; otherwise it is the teacher's own
+const ALIAS = {
+  round: ["rounding to decimal places", "decimal places", "rounding to 2 dp", "2 dp", "2 d.p.", "rounding"],
+  sf: ["significant figures", "sig figs", "sig. figures", "s.f."],
+  ten: ["multiplying and dividing by powers of ten", "multiplying by 10", "dividing by 10", "mm to cm", "unit conversion", "converting units", "metric units"],
+  pow: ["powers of ten", "powers of 10"],
+  sci: ["scientific notation", "standard form", "standard index form"],
+  coord: ["coordinates", "coordinate plane", "plotting points"],
+  pyth: ["pythagoras", "pythagorean theorem", "pythagoras' theorem"],
+  line: ["straight line graphs", "straight lines", "linear graphs", "gradient", "y = mx + c"],
+  mult: ["multiplicative reasoning", "multiplicative thinking", "multipliers", "scale factors"],
+  prop: ["proportion", "proportional reasoning", "direct proportion", "ratio and proportion", "ratio"],
+  percent: ["percentages", "percentage", "percent", "percentage change"],
+  estimate: ["estimating", "estimation", "approximation"],
+  neg: ["negative numbers", "directed numbers", "integers", "negatives"],
+  pattern: ["number patterns", "patterns", "sequences"],
+  subst: ["substituting into formulas", "substitution", "formulas", "formulae", "order of operations"],
+  lineq: ["solving linear equations", "linear equations", "solving equations", "equations"],
+  expo: ["powers and exponents", "exponents", "indices", "powers", "laws of indices"]
+};
+function findSkill(txt) {
+  const t = txt.trim().toLowerCase().replace(/\s+/g, " ");
+  let best = null, len = 0;
+  for (const id in ALIAS) for (const a of [skName(id).toLowerCase(), ...ALIAS[id]])
+    if ((t === a || t.includes(a)) && a.length > len) { best = id; len = a.length; }
+  return best || txt.trim();
+}
 
 /* ---------- state, kept in this browser ---------- */
 const KEY = "mathskills.builder.v2";
-const ST = Object.assign({ teacher: "", subject: "Mathematics", subjectOther: "", board: "", curriculum: "", langs: [], topics: [], videos: {} },
+const ST = Object.assign({ teacher: "", subject: "Mathematics", subjectOther: "", course: "", courseOther: "", board: "", curriculum: "", langs: [], topics: [], videos: {} },
   (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })());
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch (e) {} };
 
@@ -307,12 +336,11 @@ function drawSubjects() {
   const box = $("#subjects"); box.innerHTML = "";
   SUBJECTS.forEach(sb => {
     const b = el("button", "board", sb); b.type = "button"; b.setAttribute("aria-pressed", ST.subject === sb);
-    b.addEventListener("click", () => { ST.subject = ST.subject === sb ? "" : sb; save(); drawSubjects(); drawTopics(); if (ST.subject === "Other") $("#subIn").focus(); });
+    b.addEventListener("click", () => { ST.subject = ST.subject === sb ? "" : sb; if (!((COURSES[ST.board] || {})[ST.subject] || []).includes(ST.course)) ST.course = ""; save(); drawSubjects(); drawTopics(); if (ST.subject === "Other") $("#subIn").focus(); });
     box.appendChild(b);
   });
   $("#subIn").hidden = ST.subject !== "Other";
-  const dl = $("#topicList"); dl.innerHTML = "";
-  Object.keys(topicsFor()).forEach(t => { const o = el("option"); o.value = t; dl.appendChild(o); });
+  drawCourses();
   $("#topicIn").placeholder = ST.subject === "Other" ? "Your topic" : "e.g. " + Object.keys(topicsFor())[1];
 }
 $("#subIn").value = ST.subjectOther;
@@ -320,22 +348,48 @@ $("#subIn").addEventListener("input", e => { ST.subjectOther = e.target.value; s
 
 /* ---------- curriculum: pick a board, or Other, then describe it in your own words ---------- */
 const BOARDS = ["IB", "A-Level", "GCSE", "National Curriculum", "Other"];
-const CUR_HINT = { IB: "e.g. Mathematics: Applications and Interpretation HL, Year 1", "A-Level": "e.g. Edexcel Mathematics, Year 12", GCSE: "e.g. AQA Higher, Year 10",
-  "National Curriculum": "e.g. Germany, Bavaria, Gymnasium Year 9", Other: "Name your curriculum, course and level" };
+// the free field after the boards: only where the board alone doesn't say which curriculum it is
+const CUR_HINT = { "National Curriculum": "Which country or state? e.g. England, Bavaria", Other: "Name your curriculum" };
+// courses offered for each board and subject; a teacher can always type their own
+const COURSES = {
+  IB: {
+    Mathematics: ["DP Analysis and Approaches SL", "DP Analysis and Approaches HL", "DP Applications and Interpretation SL", "DP Applications and Interpretation HL", "MYP Mathematics (standard)", "MYP Mathematics (extended)"],
+    Physics: ["DP Physics SL", "DP Physics HL", "MYP Sciences"], Chemistry: ["DP Chemistry SL", "DP Chemistry HL", "MYP Sciences"], Economics: ["DP Economics SL", "DP Economics HL"] },
+  "A-Level": {
+    Mathematics: ["AS Mathematics", "A-Level Mathematics", "A-Level Further Mathematics"], Physics: ["AS Physics", "A-Level Physics"],
+    Chemistry: ["AS Chemistry", "A-Level Chemistry"], Economics: ["AS Economics", "A-Level Economics"] },
+  GCSE: {
+    Mathematics: ["Foundation tier", "Higher tier"], Physics: ["Physics", "Combined Science"], Chemistry: ["Chemistry", "Combined Science"], Economics: ["Economics"] }
+};
+const COURSE_HINT = { IB: "or type it: course, year group…", "A-Level": "or type it: exam board, year, e.g. Edexcel, Year 12", GCSE: "or type it: exam board, year, e.g. AQA, Year 10",
+  "National Curriculum": "Your course: school type, year, e.g. Gymnasium, Year 9", Other: "Your course: level, year group…" };
+function drawCourses() {
+  const box = $("#courses"); box.innerHTML = "";
+  const list = (COURSES[ST.board] || {})[ST.subject] || [];
+  list.forEach(c => {
+    const b = el("button", "board", c); b.type = "button"; b.setAttribute("aria-pressed", ST.course === c);
+    b.addEventListener("click", () => { ST.course = ST.course === c ? "" : c; save(); drawCourses(); });
+    box.appendChild(b);
+  });
+  box.hidden = !list.length;
+  $("#courseIn").placeholder = COURSE_HINT[ST.board] || "Your course, level, year group…";
+}
+$("#courseIn").value = ST.courseOther;
+$("#courseIn").addEventListener("input", e => { ST.courseOther = e.target.value; save(); });
 function drawBoards() {
   const box = $("#boards"); box.innerHTML = "";
   BOARDS.forEach(bd => {
     const b = el("button", "board", bd); b.type = "button"; b.setAttribute("aria-pressed", ST.board === bd);
-    b.addEventListener("click", () => { ST.board = ST.board === bd ? "" : bd; save(); drawBoards(); if (ST.board === "Other") $("#curIn").focus(); });
+    b.addEventListener("click", () => { ST.board = ST.board === bd ? "" : bd; if (!((COURSES[ST.board] || {})[ST.subject] || []).includes(ST.course)) ST.course = ""; save(); drawBoards(); drawCourses(); if (CUR_HINT[ST.board]) $("#curIn").focus(); });
     box.appendChild(b);
   });
-  $("#curIn").placeholder = CUR_HINT[ST.board] || "Course, level, year group… as much as you like";
+  $("#curIn").placeholder = CUR_HINT[ST.board] || "";
+  $("#curIn").hidden = !CUR_HINT[ST.board];
 }
 $("#curIn").value = ST.curriculum;
 $("#curIn").addEventListener("input", e => { ST.curriculum = e.target.value; save(); });
 
 /* ---------- languages column ---------- */
-CODES.forEach(c => { const o = el("option"); o.value = enName(c); $("#langList").appendChild(o); });
 $("#langForm").addEventListener("submit", e => {
   e.preventDefault();
   const txt = $("#langIn").value.trim(); if (!txt) return;
@@ -363,7 +417,6 @@ function drawLangs() {
 }
 
 /* ---------- topics column ---------- */
-Object.keys(SKILLS).forEach(id => { const o = el("option"); o.value = skName(id); $("#skillList").appendChild(o); });
 $("#topicForm").addEventListener("submit", e => {
   e.preventDefault();
   const txt = $("#topicIn").value.trim(); if (!txt) return;
@@ -386,7 +439,7 @@ function drawTopics() {
       pills.appendChild(p);
     });
     const f = el("form", "add"), inp = el("input"), b = el("button", "", "Add");
-    inp.setAttribute("list", "skillList"); inp.placeholder = "add a prior skill"; inp.autocomplete = "off"; inp.setAttribute("aria-label", "Add a prior skill to " + t.name); b.type = "submit";
+    inp.placeholder = "type a skill students need first"; inp.autocomplete = "off"; inp.setAttribute("aria-label", "Add a prior skill to " + t.name); b.type = "submit";
     f.append(inp, b);
     f.addEventListener("submit", e => { e.preventDefault(); const v = inp.value.trim(); if (!v) return; const id = findSkill(v); if (!t.skills.includes(id)) t.skills.push(id); save(); drawAll(); });
     d.append(pills, f);
@@ -418,6 +471,7 @@ function drawSkills() {
     const h = el("h3"); h.append(el("span", "", skName(id)), el("span", "tag", sk ? (sk.ready ? "game ready" : "questions ready") : "your own skill"));
     d.appendChild(h);
     d.appendChild(el("div", "for", "for " + ST.topics.filter(t => t.skills.includes(id)).map(t => t.name).join(", ")));
+    if (sk && sk.about) d.appendChild(el("p", "meta", sk.about));
 
     // YouTube videos, as many as the teacher likes
     d.appendChild(el("div", "lbl", "YouTube videos"));
@@ -467,7 +521,6 @@ function drawSkills() {
     drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("over"); if (e.dataTransfer.files.length) add(e.dataTransfer.files); });
     d.append(drop, pick);
 
-    if (sk && sk.about) d.appendChild(el("div", "meta", sk.about));
     if (sk) {
       const det = el("details"); det.appendChild(el("summary", "", "The two check questions"));
       sk.q.forEach(([q, a, w]) => { const p = el("p", "q", q); p.appendChild(el("i", "", "right: " + a)); p.appendChild(el("i", "", "typical wrong: " + w)); det.appendChild(p); });
@@ -519,7 +572,8 @@ $("#dl").addEventListener("click", () => {
     format: "mathskills-class-plan", version: "0.2",
     teacher: ST.teacher.trim() || "Sensei",
     subject: ST.subject === "Other" ? (ST.subjectOther.trim() || "Other") : (ST.subject || null),
-    curriculum: { board: ST.board || null, details: ST.curriculum.trim() || null },
+    curriculum: { board: ST.board || null, details: CUR_HINT[ST.board] && ST.curriculum.trim() || null },
+    course: [ST.course, ST.courseOther.trim()].filter(Boolean).join(", ") || null,
     languages: ST.langs.map(l => ({ name: l.name, code: l.code, direction: l.code && RTL.has(l.code) ? "rtl" : "ltr", in_mathskills: !!(l.code && IN_GAME[l.code]) })),
     topics: ST.topics.map(t => ({ name: t.name, prior_skills: t.skills })),
     skills: allSkills().map(id => ({
@@ -540,7 +594,7 @@ const setMode = m => { document.documentElement.dataset.mode = m; try { localSto
 try { if (localStorage.getItem("mathskills.builder.mode") === "light") setMode("light"); } catch (e) {}
 $("#toggle").addEventListener("click", () => setMode(document.documentElement.dataset.mode === "light" ? "dark" : "light"));
 
-function drawAll() { drawSubjects(); drawBoards(); drawLangs(); drawTopics(); drawSkills(); drawMatrix(); }
+function drawAll() { drawBoards(); drawSubjects(); drawLangs(); drawTopics(); drawSkills(); drawMatrix(); }
 drawAll();
 openDb().then(drawSkills);
 if (document.fonts) document.fonts.ready.then(() => fit($("#matrix")));
