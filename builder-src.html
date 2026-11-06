@@ -220,7 +220,10 @@ const SKILLS = {
   pyth:    { ready: true, q: [["Legs 8 and 6: how long is the longest side?", "10", "14: adds the sides"], ["Legs 5 and 12: how long is the longest side?", "13", "17: adds the sides"]] },
   line:    { ready: true, q: [["Which graph is y = 2x + 1?", "through (0, 1), up 2 for each step right", "through (0, 2), up 1: swaps m and c"], ["Which graph is y = −x + 3?", "through (0, 3), down 1 for each step right", "up 1: ignores the minus sign"]] },
   sf:      { name: "Rounding to significant figures", s: "Sig. figures", q: [["Round 0.001075 to 3 significant figures.", "0.00108", "0.001: counts the leading zeros"], ["Round 45 678 to 2 significant figures.", "46 000", "46: drops the place value"]] },
-  mult:    { name: "Multiplicative reasoning", s: "Multiplicative", q: [["How many times bigger is 12 than 3?", "4 times", "9: finds the difference instead of the factor"], ["A plant grows from 20 cm to 30 cm. Its height was multiplied by?", "1.5", "10: adds instead of multiplying"]] },
+  mult:    { name: "Multiplicative reasoning", s: "Multiplicative",
+    about: "What multiplying does to a number: × 2 doubles it, × ½ halves it, × 1.05 adds 5%. The difference between finding 5% of a price (× 0.05) and adding 5% to it (× 1.05). Multiplying again and again (× 1.05 × 1.05 …) for growth year after year.",
+    q: [["What does multiplying a number by ½ do?", "it halves the number (the same as dividing by 2)", "makes it bigger: thinks multiplying always makes a number bigger"],
+        ["A price of 100 is multiplied by 1.05. What happened in real life?", "the price went up by 5%, to 105", "it went up by 1.05, or by 105%"]] },
   prop:    { name: "Proportion", s: "Proportion", q: [["4 people need 300 g of flour. How much for 6 people?", "450 g", "302 g: adds 2 instead of multiplying by 1.5"], ["3 pens cost 4.50. What do 7 pens cost?", "10.50", "8.50: adds 4 instead of scaling"]] },
   percent: { name: "Percentages and multipliers", s: "Percentages", q: [["Find 15% of 80.", "12", "65: takes 15 away"], ["Increase 80 by 15%. Multiply 80 by?", "1.15 (gives 92)", "0.15: finds only the increase"]] },
   estimate:{ name: "Estimating", s: "Estimating", q: [["Estimate 49.8 × 3.1.", "about 150 (50 × 3)", "about 1500: loses the place value"], ["Estimate 612 ÷ 19.7.", "about 30 (600 ÷ 20)", "about 3: loses the place value"]] },
@@ -418,6 +421,7 @@ function drawSkills() {
     drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("over"); if (e.dataTransfer.files.length) add(e.dataTransfer.files); });
     d.append(drop, pick);
 
+    if (sk && sk.about) d.appendChild(el("div", "meta", sk.about));
     if (sk) {
       const det = el("details"); det.appendChild(el("summary", "", "The two check questions"));
       sk.q.forEach(([q, a, w]) => { const p = el("p", "q", q); p.appendChild(el("i", "", "right: " + a)); p.appendChild(el("i", "", "typical wrong: " + w)); det.appendChild(p); });
@@ -473,6 +477,7 @@ $("#dl").addEventListener("click", () => {
     topics: ST.topics.map(t => ({ name: t.name, prior_skills: t.skills })),
     skills: allSkills().map(id => ({
       id, name: skName(id), status: SKILLS[id] ? (SKILLS[id].ready ? "game ready" : "questions ready") : "teacher's own",
+      about: SKILLS[id] && SKILLS[id].about || null,
       check: SKILLS[id] ? SKILLS[id].q.map(([q, a, w]) => ({ question: q, answer: a, typical_wrong: w })) : [],
       youtube: (ST.videos[id] || []).map(v => v.url),
       handouts: FILES.filter(x => x.skill === id).map(x => x.name)
