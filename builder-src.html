@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MathSkills Builder</title>
+<style>
+/*@FONTS@*/
+  :root {
+    --bg: #000000; --fg: #ffffff; --mute: #8a8a92; --soft: #1c1c20;
+    --red: #ff4136; --green: #2ecc40;
+    --font-ui: "Mathskills Pixel", "Vazirmatn", Tahoma, "Segoe UI", "Noto Sans Arabic", sans-serif;
+    color-scheme: dark;
+  }
+  :root[data-mode="light"] {
+    --bg: #ffffff; --fg: #000000; --mute: #6d6d75; --soft: #ececef;
+    --red: #e0261c; --green: #13892e;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font: 18px/1.45 var(--font-ui); font-synthesis: none; -webkit-font-smoothing: none;
+    padding: 12px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px));
+    transition: background .25s, color .25s;
+  }
+  button, input, select { font: inherit; color: inherit; font-synthesis: none; }
+  :focus-visible { outline: 3px dashed var(--fg); outline-offset: 3px; }
+
+  .hud { max-width: 1200px; margin: 0 auto 6px; display: flex; align-items: center; gap: 12px; min-height: 44px; }
+  .logo { font-size: 20px; text-decoration: none; color: var(--fg); }
+  .logo b { font-weight: normal; padding-bottom: 4px; border-bottom: 4px solid var(--red); }
+  .grow { flex: 1; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; background: var(--bg); border: 2px solid var(--fg);
+    border-radius: 999px; padding: 6px 12px 6px 8px; cursor: pointer; }
+  .toggle .sw { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--fg);
+    background: linear-gradient(90deg, var(--fg) 50%, var(--bg) 50%); }
+  .link { color: var(--fg); }
+
+  .wrap { max-width: 1200px; margin: 0 auto; display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 980px) { .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } .side { position: sticky; top: 12px; } }
+  .intro { max-width: 1200px; margin: 6px auto 18px; color: var(--mute); }
+  .intro h1 { font-size: clamp(26px, 4vw, 34px); line-height: 1.1; margin: 0 0 6px; color: var(--fg); font-weight: normal; }
+
+  .main, .side { min-width: 0; }
+  .card { border: 3px solid var(--fg); padding: 16px 18px 18px; background: var(--bg); }
+  .card + .card { margin-top: 22px; }
+  .card h2 { font-size: 22px; font-weight: normal; margin: 0 0 12px; display: flex; align-items: baseline; gap: 10px; }
+  .card h2 .n { display: inline-grid; place-items: center; width: 30px; height: 30px; background: var(--fg); color: var(--bg); font-size: 18px; flex: none; }
+  .hint { color: var(--mute); font-size: 16px; margin: 4px 0 10px; }
+
+  label.f { display: block; margin: 0 0 12px; }
+  label.f span { display: block; font-size: 16px; color: var(--mute); margin-bottom: 4px; }
+  input[type=text], input[type=url], select {
+    width: 100%; background: var(--bg); border: 2px solid var(--fg); padding: 8px 10px; border-radius: 0; }
+  select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--fg) 50%), linear-gradient(135deg, var(--fg) 50%, transparent 50%);
+    background-position: calc(100% - 18px) 55%, calc(100% - 12px) 55%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 32px; }
+  input::placeholder { color: var(--mute); }
+
+  .units { display: grid; gap: 8px; }
+  .unit { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 2px solid var(--fg); background: var(--bg); text-align: start; cursor: pointer; width: 100%; }
+  .unit .box { width: 20px; height: 20px; border: 2px solid var(--fg); flex: none; display: grid; place-items: center; font-size: 14px; }
+  .unit[aria-pressed="true"] .box { background: var(--fg); color: var(--bg); }
+  .unit .sub { color: var(--mute); font-size: 15px; margin-inline-start: auto; }
+  .unit:disabled { opacity: .45; cursor: default; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 8px 13px; border: 3px solid var(--fg); background: var(--bg); border-radius: 999px; cursor: pointer; }
+  .chip:hover { background: var(--soft); }
+  .chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+  .addlang { display: flex; gap: 8px; margin-top: 10px; }
+  .addlang select { flex: 1; }
+
+  table.locs { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 16px; table-layout: fixed; }
+  table.locs td, table.locs th { overflow-wrap: anywhere; }
+  @media (max-width: 520px) { table.locs { font-size: 14px; } }
+  table.locs th { text-align: start; color: var(--mute); font-weight: normal; padding: 4px 6px; border-bottom: 2px solid var(--fg); }
+  table.locs td { padding: 6px; border-bottom: 1px solid var(--mute); vertical-align: top; }
+
+  .btn { border: 3px solid var(--fg); background: var(--bg); padding: 10px 18px; box-shadow: 4px 4px 0 var(--fg); cursor: pointer; transition: transform .08s, box-shadow .08s; }
+  .btn:hover { background: var(--fg); color: var(--bg); }
+  .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--fg); }
+  .btn.small { font-size: 16px; padding: 6px 12px; box-shadow: 3px 3px 0 var(--fg); }
+  .btn:disabled { opacity: .35; box-shadow: none; cursor: default; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+  .lib { display: grid; gap: 8px; }
+  .lib h3 { font-size: 16px; font-weight: normal; color: var(--mute); margin: 10px 0 2px; }
+  .skill { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 4px 10px; align-items: center; padding: 8px 10px;
+    border: 2px solid var(--fg); background: var(--bg); text-align: start; cursor: pointer; width: 100%; }
+  .skill .box { width: 22px; height: 22px; border: 2px solid var(--fg); display: grid; place-items: center; font-size: 14px; }
+  .skill[aria-pressed="true"] { background: var(--soft); }
+  .skill[aria-pressed="true"] .box { background: var(--fg); color: var(--bg); }
+  .skill .nm { min-width: 0; }
+  .skill .fx { color: var(--mute); font-size: 15px; display: block; }
+  .tag { font-size: 14px; padding: 2px 8px; border: 2px solid var(--fg); border-radius: 999px; white-space: nowrap; }
+  .tag.draft { border-style: dashed; color: var(--mute); border-color: var(--mute); }
+  .skill:disabled { opacity: .4; cursor: default; }
+
+  .matrix { display: block; width: 100%; max-width: 560px; margin: 0 auto; }
+  .hex polygon { fill: var(--bg); stroke: var(--fg); stroke-width: 2.5; stroke-linejoin: round; transition: fill .15s; }
+  .hex.draft polygon { stroke-dasharray: 7 5; }
+  .hex.empty polygon { stroke: var(--mute); stroke-dasharray: 3 6; }
+  .hex text { fill: var(--fg); font-family: var(--font-ui); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .hex text.miss { fill: var(--mute); }
+  .hex.empty text { fill: var(--mute); }
+  .hex { cursor: pointer; }
+  .hex:focus { outline: none; }
+  .hex:hover polygon, .hex:focus-visible polygon, .hex.sel polygon { fill: var(--fg); }
+  .hex:hover text, .hex:focus-visible text, .hex.sel text { fill: var(--bg); }
+  .hex.empty:hover polygon, .hex.empty:focus-visible polygon { fill: var(--soft); }
+  .hex.empty:hover text, .hex.empty:focus-visible text { fill: var(--fg); }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: center; color: var(--mute); font-size: 15px; margin: 6px 0 4px; }
+  .legend i { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--fg); vertical-align: -2px; margin-inline-end: 6px; }
+  .legend i.d { border-style: dashed; }
+  .path { text-align: center; color: var(--mute); font-size: 15px; margin: 4px 0 0; }
+
+  .detail h3 { font-size: 20px; font-weight: normal; margin: 4px 0 2px; }
+  .qa { border-inline-start: 4px solid var(--fg); padding: 4px 0 4px 12px; margin: 10px 0; }
+  .qa .q { margin: 0; }
+  .qa .a { margin: 2px 0 0; color: var(--green); }
+  .qa .w { margin: 2px 0 0; color: var(--red); font-size: 16px; }
+  .names { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 10px; align-items: center; font-size: 16px; }
+  .names .code { color: var(--mute); }
+  .names input { padding: 5px 8px; min-width: 0; width: 100%; }
+  .names .ok { padding: 5px 0; }
+
+  .drop { border: 3px dashed var(--mute); padding: 14px; text-align: center; color: var(--mute); font-size: 16px; margin-top: 6px; }
+  .drop.over { border-color: var(--fg); color: var(--fg); background: var(--soft); }
+  .files { list-style: none; padding: 0; margin: 8px 0 0; font-size: 16px; }
+  .files li { display: flex; gap: 10px; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--mute); }
+  .files li span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .files button { background: none; border: 0; color: var(--mute); cursor: pointer; padding: 2px 6px; }
+  pre.json { background: var(--soft); padding: 12px; overflow: auto; max-height: 340px; font: 14px/1.4 ui-monospace, Menlo, Consolas, monospace; margin: 12px 0 0; white-space: pre; }
+  .note { border: 2px dashed var(--mute); padding: 10px 12px; color: var(--mute); font-size: 16px; margin-top: 12px; }
+  .warn { color: var(--red); }
+  [dir="rtl"] { unicode-bidi: isolate; }
+</style>
+</head>
+<body>
+<div class="hud">
+  <a class="logo" href="/game/" title="The student file"><b>MathSkills</b> / Builder</a>
+  <span class="grow"></span>
+  <button class="toggle" id="toggle" type="button"><span class="sw"></span>Invert</button>
+</div>
+
+<div class="intro">
+  <h1>Build a class</h1>
+  Choose the class, its languages and up to seven skills. The students start with a short check: two questions per skill, walked along one path. Then each skill becomes a hexagon in their learning realm: white if they know it, black if they still need to learn it.
+</div>
+
+<div class="wrap">
+  <div class="main">
+    <section class="card" aria-labelledby="h1">
+      <h2 id="h1"><span class="n">1</span>Class</h2>
+      <label class="f"><span>Class name</span><input type="text" id="className" placeholder="e.g. AI HL, Year 1"></label>
+      <label class="f"><span>Course</span>
+        <select id="course">
+          <option value="ib-ai-hl">IB Mathematics: Applications and Interpretation, HL</option>
+          <option value="ib-ai-sl">IB Mathematics: Applications and Interpretation, SL</option>
+          <option value="ib-aa-hl">IB Mathematics: Analysis and Approaches, HL</option>
+          <option value="ib-aa-sl">IB Mathematics: Analysis and Approaches, SL</option>
+        </select>
+      </label>
+      <div class="hint">Units you are about to teach. The skills a student needs before these units go into the check.</div>
+      <div class="units" id="units"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h2">
+      <h2 id="h2"><span class="n">2</span>Languages of the class</h2>
+      <div class="hint">Tick every language your students learn best in. Each student picks one at the start and can switch at any time.</div>
+      <div class="chips" id="langs"></div>
+      <div class="addlang">
+        <select id="moreLang" aria-label="Another language"></select>
+        <button class="btn small" id="addLang" type="button">Add</button>
+      </div>
+      <table class="locs" id="locs"><thead><tr><th>Language</th><th>Writing</th><th>2 decimal places</th><th>Topic names</th></tr></thead><tbody></tbody></table>
+    </section>
+
+    <section class="card" aria-labelledby="h3">
+      <h2 id="h3"><span class="n">3</span>Skills for the check</h2>
+      <div class="hint" id="skillHint"></div>
+      <div class="row" style="margin-bottom:6px"><button class="btn small" id="suggest" type="button">Suggest seven for my units</button><button class="btn small" id="clear" type="button">Clear</button></div>
+      <div class="lib" id="lib"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h4">
+      <h2 id="h4"><span class="n">4</span>Build</h2>
+      <div class="hint">The class plan is a small JSON file: the skills, their questions, the languages and your links. MathSkills Builder turns it into the one HTML file the students get.</div>
+      <div class="row"><button class="btn" id="build" type="button">Build the class plan</button><a class="link" href="/game/" target="_blank" rel="noopener">Open the current student file</a></div>
+      <div id="out" hidden>
+        <pre class="json" id="json"></pre>
+        <div class="row" style="margin-top:12px"><button class="btn small" id="dl" type="button">Download class-plan.json</button><button class="btn small" id="copy" type="button">Copy</button><span id="copied" class="hint" style="margin:0"></span></div>
+        <div class="note">Prototype: the student file at mathskills.academy/game still has its fixed seven topics. The next step is that it reads this plan, so this exact class gets its own check, realm and languages.</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="side">
+    <section class="card" aria-labelledby="hm">
+      <h2 id="hm">The hexagon matrix</h2>
+      <div class="chips" id="pvLangs" aria-label="Preview language"></div>
+      <svg class="matrix" id="matrix" role="group" aria-label="Hexagon matrix"></svg>
+      <div class="legend"><span><i></i>ready to play</span><span><i class="d"></i>questions drafted, game to build</span><span id="lgMiss" hidden><span style="color:var(--mute)">grey text</span>: name not translated yet</span></div>
+      <p class="path" id="pathLine"></p>
+    </section>
+    <section class="card detail" id="detail" aria-live="polite"></section>
+  </div>
+</div>
+
+<script>
+(() => {
+"use strict";
+/*@NAMES@*/
+
+/* ---------- languages ---------- */
+// The seven languages the student file already speaks, with the number style its lessons use.
+const BUILTIN = {
+  ar: { name: "العربية", en: "Arabic", dir: "rtl", sep: "٫" },
+  fa: { name: "دری / فارسی", en: "Dari", dir: "rtl", sep: "٫" },
+  en: { name: "English", en: "English", dir: "ltr", sep: "." },
+  de: { name: "Deutsch", en: "German", dir: "ltr", sep: "," },
+  fr: { name: "Français", en: "French", dir: "ltr", sep: "," },
+  es: { name: "Español", en: "Spanish", dir: "ltr", sep: "," },
+  ru: { name: "Русский", en: "Russian", dir: "ltr", sep: "," }
+};
+const ORDER = ["ar", "fa", "en", "de", "fr", "es", "ru"];
+// More languages a teacher can add; their number style comes from the browser's Unicode CLDR data.
+const MORE = { it: "Italiano", pt: "Português", uk: "Українська", tr: "Türkçe", ps: "پښتو", ur: "اردو", so: "Soomaali", ti: "ትግርኛ", zh: "中文", hi: "हिन्दी", pl: "Polski", ro: "Română" };
+const RTL_MORE = { ps: 1, ur: 1 };
+const langName = c => BUILTIN[c] ? BUILTIN[c].name : MORE[c] || c;
+function locInfo(c) {
+  if (BUILTIN[c]) return { dir: BUILTIN[c].dir, sample: "12" + BUILTIN[c].sep + "35", src: "MathSkills" };
+  let sample = "12.35", dir = RTL_MORE[c] ? "rtl" : "ltr";
+  try { sample = new Intl.NumberFormat(c, { minimumFractionDigits: 2 }).format(12.35); } catch (e) {}
+  try { const l = new Intl.Locale(c), ti = l.getTextInfo ? l.getTextInfo() : l.textInfo; if (ti && ti.direction) dir = ti.direction; } catch (e) {}
+  return { dir, sample, src: "CLDR" };
+}
+
+/* ---------- units ---------- */
+const UNITS = [
+  { id: "number", name: "Number", sub: "rounding, standard form, approximation" },
+  { id: "seq", name: "Sequences and series", sub: "arithmetic and geometric" },
+  { id: "fun", name: "Functions", sub: "skills not mapped yet", off: true },
+  { id: "geo", name: "Geometry and trigonometry", sub: "skills not mapped yet", off: true },
+  { id: "stat", name: "Statistics and probability", sub: "skills not mapped yet", off: true },
+  { id: "calc", name: "Calculus", sub: "skills not mapped yet", off: true }
+];
+
+/* ---------- the skill library ---------- */
+// ready: playable in the student file today. Draft: the two check questions exist, the game does not yet.
+// For each question: the right answer and the most common wrong answer with the thinking behind it.
+const SKILLS = [
+  { id: "round", ready: true, units: ["number"], q: [
+    ["Round 7.486 to 2 decimal places.", "7.49", "7.48", "cuts the digits off instead of rounding"],
+    ["Round 3.4449 to 2 decimal places.", "3.44", "3.45", "rounds in two steps: 3.4449 → 3.445 → 3.45"]] },
+  { id: "ten", ready: true, units: ["number"], q: [
+    ["85 mm = ? cm", "8.5 cm", "850 cm", "multiplies by 10 instead of dividing"],
+    ["7 cm = ? m", "0.07 m", "0.7 m", "moves the decimal point one place instead of two"]] },
+  { id: "sf", ready: false, units: ["number"], name: "Rounding to significant figures", s: "Sig. figures", h: "3 s.f.", q: [
+    ["Round 0.001075 to 3 significant figures.", "0.00108", "0.001", "counts the leading zeros as significant"],
+    ["Round 45 678 to 2 significant figures.", "46 000", "46", "drops the place value"]] },
+  { id: "mult", ready: false, units: ["number", "seq"], name: "Multiplicative reasoning", s: "Proportion", h: "× 1.5", q: [
+    ["4 people need 300 g of flour. How much do 6 people need?", "450 g", "302 g", "adds 2 instead of multiplying by 1.5"],
+    ["3 pens cost 4.50. What do 7 pens cost?", "10.50", "8.50", "adds 4 to the price instead of scaling it"]] },
+  { id: "pow", ready: true, units: ["number"], q: [
+    ["100 000 = 10^?", "5", "6", "counts all the digits, not the zeros"],
+    ["1 = 10^?", "0", "1", "thinks 10 to the power 0 is 0, so picks 1"]] },
+  { id: "sci", ready: true, units: ["number"], q: [
+    ["Write 300 in scientific notation.", "3 × 10²", "30 × 10¹", "forgets that a must be from 1 up to 10"],
+    ["Write 45 600 in scientific notation.", "4.56 × 10⁴", "4.56 × 10⁵", "counts all five digits as the power"]] },
+  { id: "percent", ready: false, units: ["number", "seq"], name: "Percentages and multipliers", s: "Percentages", h: "× 1.15", q: [
+    ["Find 15% of 80.", "12", "65", "takes 15 away instead of finding 15 hundredths"],
+    ["Increase 80 by 15%. What do you multiply 80 by?", "1.15 (gives 92)", "0.15", "finds only the increase, not the new amount"]] },
+  { id: "estimate", ready: false, units: ["number"], name: "Estimating", s: "Estimating", h: "≈", q: [
+    ["Estimate 49.8 × 3.1.", "about 150 (50 × 3)", "about 1500", "loses track of the place value"],
+    ["Estimate 612 ÷ 19.7.", "about 30 (600 ÷ 20)", "about 3", "loses track of the place value"]] },
+  { id: "neg", ready: false, units: ["number", "seq"], name: "Negative numbers", s: "Negatives", h: "−3 − 5", q: [
+    ["Work out −3 − 5.", "−8", "−2", "works out 5 − 3 and keeps the sign"],
+    ["Work out (−2) × (−6).", "12", "−12", "keeps the minus sign"]] },
+  { id: "pattern", ready: false, units: ["seq"], name: "Number patterns", s: "Patterns", h: "+4 · ×2", q: [
+    ["7, 11, 15, 19, … What comes next?", "23", "24", "guesses instead of finding the step"],
+    ["3, 6, 12, 24, … What comes next?", "48", "27", "adds 3 instead of doubling"]] },
+  { id: "subst", ready: false, units: ["seq"], name: "Substituting into formulas", s: "Formulas", h: "n = 4", q: [
+    ["u = 5 + 3n. Find u when n = 4.", "17", "32", "reads 5 + 3n as 8n"],
+    ["Work out 2 × 3².", "18", "36", "squares 2 × 3 instead of only the 3"]] },
+  { id: "lineq", ready: false, units: ["seq"], name: "Solving linear equations", s: "Equations", h: "3x + 5 = 20", q: [
+    ["Solve 3x + 5 = 20.", "x = 5", "x = 25/3", "adds 5 instead of taking it away"],
+    ["Solve 2(x − 1) = 14.", "x = 8", "x = 7.5", "multiplies out as 2x − 1"]] },
+  { id: "expo", ready: false, units: ["seq"], name: "Powers and exponents", s: "Exponents", h: "aⁿ", q: [
+    ["Work out 2⁵.", "32", "10", "multiplies 2 × 5"],
+    ["Work out 5⁰.", "1", "0", "thinks a power of 0 gives 0"]] },
+  { id: "line", ready: true, units: ["seq"], q: [
+    ["Which graph is y = 2x + 1?", "the line through (0, 1) going up 2 for each step right", "the line through (0, 2) going up 1", "swaps the gradient and the intercept"],
+    ["Which graph is y = −x + 3?", "the line through (0, 3) going down 1 for each step right", "the line through (0, 3) going up 1", "ignores the minus sign of m"]] },
+  { id: "coord", ready: true, units: [], q: [
+    ["Plot A(8, 0).", "8 right, 0 up", "0 right, 8 up", "swaps x and y"],
+    ["Plot B(0, 6).", "0 right, 6 up", "6 right, 0 up", "swaps x and y"]] },
+  { id: "pyth", ready: true, units: [], q: [
+    ["A right-angled triangle has legs 8 and 6. How long is the longest side?", "10", "14", "adds the two sides"],
+    ["Legs 5 and 12. How long is the longest side?", "13", "17", "adds the two sides"]] }
+];
+const SK = Object.fromEntries(SKILLS.map(s => [s.id, s]));
+const SUGGEST = {
+  "number+seq": ["round", "ten", "mult", "sf", "sci", "percent", "pattern"],
+  number: ["round", "ten", "mult", "sf", "sci", "percent", "estimate"],
+  seq: ["pattern", "mult", "subst", "lineq", "expo", "percent", "line"]
+};
+// the money video is already in the student file for rounding
+const BUILT_VIDEO = { round: "videos/money-{lang}.mp4" };
+
+/* names: the student file's own translations for ready skills; English (and the teacher's own) for drafts */
+function nm(id, lang, kind) {          // kind: t (full), s (short), h (hint)
+  const sk = SK[id];
+  if (sk.ready && NAMES[lang] && NAMES[lang][kind + "_" + id]) return { text: NAMES[lang][kind + "_" + id], ok: true };
+  const own = ST.names[id] && ST.names[id][lang];
+  if (own && (kind === "t" || kind === "s")) return { text: own, ok: true };
+  if (kind === "h") {                  // formulas read the same in every language
+    const h = sk.ready ? NAMES.en["h_" + id] : sk.h;
+    return { text: h, ok: true };
+  }
+  const en = sk.ready ? NAMES.en[kind + "_" + id] : kind === "t" ? sk.name : sk.s;
+  return { text: en, ok: lang === "en" };
+}
+
+/* ---------- state ---------- */
+const KEY = "mathskills.builder.v1";
+const ST = Object.assign({ className: "", course: "ib-ai-hl", units: [], langs: ["en"], hex: [], names: {}, links: {}, files: {}, sel: null, pv: "en" },
+  (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })());
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch (e) {} };
+const $ = s => document.querySelector(s);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const NS = "http://www.w3.org/2000/svg";
+const svgEl = (tag, at) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); return e; };
+
+/* ---------- 1 class ---------- */
+$("#className").value = ST.className;
+$("#className").addEventListener("input", e => { ST.className = e.target.value; save(); });
+$("#course").value = ST.course;
+$("#course").addEventListener("change", e => { ST.course = e.target.value; save(); });
+function drawUnits() {
+  const box = $("#units"); box.innerHTML = "";
+  UNITS.forEach(u => {
+    const b = el("button", "unit"); b.type = "button"; b.disabled = !!u.off;
+    b.setAttribute("aria-pressed", ST.units.includes(u.id));
+    b.append(el("span", "box", ST.units.includes(u.id) ? "✓" : ""), el("span", "", u.name), el("span", "sub", u.sub));
+    b.addEventListener("click", () => {
+      ST.units = ST.units.includes(u.id) ? ST.units.filter(x => x !== u.id) : [...ST.units, u.id];
+      save(); drawUnits(); drawLib();
+    });
+    box.appendChild(b);
+  });
+}
+
+/* ---------- 2 languages ---------- */
+function drawLangs() {
+  const box = $("#langs"); box.innerHTML = "";
+  const all = [...ORDER, ...ST.langs.filter(c => !BUILTIN[c])];
+  all.forEach(c => {
+    const b = el("button", "chip", langName(c)); b.type = "button"; b.lang = c; b.dir = locInfo(c).dir;
+    b.setAttribute("aria-pressed", ST.langs.includes(c));
+    b.addEventListener("click", () => {
+      if (ST.langs.includes(c)) { if (ST.langs.length === 1) return; ST.langs = ST.langs.filter(x => x !== c); }
+      else ST.langs = [...ST.langs, c];
+      if (!ST.langs.includes(ST.pv)) ST.pv = ST.langs[0];
+      save(); drawAll();
+    });
+    box.appendChild(b);
+  });
+  const sel = $("#moreLang"); sel.innerHTML = "";
+  sel.appendChild(new Option("Another language…", ""));
+  Object.keys(MORE).filter(c => !ST.langs.includes(c)).forEach(c => sel.appendChild(new Option(MORE[c], c)));
+  // the table: how numbers and text run in each class language
+  const tb = $("#locs tbody"); tb.innerHTML = "";
+  ST.langs.forEach(c => {
+    const i = locInfo(c), tr = el("tr");
+    const n = el("td", "", langName(c)); n.lang = c; n.dir = i.dir;
+    const miss = ST.hex.filter(id => !nm(id, c, "t").ok).length;
+    tr.append(n, el("td", "", i.dir === "rtl" ? "right to left" : "left to right"),
+      Object.assign(el("td", "num", i.sample + (i.src === "CLDR" ? "  (CLDR)" : "")), { dir: "ltr" }),
+      el("td", miss ? "warn" : "", ST.hex.length ? (miss ? miss + " to translate" : "all there") : "–"));
+    tb.appendChild(tr);
+  });
+}
+$("#addLang").addEventListener("click", () => {
+  const c = $("#moreLang").value; if (!c) return;
+  ST.langs = [...ST.langs, c]; save(); drawAll();
+});
+
+/* ---------- 3 skills ---------- */
+function drawLib() {
+  const box = $("#lib"); box.innerHTML = "";
+  const full = ST.hex.length >= 7;
+  $("#skillHint").textContent = ST.hex.length + " of 7 hexagons chosen. " +
+    (full ? "The matrix is full; take one out to add another." : "Pick in the order the path should visit them.");
+  const mine = SKILLS.filter(s => s.units.some(u => ST.units.includes(u)));
+  const rest = SKILLS.filter(s => !mine.includes(s));
+  const group = (title, list) => {
+    if (!list.length) return;
+    box.appendChild(el("h3", "", title));
+    list.forEach(s => {
+      const on = ST.hex.includes(s.id);
+      const b = el("button", "skill"); b.type = "button"; b.setAttribute("aria-pressed", on); b.disabled = !on && full;
+      const name = el("span", "nm", nm(s.id, "en", "t").text); name.appendChild(el("span", "fx", nm(s.id, "en", "h").text));
+      b.append(el("span", "box", on ? String(ST.hex.indexOf(s.id) + 1) : ""), name,
+        el("span", "tag" + (s.ready ? "" : " draft"), s.ready ? "ready" : "draft"));
+      b.addEventListener("click", () => {
+        ST.hex = on ? ST.hex.filter(x => x !== s.id) : [...ST.hex, s.id];
+        ST.sel = on ? (ST.sel === s.id ? null : ST.sel) : s.id;
+        save(); drawAll();
+      });
+      box.appendChild(b);
+    });
+  };
+  if (ST.units.length) { group("Needed for your units", mine); group("Other skills", rest); }
+  else group("All skills (tick your units above to see which ones they need)", SKILLS);
+}
+$("#suggest").addEventListener("click", () => {
+  const k = ST.units.includes("number") && ST.units.includes("seq") ? "number+seq" : ST.units.includes("seq") ? "seq" : "number";
+  if (!ST.units.length) ST.units = ["number", "seq"];
+  ST.hex = SUGGEST[ST.units.includes("number") && ST.units.includes("seq") ? "number+seq" : k].slice();
+  ST.sel = ST.hex[0]; save(); drawAll();
+});
+$("#clear").addEventListener("click", () => { ST.hex = []; ST.sel = null; save(); drawAll(); });
+
+/* ---------- the matrix: always seven cells in a hexagon, 2-3-2 ---------- */
+const R = 60, W = Math.sqrt(3) * R;
+const CELLS = [[-W / 2, 0], [W / 2, 0], [-W, 90], [0, 90], [W, 90], [-W / 2, 180], [W / 2, 180]];
+const hexPoints = (x, y) => Array.from({ length: 6 }, (_, k) => { const a = Math.PI / 180 * (60 * k - 90); return (x + R * Math.cos(a)).toFixed(1) + "," + (y + R * Math.sin(a)).toFixed(1); }).join(" ");
+function label(g, x, y, str, fs, cls, lang) {
+  const t = svgEl("text", { x, y, "font-size": fs, "data-fs": fs, class: cls || "" });
+  // right to left only for text that has right-to-left letters, so "× ÷ 10" keeps its order
+  if (lang) { t.setAttribute("lang", lang); t.setAttribute("direction", /[\u0590-\u08FF\uFB1D-\uFEFC]/.test(str) ? "rtl" : "ltr"); }
+  t.textContent = str; g.appendChild(t);
+}
+function fit(svg) {
+  svg.querySelectorAll("text").forEach(t => {
+    t.setAttribute("font-size", t.dataset.fs);
+    const len = t.getComputedTextLength();
+    if (len > 88) t.setAttribute("font-size", (t.dataset.fs * 88 / len).toFixed(1));
+  });
+}
+function drawPreviewLangs() {
+  const box = $("#pvLangs"); box.innerHTML = "";
+  if (ST.langs.length < 2) { box.hidden = true; return; }
+  box.hidden = false;
+  ST.langs.forEach(c => {
+    const b = el("button", "chip", langName(c)); b.type = "button"; b.lang = c; b.dir = locInfo(c).dir;
+    b.style.fontSize = "15px"; b.style.padding = "4px 10px";
+    b.setAttribute("aria-pressed", ST.pv === c);
+    b.addEventListener("click", () => { ST.pv = c; save(); drawMatrix(); drawPreviewLangs(); drawDetail(); });
+    box.appendChild(b);
+  });
+}
+function drawMatrix() {
+  const svg = $("#matrix"); svg.innerHTML = "";
+  svg.setAttribute("viewBox", `${(-W - R * .95).toFixed(0)} ${-R - 6} ${(2 * W + R * 1.9).toFixed(0)} ${180 + 2 * R + 12}`);
+  let anyMiss = false;
+  CELLS.forEach(([x, y], i) => {
+    const id = ST.hex[i];
+    const g = svgEl("g", { class: "hex" + (id ? (SK[id].ready ? "" : " draft") + (ST.sel === id ? " sel" : "") : " empty"), tabindex: 0, role: "button" });
+    g.appendChild(svgEl("polygon", { points: hexPoints(x, y) }));
+    if (id) {
+      const s = nm(id, ST.pv, "s"); if (!s.ok) anyMiss = true;
+      g.setAttribute("aria-label", (i + 1) + ": " + nm(id, ST.pv, "t").text);
+      label(g, x, y - 18, (i + 1) + "", 12, "", null);
+      // a long name (often one a teacher typed in) goes on two lines instead of shrinking
+      const words = s.text.split(" "), cut = words.length > 1 && s.text.length > 13 ? Math.ceil(words.length / 2) : 0;
+      if (cut) {
+        label(g, x, y - 4, words.slice(0, cut).join(" "), 15, s.ok ? "" : "miss", ST.pv);
+        label(g, x, y + 13, words.slice(cut).join(" "), 15, s.ok ? "" : "miss", ST.pv);
+        label(g, x, y + 32, nm(id, ST.pv, "h").text, 12, "", null);
+      } else {
+        label(g, x, y + 2, s.text, 16, s.ok ? "" : "miss", ST.pv);
+        label(g, x, y + 24, nm(id, ST.pv, "h").text, 12, "", null);
+      }
+    } else {
+      g.setAttribute("aria-label", "Empty: add a skill");
+      label(g, x, y, "+", 28, "", null);
+    }
+    const go = () => { if (id) { ST.sel = id; save(); drawMatrix(); drawDetail(); } else { $("#lib").scrollIntoView({ behavior: "smooth", block: "start" }); } };
+    g.addEventListener("click", go);
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+    svg.appendChild(g);
+  });
+  fit(svg);
+  $("#lgMiss").hidden = !anyMiss;
+  $("#pathLine").textContent = ST.hex.length
+    ? "The check walks the path in this order: " + ST.hex.map((id, i) => (i + 1) + " " + nm(id, "en", "s").text).join(" → ") + ". " + (2 * ST.hex.length) + " questions."
+    : "Choose skills on the left (or below on a phone), or press \"Suggest seven for my units\".";
+}
+
+/* ---------- the chosen hexagon ---------- */
+function drawDetail() {
+  const box = $("#detail"); box.innerHTML = "";
+  const id = ST.sel && ST.hex.includes(ST.sel) ? ST.sel : null;
+  if (!id) { box.appendChild(el("p", "hint", "Click a hexagon to see its two check questions, its names in every class language and your links.")); return; }
+  const sk = SK[id], i = ST.hex.indexOf(id);
+  box.appendChild(el("h3", "", (i + 1) + ". " + nm(id, "en", "t").text));
+  box.appendChild(el("div", "hint", sk.ready
+    ? "Ready to play: check, video, underworld and games are in the student file."
+    : "Draft: the two check questions are written; the video, underworld and games still need building."));
+  const mv = el("div", "row");
+  const mk = (txt, fn, dis) => { const b = el("button", "btn small", txt); b.type = "button"; b.disabled = dis; b.addEventListener("click", fn); mv.appendChild(b); };
+  const swap = d => { const h = ST.hex, j = i + d; [h[i], h[j]] = [h[j], h[i]]; save(); drawAll(); };
+  mk("◀ Earlier", () => swap(-1), i === 0);
+  mk("Later ▶", () => swap(1), i === ST.hex.length - 1);
+  mk("Take out", () => { ST.hex = ST.hex.filter(x => x !== id); ST.sel = null; save(); drawAll(); }, false);
+  box.appendChild(mv);
+
+  box.appendChild(el("h3", "", "The two check questions"));
+  sk.q.forEach(([q, a, w, why]) => {
+    const d = el("div", "qa");
+    d.append(el("p", "q", q), el("p", "a", "Right: " + a), el("p", "w", "Typical wrong answer: " + w + ", because the student " + why + "."));
+    box.appendChild(d);
+  });
+
+  box.appendChild(el("h3", "", "Name in each class language"));
+  const nb = el("div", "names");
+  ST.langs.forEach(c => {
+    const n = nm(id, c, "t");
+    nb.appendChild(el("span", "code", langName(c)));
+    if (sk.ready && NAMES[c]) { const s = el("span", "ok", n.text); s.lang = c; s.dir = locInfo(c).dir; nb.appendChild(s); return; }
+    if (c === "en") { nb.appendChild(el("span", "ok", n.text)); return; }
+    const inp = el("input"); inp.type = "text"; inp.lang = c; inp.dir = locInfo(c).dir;
+    inp.value = (ST.names[id] && ST.names[id][c]) || ""; inp.placeholder = "add a translation";
+    inp.addEventListener("change", () => { ST.names[id] = ST.names[id] || {}; ST.names[id][c] = inp.value.trim(); save(); drawMatrix(); drawLangs(); });
+    nb.appendChild(inp);
+  });
+  box.appendChild(nb);
+  box.appendChild(el("div", "hint", "A translation you add stays in this class. Once someone has reviewed it, it can be shared with every MathSkills class."));
+
+  box.appendChild(el("h3", "", "Your video or worksheet"));
+  const lb = el("label", "f"); lb.appendChild(el("span", "", BUILT_VIDEO[id] ? "Built in: the money video in all seven languages. Add your own link to use it instead." : "Paste a link (video, worksheet, GeoGebra). Students see it next to the lesson."));
+  const li = el("input"); li.type = "url"; li.placeholder = "https://…"; li.value = ST.links[id] || "";
+  li.addEventListener("change", () => { ST.links[id] = li.value.trim(); save(); });
+  lb.appendChild(li); box.appendChild(lb);
+
+  // drop in your own material: the files stay on this computer; building puts them into the student file
+  const drop = el("div", "drop", "Drop your worksheet, picture or video here, or click to choose a file");
+  drop.tabIndex = 0; drop.setAttribute("role", "button");
+  const pick = el("input"); pick.type = "file"; pick.multiple = true; pick.hidden = true;
+  const add = list => { ST.files[id] = [...(ST.files[id] || []), ...[...list].map(f => ({ name: f.name, size: f.size, type: f.type || "file" }))]; save(); drawDetail(); };
+  drop.addEventListener("click", () => pick.click());
+  drop.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick.click(); } });
+  pick.addEventListener("change", () => add(pick.files));
+  drop.addEventListener("dragover", e => { e.preventDefault(); drop.classList.add("over"); });
+  drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+  drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("over"); if (e.dataTransfer.files.length) add(e.dataTransfer.files); });
+  box.append(drop, pick);
+  const fl = ST.files[id] || [];
+  if (fl.length) {
+    const ul = el("ul", "files");
+    fl.forEach((f, k) => {
+      const li2 = el("li"); li2.append(el("span", "", f.name), el("span", "hint", (f.size / 1048576 < .1 ? Math.max(1, Math.round(f.size / 1024)) + " KB" : (f.size / 1048576).toFixed(1) + " MB")));
+      const x = el("button", "", "✕"); x.type = "button"; x.setAttribute("aria-label", "Remove " + f.name);
+      x.addEventListener("click", () => { ST.files[id].splice(k, 1); save(); drawDetail(); });
+      li2.appendChild(x); ul.appendChild(li2);
+    });
+    box.appendChild(ul);
+    box.appendChild(el("div", "hint", "Prototype: only the file names are kept for now. Nothing is uploaded."));
+  }
+}
+
+/* ---------- 4 build ---------- */
+function plan() {
+  return {
+    format: "mathskills-class-plan", version: "0.1",
+    class: { name: ST.className || "Untitled class", course: $("#course").selectedOptions[0].textContent, units: ST.units.map(u => UNITS.find(x => x.id === u).name) },
+    languages: ST.langs.map(c => { const i = locInfo(c); return { code: c, name: langName(c), direction: i.dir, example_2dp: i.sample }; }),
+    hexagons: ST.hex.map((id, i) => {
+      const sk = SK[id];
+      return {
+        order: i + 1, skill: id, status: sk.ready ? "ready" : "draft",
+        names: Object.fromEntries(ST.langs.map(c => { const n = nm(id, c, "t"); return [c, n.ok ? n.text : null]; })),
+        check: sk.q.map(([q, a, w, why]) => ({ question: q, answer: a, typical_wrong: w, misconception: why })),
+        link: ST.links[id] || (BUILT_VIDEO[id] ? BUILT_VIDEO[id] : null),
+        files: (ST.files[id] || []).map(f => f.name)
+      };
+    })
+  };
+}
+$("#build").addEventListener("click", () => {
+  if (!ST.hex.length) { $("#out").hidden = false; $("#json").textContent = "Choose at least one skill first."; return; }
+  $("#json").textContent = JSON.stringify(plan(), null, 2);
+  $("#out").hidden = false; $("#copied").textContent = "";
+});
+$("#dl").addEventListener("click", () => {
+  const a = el("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify(plan(), null, 2)], { type: "application/json" }));
+  a.download = "class-plan.json"; document.body.appendChild(a); a.click(); a.remove();
+});
+$("#copy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText($("#json").textContent); $("#copied").textContent = "Copied."; } catch (e) { $("#copied").textContent = "Copy did not work here; use Download."; }
+});
+
+/* ---------- light and dark ---------- */
+const setMode = m => { document.documentElement.dataset.mode = m; try { localStorage.setItem("mathskills.builder.mode", m); } catch (e) {} };
+try { if (localStorage.getItem("mathskills.builder.mode") === "light") setMode("light"); } catch (e) {}
+$("#toggle").addEventListener("click", () => setMode(document.documentElement.dataset.mode === "light" ? "dark" : "light"));
+
+function drawAll() { drawUnits(); drawLangs(); drawLib(); drawPreviewLangs(); drawMatrix(); drawDetail(); }
+drawAll();
+if (document.fonts) document.fonts.ready.then(() => fit($("#matrix")));
+window.__builder = { ST, plan, SKILLS };
+})();
+</script>
+</body>
+</html>
