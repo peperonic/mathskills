@@ -203,11 +203,11 @@ function findCode(txt) {
 
 /* ---------- topics and the skills they need ---------- */
 const TOPICS = {
-  "Number": ["round", "sf", "ten", "sci", "mult", "percent", "estimate"],
+  "Number": ["round", "sf", "ten", "sci", "mult", "prop", "percent", "estimate"],
   "Sequences and series": ["pattern", "mult", "subst", "lineq", "expo", "percent", "neg"],
   "Straight lines": ["coord", "neg", "subst", "line"],
   "Pythagoras and trigonometry": ["coord", "expo", "pyth", "round"],
-  "Financial mathematics": ["percent", "mult", "expo", "round"],
+  "Financial mathematics": ["percent", "mult", "prop", "expo", "round"],
   "Functions": ["coord", "subst", "lineq", "line"]
 };
 // ready: playable in the student file today; the others have their two check questions written, the game is still to build
@@ -220,7 +220,8 @@ const SKILLS = {
   pyth:    { ready: true, q: [["Legs 8 and 6: how long is the longest side?", "10", "14: adds the sides"], ["Legs 5 and 12: how long is the longest side?", "13", "17: adds the sides"]] },
   line:    { ready: true, q: [["Which graph is y = 2x + 1?", "through (0, 1), up 2 for each step right", "through (0, 2), up 1: swaps m and c"], ["Which graph is y = −x + 3?", "through (0, 3), down 1 for each step right", "up 1: ignores the minus sign"]] },
   sf:      { name: "Rounding to significant figures", s: "Sig. figures", q: [["Round 0.001075 to 3 significant figures.", "0.00108", "0.001: counts the leading zeros"], ["Round 45 678 to 2 significant figures.", "46 000", "46: drops the place value"]] },
-  mult:    { name: "Multiplicative reasoning", s: "Proportion", q: [["4 people need 300 g of flour. How much for 6 people?", "450 g", "302 g: adds 2 instead of multiplying by 1.5"], ["3 pens cost 4.50. What do 7 pens cost?", "10.50", "8.50: adds 4 instead of scaling"]] },
+  mult:    { name: "Multiplicative reasoning", s: "Multiplicative", q: [["How many times bigger is 12 than 3?", "4 times", "9: finds the difference instead of the factor"], ["A plant grows from 20 cm to 30 cm. Its height was multiplied by?", "1.5", "10: adds instead of multiplying"]] },
+  prop:    { name: "Proportion", s: "Proportion", q: [["4 people need 300 g of flour. How much for 6 people?", "450 g", "302 g: adds 2 instead of multiplying by 1.5"], ["3 pens cost 4.50. What do 7 pens cost?", "10.50", "8.50: adds 4 instead of scaling"]] },
   percent: { name: "Percentages and multipliers", s: "Percentages", q: [["Find 15% of 80.", "12", "65: takes 15 away"], ["Increase 80 by 15%. Multiply 80 by?", "1.15 (gives 92)", "0.15: finds only the increase"]] },
   estimate:{ name: "Estimating", s: "Estimating", q: [["Estimate 49.8 × 3.1.", "about 150 (50 × 3)", "about 1500: loses the place value"], ["Estimate 612 ÷ 19.7.", "about 30 (600 ÷ 20)", "about 3: loses the place value"]] },
   neg:     { name: "Negative numbers", s: "Negatives", q: [["Work out −3 − 5.", "−8", "−2: works out 5 − 3"], ["Work out (−2) × (−6).", "12", "−12: keeps the minus sign"]] },
@@ -435,7 +436,7 @@ function label(g, x, y, str, fs) {
   t.setAttribute("direction", /[֐-ࣿיִ-ﻼ]/.test(str) ? "rtl" : "ltr");
   t.textContent = str; g.appendChild(t);
 }
-function fit(svg) { svg.querySelectorAll("text").forEach(t => { t.setAttribute("font-size", t.dataset.fs); const n = t.getComputedTextLength(); if (n > 88) t.setAttribute("font-size", (t.dataset.fs * 88 / n).toFixed(1)); }); }
+function fit(svg) { svg.querySelectorAll("text").forEach(t => { t.setAttribute("font-size", t.dataset.fs); const n = t.getComputedTextLength(); if (n > 100) t.setAttribute("font-size", (t.dataset.fs * 100 / n).toFixed(1)); }); }
 function drawMatrix() {
   const svg = $("#matrix"); svg.innerHTML = "";
   svg.setAttribute("viewBox", `${(-W - R * .95).toFixed(0)} ${-R - 6} ${(2 * W + R * 1.9).toFixed(0)} ${180 + 2 * R + 12}`);
