@@ -170,8 +170,8 @@
   </section>
 
   <section class="col" aria-labelledby="hS">
-    <h2 id="hS">Videos and handouts</h2>
-    <p class="sub">Under each skill, as many YouTube videos and files as you like.</p>
+    <h2 id="hS">Videos, links and handouts</h2>
+    <p class="sub">Under each skill, as many YouTube videos, website links and files as you like.</p>
     <div id="skills"></div>
   </section>
 </div>
@@ -305,7 +305,7 @@ function findSkill(txt) {
 
 /* ---------- state, kept in this browser ---------- */
 const KEY = "mathskills.builder.v2";
-const ST = Object.assign({ teacher: "", teach: "", subject: "Mathematics", subjectOther: "", course: "", courseOther: "", board: "", curriculum: "", langs: [], topics: [], videos: {} },
+const ST = Object.assign({ teacher: "", teach: "", subject: "Mathematics", subjectOther: "", course: "", courseOther: "", board: "", curriculum: "", langs: [], topics: [], videos: {}, links: {} },
   (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })());
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch (e) {} };
 
@@ -462,7 +462,7 @@ const allSkills = () => [...new Set(ST.topics.flatMap(t => t.skills))];
 /* ---------- videos and handouts column ---------- */
 function ytId(url) {
   try {
-    const u = new URL(url.trim());
+    const t = url.trim(), u = new URL(/^[a-z][a-z0-9+.-]*:/i.test(t) ? t : "https://" + t);
     const h = u.hostname.replace(/^(www|m|music)\./, "");
     if (h === "youtu.be") return u.pathname.slice(1).split("/")[0] || null;
     if (h === "youtube.com" || h === "youtube-nocookie.com") {
@@ -472,6 +472,13 @@ function ytId(url) {
   } catch (e) {}
   return null;
 }
+// a web address as typed: "www.transum.org/…" works too; only http and https
+function webUrl(txt) {
+  let t = txt.trim(); if (!t) return null;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(t)) t = "https://" + t;
+  try { const u = new URL(t); return (u.protocol === "http:" || u.protocol === "https:") && u.hostname.includes(".") ? u.href : null; } catch (e) { return null; }
+}
+const shortUrl = h => { try { const u = new URL(h); const p = (u.pathname + u.search).replace(/\/$/, ""); return u.hostname.replace(/^www\./, "") + p; } catch (e) { return h; } };
 const sizeTxt = n => n < 1048576 ? Math.max(1, Math.round(n / 1024)) + " KB" : (n / 1048576).toFixed(1) + " MB";
 function drawSkills() {
   const box = $("#skills"); box.innerHTML = "";
@@ -497,15 +504,38 @@ function drawSkills() {
       d.appendChild(ul);
     }
     const f = el("form", "add"), inp = el("input"), b = el("button", "", "Add"), err = el("div", "err");
-    inp.type = "url"; inp.placeholder = "paste a YouTube link"; inp.setAttribute("aria-label", "YouTube link for " + skName(id)); b.type = "submit"; f.style.marginTop = "6px";
+    inp.type = "url"; inp.placeholder = "paste a YouTube link"; inp.setAttribute("aria-label", "YouTube link for " + skName(id)); b.type = "submit"; f.style.marginTop = "6px"; f.noValidate = true;
     f.append(inp, b);
     f.addEventListener("submit", e => {
       e.preventDefault();
       const yid = ytId(inp.value);
       if (!yid) { err.textContent = "That doesn't look like a YouTube link."; return; }
-      ST.videos[id] = [...vids, { url: inp.value.trim(), id: yid }]; save(); drawSkills();
+      ST.videos[id] = [...vids, { url: webUrl(inp.value), id: yid }]; save(); drawSkills();
     });
     d.append(f, err);
+
+    // website links: any web page (exercises, applets, worksheets online)
+    d.appendChild(el("div", "lbl", "Website links"));
+    const webs = ST.links[id] || [];
+    if (webs.length) {
+      const ul = el("ul", "list"); ul.style.marginTop = "0";
+      webs.forEach((w, k) => {
+        const li = el("li"), a = el("a", "main", shortUrl(w)); a.href = w; a.target = "_blank"; a.rel = "noopener"; a.title = w;
+        li.append(a, xBtn("Remove link", () => { webs.splice(k, 1); save(); drawSkills(); }));
+        ul.appendChild(li);
+      });
+      d.appendChild(ul);
+    }
+    const wf = el("form", "add"), wi = el("input"), wb = el("button", "", "Add"), we = el("div", "err");
+    wi.type = "url"; wi.placeholder = "paste a website link"; wi.setAttribute("aria-label", "Website link for " + skName(id)); wb.type = "submit"; wf.style.marginTop = "6px"; wf.noValidate = true;
+    wf.append(wi, wb);
+    wf.addEventListener("submit", e => {
+      e.preventDefault();
+      const u = webUrl(wi.value);
+      if (!u) { we.textContent = "That doesn't look like a web address."; return; }
+      ST.links[id] = [...webs, u]; save(); drawSkills();
+    });
+    d.append(wf, we);
 
     // handouts: any file type
     d.appendChild(el("div", "lbl", "Handouts"));
@@ -594,6 +624,7 @@ $("#dl").addEventListener("click", () => {
       about: SKILLS[id] && SKILLS[id].about || null,
       check: SKILLS[id] ? SKILLS[id].q.map(([q, a, w]) => ({ question: q, answer: a, typical_wrong: w })) : [],
       youtube: (ST.videos[id] || []).map(v => v.url),
+      links: ST.links[id] || [],
       handouts: FILES.filter(x => x.skill === id).map(x => x.name)
     }))
   };
