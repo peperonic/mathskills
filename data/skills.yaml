@@ -43,9 +43,12 @@ skills:
   - {id: transformations, name: "Translation, reflection, rotation and enlargement", mathskills: null}
   - {id: circle, name: "Parts of a circle, circumference and area", mathskills: null}
   - {id: solids, name: "Prisms, pyramids, spheres, cylinders and cones", mathskills: null}
-  - {id: charts, name: Collecting data and drawing charts, mathskills: null}
+  - {id: charts, name: "Collecting data, drawing and reading charts", mathskills: null}
   - {id: prob_simple, name: Probability of simple events, mathskills: null}
   - {id: tree_diagrams, name: Tree diagrams, mathskills: null}
   - {id: graph_read, name: Reading values from graphs and diagrams, mathskills: null}
   - {id: mult, name: Multiplicative reasoning, mathskills: mult}
   - {id: weighted_index, name: Weighted averages and index numbers, mathskills: null}
+  - {id: estimate, name: Approximation and estimation, mathskills: estimate}
+  - {id: plot_graphs, name: Plotting graphs of two variables with suitable scales, mathskills: coord, note: "MathSkills checks plotting points only"}
+  - {id: graph_interpret, name: "Reading gradients, intercepts and areas on graphs", mathskills: null}

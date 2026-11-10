@@ -12,7 +12,7 @@ Courses, each at SL and HL:
 | Chemistry | ready | guide, Tool 3, same selection rules as Physics |
 | Economics | ready | the calculations named in the syllabus |
 | Biology | pending | waiting for the source |
-| Environmental systems and societies | pending | waiting for the source |
+| Environmental systems and societies | ready (no topics yet) | the mathematical requirements for all ESS students, as given by the owner |
 
 ## What is in it
 

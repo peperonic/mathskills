@@ -159,7 +159,7 @@ window.IB_SKILLS = {
    "mathskills": null
   },
   "charts": {
-   "name": "Collecting data and drawing charts",
+   "name": "Collecting data, drawing and reading charts",
    "mathskills": null
   },
   "prob_simple": {
@@ -180,6 +180,19 @@ window.IB_SKILLS = {
   },
   "weighted_index": {
    "name": "Weighted averages and index numbers",
+   "mathskills": null
+  },
+  "estimate": {
+   "name": "Approximation and estimation",
+   "mathskills": "estimate"
+  },
+  "plot_graphs": {
+   "name": "Plotting graphs of two variables with suitable scales",
+   "mathskills": "coord",
+   "note": "MathSkills checks plotting points only"
+  },
+  "graph_interpret": {
+   "name": "Reading gradients, intercepts and areas on graphs",
    "mathskills": null
   }
  },
@@ -1353,13 +1366,123 @@ window.IB_SKILLS = {
    "subject": "Environmental Systems and Societies",
    "course": "DP Environmental Systems and Societies SL",
    "level": "SL",
-   "status": "pending",
+   "status": "ready",
    "guide": {
-    "title": "Environmental systems and societies guide"
+    "title": "Environmental systems and societies guide",
+    "section": "Mathematical requirements for all ESS students"
    },
-   "prior_knowledge": [],
-   "prior_skills": [],
-   "hexagon": [],
+   "prior_knowledge": [
+    {
+     "id": "s1",
+     "text": "The four operations: adding, subtracting, multiplying, dividing",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s2",
+     "text": "Working out a mean",
+     "skills": [
+      "mean_range"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s3",
+     "text": "Calculating with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s4",
+     "text": "Calculating with ratios and reciprocals",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s5",
+     "text": "Approximating and estimating",
+     "skills": [
+      "estimate"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s6",
+     "text": "Writing and reading numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s7",
+     "text": "Direct and inverse proportion",
+     "skills": [
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s8",
+     "text": "Solving simple equations",
+     "skills": [
+      "lineq"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s9",
+     "text": "Drawing graphs of two variables, straight and curved, with sensible scales and axes",
+     "skills": [
+      "plot_graphs"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s10",
+     "text": "Reading what a graph's slope, change of slope, axis crossings and the area under it mean",
+     "skills": [
+      "graph_interpret"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s11",
+     "text": "Reading data from bar charts, histograms, pie charts and similar",
+     "skills": [
+      "charts"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "mean_range",
+    "dfp",
+    "ratio_recip",
+    "estimate",
+    "sci",
+    "prop",
+    "lineq",
+    "plot_graphs",
+    "graph_interpret",
+    "charts"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "sci",
+    "prop",
+    "lineq",
+    "graph_interpret"
+   ],
    "topics": []
   },
   {
@@ -1368,13 +1491,123 @@ window.IB_SKILLS = {
    "subject": "Environmental Systems and Societies",
    "course": "DP Environmental Systems and Societies HL",
    "level": "HL",
-   "status": "pending",
+   "status": "ready",
    "guide": {
-    "title": "Environmental systems and societies guide"
+    "title": "Environmental systems and societies guide",
+    "section": "Mathematical requirements for all ESS students"
    },
-   "prior_knowledge": [],
-   "prior_skills": [],
-   "hexagon": [],
+   "prior_knowledge": [
+    {
+     "id": "s1",
+     "text": "The four operations: adding, subtracting, multiplying, dividing",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s2",
+     "text": "Working out a mean",
+     "skills": [
+      "mean_range"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s3",
+     "text": "Calculating with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s4",
+     "text": "Calculating with ratios and reciprocals",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s5",
+     "text": "Approximating and estimating",
+     "skills": [
+      "estimate"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s6",
+     "text": "Writing and reading numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s7",
+     "text": "Direct and inverse proportion",
+     "skills": [
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s8",
+     "text": "Solving simple equations",
+     "skills": [
+      "lineq"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s9",
+     "text": "Drawing graphs of two variables, straight and curved, with sensible scales and axes",
+     "skills": [
+      "plot_graphs"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s10",
+     "text": "Reading what a graph's slope, change of slope, axis crossings and the area under it mean",
+     "skills": [
+      "graph_interpret"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s11",
+     "text": "Reading data from bar charts, histograms, pie charts and similar",
+     "skills": [
+      "charts"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "mean_range",
+    "dfp",
+    "ratio_recip",
+    "estimate",
+    "sci",
+    "prop",
+    "lineq",
+    "plot_graphs",
+    "graph_interpret",
+    "charts"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "sci",
+    "prop",
+    "lineq",
+    "graph_interpret"
+   ],
    "topics": []
   },
   {

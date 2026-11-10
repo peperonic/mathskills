@@ -10,13 +10,14 @@ All guides were provided by the owner as PDFs on 2026-11-10. They are not stored
 | Chemistry | Chemistry guide (published February 2023) | 2025 | Skills in the study of chemistry, Tool 3; syllabus topics |
 | Economics | Economics guide (published February 2020, updated May 2020) | 2022 | Syllabus outline and the calculations named in each subtopic |
 | Biology | not yet provided | | |
-| Environmental systems and societies | not yet provided | | |
+| Environmental systems and societies | list of mathematical requirements, sent by the owner as text on 2026-11-10 | | Prior skills; syllabus topics wait for the guide |
 
 ## Decisions by the owner (2026-11-10)
 
 - Mathematics AA and AI: leave out the HL-only prior learning items.
 - Physics prior skills: basic arithmetic and algebra; decimals, fractions and percentages; ratios and reciprocals; exponents; scientific notation; mean and range; rearranging equations; direct and inverse proportion; areas and volumes. Approximation and estimation and percentage change left out. Teachers choose 7 for the hexagon.
 - Chemistry uses the same selection rules (decided by the curator, to be confirmed); rearranging equations added because the mole calculations need it.
+- ESS: use the guide's list of mathematical requirements for all students, for SL and HL alike; it includes approximations, unlike the Physics selection.
 - Economics: no prior learning in the guide, so the prior skills are those its calculations use; HL adds the HL-only calculations.
 
 ## Mapping from the guides' wording to skills
