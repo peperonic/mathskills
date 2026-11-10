@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MathSkills Builder</title>
+<style>
+/*@FONTS@*/
+  :root {
+    --bg: #000000; --fg: #ffffff; --mute: #8a8a92; --soft: #18181b; --line: #3a3a40;
+    --font-ui: "Mathskills Pixel", "Vazirmatn", Tahoma, "Segoe UI", "Noto Sans Arabic", sans-serif;
+    color-scheme: dark;
+  }
+  :root[data-mode="light"] {
+    --bg: #ffffff; --fg: #000000; --mute: #6d6d75; --soft: #f0f0f2; --line: #c9c9ce;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font: 17px/1.45 var(--font-ui); font-synthesis: none; -webkit-font-smoothing: none;
+    padding: 14px max(16px, env(safe-area-inset-right, 0px)) 56px max(16px, env(safe-area-inset-left, 0px));
+    transition: background .25s, color .25s;
+  }
+  button, input { font: inherit; color: inherit; font-synthesis: none; }
+  :focus-visible { outline: 2px dashed var(--fg); outline-offset: 3px; }
+  a { color: inherit; }
+
+  .top { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+  .logo { text-decoration: none; }
+  .grow { flex: 1; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; background: none; border: 2px solid var(--fg);
+    border-radius: 999px; padding: 5px 12px 5px 8px; cursor: pointer; }
+  .toggle .sw { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--fg);
+    background: linear-gradient(90deg, var(--fg) 50%, var(--bg) 50%); }
+
+  /* the teacher: just "Sensei" unless they type a name */
+  .who { max-width: 1280px; margin: 34px auto 30px; }
+  .who > input { display: block; width: 100%; background: none; border: 0; border-bottom: 3px solid var(--fg);
+    font-size: clamp(38px, 7vw, 64px); line-height: 1.1; padding: 0 0 6px; }
+  .who > input::placeholder { color: var(--fg); opacity: 1; }
+  .who > input:focus::placeholder { color: var(--mute); }
+  .who small { display: block; color: var(--mute); margin-top: 8px; font-size: 15px; }
+
+  .cur { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 22px; }
+  @media (min-width: 800px) { .cur { grid-template-columns: 6.5em minmax(0, 1fr); align-items: center; gap: 8px 14px; } .cur input { grid-column: 2; } }
+  .cur input { max-width: 640px; }
+  .cur + .cur { margin-top: 12px; }
+  .curL { color: var(--mute); font-size: 15px; }
+  .boards { display: flex; flex-wrap: wrap; gap: 6px; }
+  .board { border: 2px solid var(--fg); background: none; border-radius: 999px; padding: 4px 12px; cursor: pointer; font-size: 15px; }
+  .board[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+  .cur input { min-width: 0; background: none; border: 0; border-bottom: 2px solid var(--fg); padding: 6px 2px; }
+  .ownName { margin-left: .6em; display: inline-block; }
+  .cols { max-width: 1280px; margin: 0 auto; display: grid; gap: 0; grid-template-columns: minmax(0, 1fr); border-top: 3px solid var(--fg); }
+  @media (min-width: 1000px) { .cols { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) minmax(0, 1.25fr); } .col + .col { border-left: 3px solid var(--fg); } }
+  @media (max-width: 999px) { .col + .col { border-top: 3px solid var(--fg); } }
+  .col { padding: 18px 18px 26px; min-width: 0; }
+  @media (min-width: 1000px) { .col:first-child { padding-left: 0; } .col:last-child { padding-right: 0; } }
+  @media (max-width: 999px) { .col { padding-left: 0; padding-right: 0; } }
+  .col h2 { font-size: 21px; font-weight: normal; margin: 0 0 4px; }
+  .col .sub { color: var(--mute); font-size: 15px; margin: 0 0 14px; }
+
+  input.teach { width: 100%; background: none; border: 2px solid var(--fg); padding: 8px 10px; font-size: 19px; }
+  .add { display: flex; gap: 0; }
+  .add input { flex: 1; min-width: 0; background: none; border: 2px solid var(--fg); padding: 8px 10px; }
+  .add button { border: 2px solid var(--fg); border-left: 0; background: var(--fg); color: var(--bg); padding: 0 14px; cursor: pointer; }
+  input::placeholder { color: var(--mute); }
+
+  ul.list { list-style: none; margin: 14px 0 0; padding: 0; }
+  ul.list > li { border-bottom: 1px solid var(--line); padding: 9px 0; display: flex; align-items: baseline; gap: 10px; }
+  ul.list > li .main { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .meta { color: var(--mute); font-size: 14px; }
+  .x { background: none; border: 0; color: var(--mute); cursor: pointer; padding: 0 4px; font-size: 16px; }
+  .x:hover { color: var(--fg); }
+
+  .topic { border: 2px solid var(--fg); padding: 12px 12px 10px; margin-top: 14px; }
+  .topic .head { display: flex; align-items: baseline; gap: 10px; }
+  .topic .head b { font-weight: normal; font-size: 19px; flex: 1; overflow-wrap: anywhere; }
+  .topic .need { color: var(--mute); font-size: 14px; margin: 8px 0 6px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .pill { display: inline-flex; align-items: center; gap: 4px; border: 2px solid var(--fg); border-radius: 999px; padding: 2px 4px 2px 11px; font-size: 15px; }
+  .pill.own { border-style: dashed; }
+  .pill .x { font-size: 14px; }
+  .topic .add input { padding: 5px 8px; font-size: 15px; }
+  .topic .add button { font-size: 15px; }
+
+  .skill { border-top: 2px solid var(--fg); padding: 14px 0 18px; }
+  .skill:first-child { border-top: 0; padding-top: 0; }
+  .skill h3 { font-size: 19px; font-weight: normal; margin: 0; display: flex; align-items: baseline; gap: 10px; }
+  .skill h3 span:first-child { flex: 1; }
+  .skill .for { color: var(--mute); font-size: 14px; margin: 2px 0 8px; }
+  .lbl { font-size: 14px; color: var(--mute); margin: 10px 0 4px; }
+  .vid { display: flex; gap: 10px; align-items: center !important; }
+  .vid .play { width: 30px; height: 21px; border: 2px solid var(--fg); border-radius: 6px; flex: none; position: relative; }
+  .vid .play::after { content: ""; position: absolute; left: 10px; top: 3px; border-left: 9px solid var(--fg); border-top: 5.5px solid transparent; border-bottom: 5.5px solid transparent; }
+  .drop { border: 2px dashed var(--mute); padding: 12px; text-align: center; color: var(--mute); font-size: 15px; cursor: pointer; margin-top: 8px; }
+  .drop.over, .drop:hover { border-color: var(--fg); color: var(--fg); }
+  details { margin-top: 12px; font-size: 15px; }
+  summary { cursor: pointer; color: var(--mute); }
+  details .q { margin: 8px 0 0; padding-left: 10px; border-left: 3px solid var(--fg); }
+  details .q i { font-style: normal; color: var(--mute); display: block; }
+  .tag { font-size: 13px; border: 1px solid var(--mute); color: var(--mute); border-radius: 999px; padding: 0 8px; white-space: nowrap; }
+  .empty { color: var(--mute); font-size: 15px; margin-top: 14px; }
+  .err { color: var(--fg); font-size: 14px; margin-top: 4px; }
+
+  /* the diagnostic hexagon matrix the students will see */
+  .matrixRow { max-width: 1280px; margin: 0 auto; border-top: 3px solid var(--fg); padding-top: 22px; display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 1000px) { .matrixRow { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); align-items: center; } }
+  .matrixRow h2 { font-size: 21px; font-weight: normal; margin: 0 0 6px; }
+  .matrix { display: block; width: 100%; max-width: 440px; margin: 0 auto; }
+  .hex polygon { fill: var(--bg); stroke: var(--fg); stroke-width: 2.5; stroke-linejoin: round; transition: fill .15s; }
+  .hex.empty polygon { stroke: var(--mute); stroke-dasharray: 3 6; }
+  .hex text { fill: var(--fg); font-family: var(--font-ui); text-anchor: middle; dominant-baseline: central; transition: fill .15s; }
+  .hex:not(.empty):hover polygon { fill: var(--fg); }
+  .hex:not(.empty):hover text { fill: var(--bg); }
+  .btn { border: 2px solid var(--fg); background: var(--bg); padding: 9px 16px; box-shadow: 3px 3px 0 var(--fg); cursor: pointer; }
+  .btn:hover { background: var(--fg); color: var(--bg); }
+  .btn:active { transform: translate(3px, 3px); box-shadow: none; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-top: 14px; }
+  .note { color: var(--mute); font-size: 15px; margin: 0; }
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="logo" href="/game/">MathSkills / Builder</a>
+  <span class="grow"></span>
+  <button class="toggle" id="toggle" type="button"><span class="sw"></span>Invert</button>
+</div>
+
+<div class="who">
+  <input id="teacher" type="text" placeholder="Sensei" aria-label="Teacher name" autocomplete="off" spellcheck="false">
+  <small>Type your name, or stay Sensei.</small>
+  <div class="cur">
+    <span class="curL">Curriculum</span>
+    <div class="boards" id="boards" role="group" aria-label="Curriculum"></div>
+    <input id="curIn" type="text" placeholder="" aria-label="Your curriculum in your own words" autocomplete="off">
+  </div>
+  <div class="cur">
+    <span class="curL">Subject</span>
+    <div class="boards" id="subjects" role="group" aria-label="Subject"></div>
+    <input id="subIn" type="text" placeholder="Your subject" aria-label="Your subject in your own words" autocomplete="off">
+  </div>
+  <div class="cur">
+    <span class="curL">Course</span>
+    <div class="boards" id="courses" role="group" aria-label="Course"></div>
+    <input id="courseIn" type="text" placeholder="" aria-label="Your course in your own words" autocomplete="off">
+  </div>
+</div>
+
+<div class="cols">
+  <section class="col" aria-labelledby="hL">
+    <h2 id="hL">Languages in the classroom</h2>
+    <div class="lbl" style="margin-top:12px">Teaching language</div>
+    <input id="teachIn" class="teach" placeholder="the language you teach in, e.g. English" autocomplete="off" aria-label="Teaching language">
+    <div class="meta" id="teachMeta"></div>
+    <div class="lbl" style="margin-top:18px">Students' languages</div>
+    <p class="sub">Every other language your students speak.</p>
+    <form class="add" id="langForm"><input id="langIn" placeholder="e.g. Arabic, Dari, Ukrainian" autocomplete="off" aria-label="Add a language"><button type="submit">Add</button></form>
+    <ul class="list" id="langs"></ul>
+  </section>
+
+  <section class="col" aria-labelledby="hT">
+    <h2 id="hT">Topics and prior knowledge</h2>
+    <p class="sub">What you will teach, and the skills students need before it.</p>
+    <form class="add" id="topicForm"><input id="topicIn" placeholder="e.g. Sequences and series" autocomplete="off" aria-label="Add a topic"><button type="submit">Add</button></form>
+    <div id="topics"></div>
+  </section>
+
+  <section class="col" aria-labelledby="hS">
+    <h2 id="hS">Videos, links and handouts</h2>
+    <p class="sub">Under each skill, as many YouTube videos, website links and files as you like.</p>
+    <div id="skills"></div>
+  </section>
+</div>
+
+<div class="matrixRow">
+  <svg class="matrix" id="matrix" role="img" aria-label="The diagnostic hexagons"></svg>
+  <div>
+    <h2>What your students will see</h2>
+    <p class="note" id="mNote"></p>
+    <div class="row"><button class="btn" id="dl" type="button">Download the class plan</button><a href="/game/" target="_blank" rel="noopener">Open the student game</a></div>
+    <p class="note" style="margin-top:14px">Prototype: everything you enter stays in this browser on this computer. Nothing is uploaded. The class plan is a small JSON file; the next step is that MathSkills Builder turns it into the one HTML file your students get.</p>
+  </div>
+</div>
+
+<script>
+(() => {
+"use strict";
+/*@NAMES@*/
+
+const $ = s => document.querySelector(s);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const NS = "http://www.w3.org/2000/svg";
+const svgEl = (tag, at) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); return e; };
+const xBtn = (label, fn) => { const b = el("button", "x", "✕"); b.type = "button"; b.setAttribute("aria-label", label); b.addEventListener("click", fn); return b; };
+
+/* ---------- languages: the teacher types them; names and number style come from the browser's Unicode CLDR data ---------- */
+const CODES = ["ar", "prs", "fa", "ps", "ur", "ku", "ckb", "tr", "en", "de", "fr", "es", "it", "pt", "nl", "pl", "ro", "bg", "sq", "sr", "hr", "bs", "el", "uk", "ru",
+  "ka", "hy", "az", "uz", "tk", "ti", "am", "so", "om", "sw", "yo", "ig", "ha", "wo", "ln", "hi", "bn", "pa", "ta", "ne", "si", "zh", "ja", "ko", "vi", "th", "fil", "id", "ms", "he", "fi", "sv", "da", "nb", "hu", "cs", "sk", "sl", "lt", "lv", "et"];
+const IN_GAME = { ar: "ar", prs: "fa", fa: "fa", en: "en", de: "de", fr: "fr", es: "es", ru: "ru" };   // the student file already speaks these
+const RTL = new Set(["ar", "prs", "fa", "ps", "ur", "ckb", "he", "yi", "dv", "sd", "ug"]);
+let enNames = null;
+try { enNames = new Intl.DisplayNames(["en"], { type: "language" }); } catch (e) {}
+const enName = c => { try { return enNames ? enNames.of(c) : c; } catch (e) { return c; } };
+const ownName = c => { try { return new Intl.DisplayNames([c], { type: "language" }).of(c); } catch (e) { return ""; } };
+// the student file's own decimal signs win for its languages (Arabic and Dari lessons use the Arabic decimal separator)
+const GAME_SEP = { ar: "٫", fa: "٫", en: ".", de: ",", fr: ",", es: ",", ru: "," };
+function decimalOf(c) { if (IN_GAME[c]) return GAME_SEP[IN_GAME[c]]; return cldrDecimal(c); }
+function cldrDecimal(c) { try { return new Intl.NumberFormat(c).formatToParts(1.5).find(p => p.type === "decimal").value; } catch (e) { return "."; } }
+function findCode(txt) {
+  const t = txt.trim().toLowerCase(); if (!t) return null;
+  return CODES.find(c => c === t || enName(c).toLowerCase() === t || ownName(c).toLowerCase() === t) || null;
+}
+
+/* ---------- topics and the skills they need ---------- */
+// The skills are always maths skills; other subjects need them too, so each subject suggests its own topics.
+const SUBJECT_TOPICS = {
+  Physics: {
+    "Measurements and uncertainties": ["sf", "sci", "ten", "round", "percent"],
+    "Kinematics": ["subst", "lineq", "line", "neg", "coord"],
+    "Forces and momentum": ["subst", "lineq", "neg", "prop"],
+    "Electricity": ["subst", "prop", "lineq", "sci"],
+    "Waves": ["subst", "sci", "prop", "mult"]
+  },
+  Chemistry: {
+    "Stoichiometry and the mole": ["sci", "prop", "sf", "mult", "subst"],
+    "Concentration and solutions": ["prop", "ten", "sci", "subst"],
+    "Rates of reaction": ["line", "coord", "mult", "sci"],
+    "Energetics": ["subst", "neg", "sf", "lineq"]
+  },
+  Economics: {
+    "Elasticity": ["percent", "mult", "prop", "neg"],
+    "Inflation and GDP": ["percent", "mult", "expo", "estimate"],
+    "Supply and demand": ["line", "coord", "lineq", "subst"],
+    "Exchange rates": ["prop", "mult", "round", "percent"]
+  }
+};
+const TOPICS = {
+  "Number": ["round", "sf", "ten", "sci", "mult", "prop", "percent", "estimate"],
+  "Sequences and series": ["pattern", "mult", "subst", "lineq", "expo", "percent", "neg"],
+  "Straight lines": ["coord", "neg", "subst", "line"],
+  "Pythagoras and trigonometry": ["coord", "expo", "pyth", "round"],
+  "Financial mathematics": ["percent", "mult", "prop", "expo", "round"],
+  "Functions": ["coord", "subst", "lineq", "line"]
+};
+// ready: playable in the student file today; the others have their two check questions written, the game is still to build
+const SKILLS = {
+  round:   { ready: true, q: [["Round 7.486 to 2 decimal places.", "7.49", "7.48: cuts the digits off instead of rounding"], ["Round 3.4449 to 2 decimal places.", "3.44", "3.45: rounds in two steps"]] },
+  ten:     { ready: true, q: [["85 mm = ? cm", "8.5 cm", "850 cm: multiplies instead of dividing"], ["7 cm = ? m", "0.07 m", "0.7 m: moves the point one place, not two"]] },
+  pow:     { ready: true, q: [["100 000 = 10^?", "5", "6: counts the digits, not the zeros"], ["1 = 10^?", "0", "1"]] },
+  sci:     { ready: true, q: [["Write 300 in scientific notation.", "3 × 10²", "30 × 10¹: a must be from 1 up to 10"], ["Write 45 600 in scientific notation.", "4.56 × 10⁴", "4.56 × 10⁵: counts all five digits"]] },
+  coord:   { ready: true, q: [["Plot A(8, 0).", "8 right, 0 up", "0 right, 8 up: swaps x and y"], ["Plot B(0, 6).", "0 right, 6 up", "6 right, 0 up: swaps x and y"]] },
+  pyth:    { ready: true, q: [["Legs 8 and 6: how long is the longest side?", "10", "14: adds the sides"], ["Legs 5 and 12: how long is the longest side?", "13", "17: adds the sides"]] },
+  line:    { ready: true, q: [["Which graph is y = 2x + 1?", "through (0, 1), up 2 for each step right", "through (0, 2), up 1: swaps m and c"], ["Which graph is y = −x + 3?", "through (0, 3), down 1 for each step right", "up 1: ignores the minus sign"]] },
+  sf:      { name: "Rounding to significant figures", s: "Sig. figures", q: [["Round 0.001075 to 3 significant figures.", "0.00108", "0.001: counts the leading zeros"], ["Round 45 678 to 2 significant figures.", "46 000", "46: drops the place value"]] },
+  mult:    { name: "Multiplicative reasoning", s: "Multiplicative",
+    about: "What multiplying does to a number: × 2 doubles it, × ½ halves it, × 1.05 adds 5%. The difference between finding 5% of a price (× 0.05) and adding 5% to it (× 1.05). Multiplying again and again (× 1.05 × 1.05 …) for growth year after year.",
+    q: [["What does multiplying a number by ½ do?", "it halves the number (the same as dividing by 2)", "makes it bigger: thinks multiplying always makes a number bigger"],
+        ["A price of 100 is multiplied by 1.05. What happened in real life?", "the price went up by 5%, to 105", "it went up by 1.05, or by 105%"]] },
+  prop:    { name: "Proportion", s: "Proportion", q: [["4 people need 300 g of flour. How much for 6 people?", "450 g", "302 g: adds 2 instead of multiplying by 1.5"], ["3 pens cost 4.50. What do 7 pens cost?", "10.50", "8.50: adds 4 instead of scaling"]] },
+  percent: { name: "Percentages and multipliers", s: "Percentages", q: [["Find 15% of 80.", "12", "65: takes 15 away"], ["Increase 80 by 15%. Multiply 80 by?", "1.15 (gives 92)", "0.15: finds only the increase"]] },
+  estimate:{ name: "Estimating", s: "Estimating", q: [["Estimate 49.8 × 3.1.", "about 150 (50 × 3)", "about 1500: loses the place value"], ["Estimate 612 ÷ 19.7.", "about 30 (600 ÷ 20)", "about 3: loses the place value"]] },
+  neg:     { name: "Negative numbers", s: "Negatives", q: [["Work out −3 − 5.", "−8", "−2: works out 5 − 3"], ["Work out (−2) × (−6).", "12", "−12: keeps the minus sign"]] },
+  pattern: { name: "Number patterns", s: "Patterns", q: [["7, 11, 15, 19, … What comes next?", "23", "24: guesses instead of finding the step"], ["3, 6, 12, 24, … What comes next?", "48", "27: adds 3 instead of doubling"]] },
+  subst:   { name: "Substituting into formulas", s: "Formulas", q: [["u = 5 + 3n. Find u when n = 4.", "17", "32: reads 5 + 3n as 8n"], ["Work out 2 × 3².", "18", "36: squares 2 × 3"]] },
+  lineq:   { name: "Solving linear equations", s: "Equations", q: [["Solve 3x + 5 = 20.", "x = 5", "x = 25/3: adds 5 instead of taking it away"], ["Solve 2(x − 1) = 14.", "x = 8", "x = 7.5: multiplies out as 2x − 1"]] },
+  expo:    { name: "Powers and exponents", s: "Exponents", q: [["Work out 2⁵.", "32", "10: multiplies 2 × 5"], ["Work out 5⁰.", "1", "0"]] }
+};
+const skName = (id, short = false) => {
+  const s = SKILLS[id];
+  if (!s) return id;                                  // the teacher's own skill: its name is its id
+  if (s.ready) return short ? NAMES.en["s_" + id] : NAMES.en["t_" + id];
+  return short ? s.s : s.name;
+};
+// a typed skill is matched to a MathSkills skill (with its check questions) when it clearly names one; otherwise it is the teacher's own
+const ALIAS = {
+  round: ["rounding to decimal places", "decimal places", "rounding to 2 dp", "2 dp", "2 d.p.", "rounding"],
+  sf: ["significant figures", "sig figs", "sig. figures", "s.f."],
+  ten: ["multiplying and dividing by powers of ten", "multiplying by 10", "dividing by 10", "mm to cm", "unit conversion", "converting units", "metric units"],
+  pow: ["powers of ten", "powers of 10"],
+  sci: ["scientific notation", "standard form", "standard index form"],
+  coord: ["coordinates", "coordinate plane", "plotting points"],
+  pyth: ["pythagoras", "pythagorean theorem", "pythagoras' theorem"],
+  line: ["straight line graphs", "straight lines", "linear graphs", "gradient", "y = mx + c"],
+  mult: ["multiplicative reasoning", "multiplicative thinking", "multipliers", "scale factors"],
+  prop: ["proportion", "proportional reasoning", "direct proportion", "ratio and proportion", "ratio"],
+  percent: ["percentages", "percentage", "percent", "percentage change"],
+  estimate: ["estimating", "estimation", "approximation"],
+  neg: ["negative numbers", "directed numbers", "integers", "negatives"],
+  pattern: ["number patterns", "patterns", "sequences"],
+  subst: ["substituting into formulas", "substitution", "formulas", "formulae", "order of operations"],
+  lineq: ["solving linear equations", "linear equations", "solving equations", "equations"],
+  expo: ["powers and exponents", "exponents", "indices", "powers", "laws of indices"]
+};
+function findSkill(txt) {
+  const t = txt.trim().toLowerCase().replace(/\s+/g, " ");
+  let best = null, len = 0;
+  for (const id in ALIAS) for (const a of [skName(id).toLowerCase(), ...ALIAS[id]])
+    if ((t === a || t.includes(a)) && a.length > len) { best = id; len = a.length; }
+  return best || txt.trim();
+}
+
+/* ---------- state, kept in this browser ---------- */
+const KEY = "mathskills.builder.v2";
+const ST = Object.assign({ teacher: "", teach: "", subject: "Mathematics", subjectOther: "", course: "", courseOther: "", board: "", curriculum: "", langs: [], topics: [], videos: {}, links: {} },
+  (() => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })());
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch (e) {} };
+
+/* handouts: the files themselves are kept in this browser (IndexedDB), never uploaded */
+const FILES = [];     // {id, skill, name, size, type, blob}
+let db = null;
+function openDb() {
+  return new Promise(res => {
+    try {
+      const r = indexedDB.open("mathskills-builder", 1);
+      r.onupgradeneeded = () => r.result.createObjectStore("files", { keyPath: "id" });
+      r.onsuccess = () => {
+        db = r.result;
+        const t = db.transaction("files").objectStore("files").getAll();
+        t.onsuccess = () => { FILES.push(...t.result.filter(f => !FILES.some(x => x.id === f.id))); res(); };
+        t.onerror = () => res();
+      };
+      r.onerror = () => res();
+    } catch (e) { res(); }
+  });
+}
+const dbPut = f => { try { db && db.transaction("files", "readwrite").objectStore("files").put(f); } catch (e) {} };
+const dbDel = id => { try { db && db.transaction("files", "readwrite").objectStore("files").delete(id); } catch (e) {} };
+
+/* ---------- the teacher ---------- */
+$("#teacher").value = ST.teacher;
+$("#teacher").addEventListener("input", e => { ST.teacher = e.target.value; save(); drawMatrix(); });
+
+/* ---------- subject: Mathematics, or another subject that needs maths skills ---------- */
+const SUBJECTS = ["Mathematics", "Physics", "Chemistry", "Economics", "Other"];
+const topicsFor = () => SUBJECT_TOPICS[ST.subject] || TOPICS;
+function drawSubjects() {
+  const box = $("#subjects"); box.innerHTML = "";
+  SUBJECTS.forEach(sb => {
+    const b = el("button", "board", sb); b.type = "button"; b.setAttribute("aria-pressed", ST.subject === sb);
+    b.addEventListener("click", () => { ST.subject = ST.subject === sb ? "" : sb; if (!((COURSES[ST.board] || {})[ST.subject] || []).includes(ST.course)) ST.course = ""; save(); drawSubjects(); drawTopics(); if (ST.subject === "Other") $("#subIn").focus(); });
+    box.appendChild(b);
+  });
+  $("#subIn").hidden = ST.subject !== "Other";
+  drawCourses();
+  $("#topicIn").placeholder = ST.subject === "Other" ? "Your topic" : "e.g. " + Object.keys(topicsFor())[1];
+}
+$("#subIn").value = ST.subjectOther;
+$("#subIn").addEventListener("input", e => { ST.subjectOther = e.target.value; save(); });
+
+/* ---------- curriculum: pick a board, or Other, then describe it in your own words ---------- */
+const BOARDS = ["IB", "A-Level", "GCSE", "National Curriculum", "Other"];
+// the free field after the boards: only where the board alone doesn't say which curriculum it is
+const CUR_HINT = { "National Curriculum": "Which country or state? e.g. England, Bavaria", Other: "Name your curriculum" };
+// courses offered for each board and subject; a teacher can always type their own
+const COURSES = {
+  IB: {
+    Mathematics: ["DP Analysis and Approaches SL", "DP Analysis and Approaches HL", "DP Applications and Interpretation SL", "DP Applications and Interpretation HL", "MYP Mathematics (standard)", "MYP Mathematics (extended)"],
+    Physics: ["DP Physics SL", "DP Physics HL", "MYP Sciences"], Chemistry: ["DP Chemistry SL", "DP Chemistry HL", "MYP Sciences"], Economics: ["DP Economics SL", "DP Economics HL"] },
+  "A-Level": {
+    Mathematics: ["AS Mathematics", "A-Level Mathematics", "A-Level Further Mathematics"], Physics: ["AS Physics", "A-Level Physics"],
+    Chemistry: ["AS Chemistry", "A-Level Chemistry"], Economics: ["AS Economics", "A-Level Economics"] },
+  GCSE: {
+    Mathematics: ["Foundation tier", "Higher tier"], Physics: ["Physics", "Combined Science"], Chemistry: ["Chemistry", "Combined Science"], Economics: ["Economics"] }
+};
+const COURSE_HINT = { IB: "or type it: course, year group…", "A-Level": "or type it: exam board, year, e.g. Edexcel, Year 12", GCSE: "or type it: exam board, year, e.g. AQA, Year 10",
+  "National Curriculum": "Your course: school type, year, e.g. Gymnasium, Year 9", Other: "Your course: level, year group…" };
+function drawCourses() {
+  const box = $("#courses"); box.innerHTML = "";
+  const list = (COURSES[ST.board] || {})[ST.subject] || [];
+  list.forEach(c => {
+    const b = el("button", "board", c); b.type = "button"; b.setAttribute("aria-pressed", ST.course === c);
+    b.addEventListener("click", () => { ST.course = ST.course === c ? "" : c; save(); drawCourses(); });
+    box.appendChild(b);
+  });
+  box.hidden = !list.length;
+  $("#courseIn").placeholder = COURSE_HINT[ST.board] || "Your course, level, year group…";
+}
+$("#courseIn").value = ST.courseOther;
+$("#courseIn").addEventListener("input", e => { ST.courseOther = e.target.value; save(); });
+function drawBoards() {
+  const box = $("#boards"); box.innerHTML = "";
+  BOARDS.forEach(bd => {
+    const b = el("button", "board", bd); b.type = "button"; b.setAttribute("aria-pressed", ST.board === bd);
+    b.addEventListener("click", () => { ST.board = ST.board === bd ? "" : bd; if (!((COURSES[ST.board] || {})[ST.subject] || []).includes(ST.course)) ST.course = ""; save(); drawBoards(); drawCourses(); if (CUR_HINT[ST.board]) $("#curIn").focus(); });
+    box.appendChild(b);
+  });
+  $("#curIn").placeholder = CUR_HINT[ST.board] || "";
+  $("#curIn").hidden = !CUR_HINT[ST.board];
+}
+$("#curIn").value = ST.curriculum;
+$("#curIn").addEventListener("input", e => { ST.curriculum = e.target.value; save(); });
+
+/* ---------- languages column ---------- */
+$("#langForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const txt = $("#langIn").value.trim(); if (!txt) return;
+  const code = findCode(txt);
+  const key = code || txt.toLowerCase();
+  if (!ST.langs.some(l => (l.code || l.name.toLowerCase()) === key)) ST.langs.push({ code, name: code ? enName(code) : txt });
+  $("#langIn").value = ""; save(); drawLangs(); drawMatrix();
+});
+// the teaching language: typed like the others, matched to its CLDR code where the browser knows it
+const langMeta = code => [RTL.has(code) ? "right to left" : "left to right", "decimal " + decimalOf(code), IN_GAME[code] ? "in MathSkills" : "to translate"].join(" · ");
+function drawTeach() {
+  const code = findCode(ST.teach);
+  $("#teachMeta").textContent = !ST.teach.trim() ? "" : code ? langMeta(code) : "your own entry · to translate";
+}
+$("#teachIn").value = ST.teach;
+$("#teachIn").addEventListener("input", e => { ST.teach = e.target.value; save(); drawTeach(); drawMatrix(); });
+function drawLangs() {
+  const ul = $("#langs"); ul.innerHTML = "";
+  if (!ST.langs.length) { ul.appendChild(Object.assign(el("li", "empty", "No languages yet."), { style: "border:0" })); return; }
+  ST.langs.forEach((l, i) => {
+    const li = el("li"), main = el("div", "main");
+    main.appendChild(el("span", "", l.name));
+    if (l.code) {
+      const own = ownName(l.code);
+      if (own && own.toLowerCase() !== l.name.toLowerCase()) { const o = el("span", "ownName", own); o.lang = l.code; o.dir = RTL.has(l.code) ? "rtl" : "ltr"; main.appendChild(o); }
+      main.appendChild(el("div", "meta", langMeta(l.code)));
+    } else main.appendChild(el("div", "meta", "your own entry · to translate"));
+    li.append(main, xBtn("Remove " + l.name, () => { ST.langs.splice(i, 1); save(); drawLangs(); drawMatrix(); }));
+    ul.appendChild(li);
+  });
+}
+
+/* ---------- topics column ---------- */
+$("#topicForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const txt = $("#topicIn").value.trim(); if (!txt) return;
+  const all = Object.assign({}, TOPICS, ...Object.values(SUBJECT_TOPICS));
+  const known = Object.keys(all).find(t => t.toLowerCase() === txt.toLowerCase());
+  ST.topics.push({ name: known || txt, skills: known ? all[known].slice() : [] });
+  $("#topicIn").value = ""; save(); drawAll();
+});
+function drawTopics() {
+  const box = $("#topics"); box.innerHTML = "";
+  if (!ST.topics.length) { box.appendChild(el("p", "empty", "No topics yet. Try \"" + Object.keys(topicsFor()).slice(0, 2).join("\" or \"") + "\": MathSkills suggests the maths skills students need first, and you can change them.")); return; }
+  ST.topics.forEach((t, i) => {
+    const d = el("div", "topic"), head = el("div", "head");
+    head.append(el("b", "", t.name), xBtn("Remove " + t.name, () => { ST.topics.splice(i, 1); save(); drawAll(); }));
+    d.append(head, el("div", "need", t.skills.length ? "Students need first:" : "Which skills do students need first?"));
+    const pills = el("div", "pills");
+    t.skills.forEach((id, k) => {
+      const p = el("span", "pill" + (SKILLS[id] ? "" : " own"), skName(id));
+      p.appendChild(xBtn("Remove " + skName(id), () => { t.skills.splice(k, 1); save(); drawAll(); }));
+      pills.appendChild(p);
+    });
+    const f = el("form", "add"), inp = el("input"), b = el("button", "", "Add");
+    inp.placeholder = "type a skill students need first"; inp.autocomplete = "off"; inp.setAttribute("aria-label", "Add a prior skill to " + t.name); b.type = "submit";
+    f.append(inp, b);
+    f.addEventListener("submit", e => { e.preventDefault(); const v = inp.value.trim(); if (!v) return; const id = findSkill(v); if (!t.skills.includes(id)) t.skills.push(id); save(); drawAll(); });
+    d.append(pills, f);
+    box.appendChild(d);
+  });
+}
+const allSkills = () => [...new Set(ST.topics.flatMap(t => t.skills))];
+
+/* ---------- videos and handouts column ---------- */
+function ytId(url) {
+  try {
+    const t = url.trim(), u = new URL(/^[a-z][a-z0-9+.-]*:/i.test(t) ? t : "https://" + t);
+    const h = u.hostname.replace(/^(www|m|music)\./, "");
+    if (h === "youtu.be") return u.pathname.slice(1).split("/")[0] || null;
+    if (h === "youtube.com" || h === "youtube-nocookie.com") {
+      if (u.searchParams.get("v")) return u.searchParams.get("v");
+      const m = u.pathname.match(/^\/(shorts|embed|live)\/([^/?#]+)/); if (m) return m[2];
+    }
+  } catch (e) {}
+  return null;
+}
+// a web address as typed: "www.transum.org/…" works too; only http and https
+function webUrl(txt) {
+  let t = txt.trim(); if (!t) return null;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(t)) t = "https://" + t;
+  try { const u = new URL(t); return (u.protocol === "http:" || u.protocol === "https:") && u.hostname.includes(".") ? u.href : null; } catch (e) { return null; }
+}
+const shortUrl = h => { try { const u = new URL(h); const p = (u.pathname + u.search).replace(/\/$/, ""); return u.hostname.replace(/^www\./, "") + p; } catch (e) { return h; } };
+const sizeTxt = n => n < 1048576 ? Math.max(1, Math.round(n / 1024)) + " KB" : (n / 1048576).toFixed(1) + " MB";
+function drawSkills() {
+  const box = $("#skills"); box.innerHTML = "";
+  const list = allSkills();
+  if (!list.length) { box.appendChild(el("p", "empty", "Add a topic first; its skills appear here.")); return; }
+  list.forEach(id => {
+    const sk = SKILLS[id], d = el("div", "skill");
+    const h = el("h3"); h.append(el("span", "", skName(id)), el("span", "tag", sk ? (sk.ready ? "game ready" : "questions ready") : "your own skill"));
+    d.appendChild(h);
+    d.appendChild(el("div", "for", "for " + ST.topics.filter(t => t.skills.includes(id)).map(t => t.name).join(", ")));
+    if (sk && sk.about) d.appendChild(el("p", "meta", sk.about));
+
+    // YouTube videos, as many as the teacher likes
+    d.appendChild(el("div", "lbl", "YouTube videos"));
+    const vids = ST.videos[id] || [];
+    if (vids.length) {
+      const ul = el("ul", "list"); ul.style.marginTop = "0";
+      vids.forEach((v, k) => {
+        const li = el("li", "vid"), a = el("a", "main", v.url); a.href = v.url; a.target = "_blank"; a.rel = "noopener";
+        li.append(el("span", "play"), a, xBtn("Remove video", () => { vids.splice(k, 1); save(); drawSkills(); }));
+        ul.appendChild(li);
+      });
+      d.appendChild(ul);
+    }
+    const f = el("form", "add"), inp = el("input"), b = el("button", "", "Add"), err = el("div", "err");
+    inp.type = "url"; inp.placeholder = "paste a YouTube link"; inp.setAttribute("aria-label", "YouTube link for " + skName(id)); b.type = "submit"; f.style.marginTop = "6px"; f.noValidate = true;
+    f.append(inp, b);
+    f.addEventListener("submit", e => {
+      e.preventDefault();
+      const yid = ytId(inp.value);
+      if (!yid) { err.textContent = "That doesn't look like a YouTube link."; return; }
+      ST.videos[id] = [...vids, { url: webUrl(inp.value), id: yid }]; save(); drawSkills();
+    });
+    d.append(f, err);
+
+    // website links: any web page (exercises, applets, worksheets online)
+    d.appendChild(el("div", "lbl", "Website links"));
+    const webs = ST.links[id] || [];
+    if (webs.length) {
+      const ul = el("ul", "list"); ul.style.marginTop = "0";
+      webs.forEach((w, k) => {
+        const li = el("li"), a = el("a", "main", shortUrl(w)); a.href = w; a.target = "_blank"; a.rel = "noopener"; a.title = w;
+        li.append(a, xBtn("Remove link", () => { webs.splice(k, 1); save(); drawSkills(); }));
+        ul.appendChild(li);
+      });
+      d.appendChild(ul);
+    }
+    const wf = el("form", "add"), wi = el("input"), wb = el("button", "", "Add"), we = el("div", "err");
+    wi.type = "url"; wi.placeholder = "paste a website link"; wi.setAttribute("aria-label", "Website link for " + skName(id)); wb.type = "submit"; wf.style.marginTop = "6px"; wf.noValidate = true;
+    wf.append(wi, wb);
+    wf.addEventListener("submit", e => {
+      e.preventDefault();
+      const u = webUrl(wi.value);
+      if (!u) { we.textContent = "That doesn't look like a web address."; return; }
+      ST.links[id] = [...webs, u]; save(); drawSkills();
+    });
+    d.append(wf, we);
+
+    // handouts: any file type
+    d.appendChild(el("div", "lbl", "Handouts"));
+    const mine = FILES.filter(x => x.skill === id);
+    if (mine.length) {
+      const ul = el("ul", "list"); ul.style.marginTop = "0";
+      mine.forEach(x => {
+        const li = el("li"), a = el("a", "main", x.name); a.href = "#";
+        a.addEventListener("click", e => { e.preventDefault(); const u = URL.createObjectURL(x.blob); const t = el("a"); t.href = u; t.download = x.name; document.body.appendChild(t); t.click(); t.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000); });
+        li.append(a, el("span", "meta", sizeTxt(x.size)), xBtn("Remove " + x.name, () => { FILES.splice(FILES.indexOf(x), 1); dbDel(x.id); drawSkills(); }));
+        ul.appendChild(li);
+      });
+      d.appendChild(ul);
+    }
+    const drop = el("div", "drop", "Drop files here (PDF, Word, PowerPoint, anything) or click to choose");
+    drop.tabIndex = 0; drop.setAttribute("role", "button");
+    const pick = el("input"); pick.type = "file"; pick.multiple = true; pick.hidden = true;
+    const add = files => { [...files].forEach(file => { const x = { id: Date.now() + "-" + Math.random().toString(36).slice(2, 8), skill: id, name: file.name, size: file.size, type: file.type, blob: file }; FILES.push(x); dbPut(x); }); drawSkills(); };
+    drop.addEventListener("click", () => pick.click());
+    drop.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick.click(); } });
+    pick.addEventListener("change", () => add(pick.files));
+    drop.addEventListener("dragover", e => { e.preventDefault(); drop.classList.add("over"); });
+    drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+    drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("over"); if (e.dataTransfer.files.length) add(e.dataTransfer.files); });
+    d.append(drop, pick);
+
+    if (sk) {
+      const det = el("details"); det.appendChild(el("summary", "", "The two check questions"));
+      sk.q.forEach(([q, a, w]) => { const p = el("p", "q", q); p.appendChild(el("i", "", "right: " + a)); p.appendChild(el("i", "", "typical wrong: " + w)); det.appendChild(p); });
+      d.appendChild(det);
+    } else d.appendChild(el("div", "meta", "You write its two check questions; this prototype has no editor for them yet."));
+    box.appendChild(d);
+  });
+}
+
+/* ---------- the matrix: always seven cells in a hexagon, 2-3-2 ---------- */
+const R = 60, W = Math.sqrt(3) * R;
+const CELLS = [[-W / 2, 0], [W / 2, 0], [-W, 90], [0, 90], [W, 90], [-W / 2, 180], [W / 2, 180]];
+const hexPoints = (x, y) => Array.from({ length: 6 }, (_, k) => { const a = Math.PI / 180 * (60 * k - 90); return (x + R * Math.cos(a)).toFixed(1) + "," + (y + R * Math.sin(a)).toFixed(1); }).join(" ");
+function label(g, x, y, str, fs) {
+  const t = svgEl("text", { x, y, "font-size": fs, "data-fs": fs });
+  t.setAttribute("direction", /[֐-ࣿיִ-ﻼ]/.test(str) ? "rtl" : "ltr");
+  t.textContent = str; g.appendChild(t);
+}
+function fit(svg) { svg.querySelectorAll("text").forEach(t => { t.setAttribute("font-size", t.dataset.fs); const n = t.getComputedTextLength(); if (n > 86) t.setAttribute("font-size", (t.dataset.fs * 86 / n).toFixed(1)); }); }
+function drawMatrix() {
+  const svg = $("#matrix"); svg.innerHTML = "";
+  svg.setAttribute("viewBox", `${(-W - R * .95).toFixed(0)} ${-R - 6} ${(2 * W + R * 1.9).toFixed(0)} ${180 + 2 * R + 12}`);
+  const list = allSkills().slice(0, 7);
+  CELLS.forEach(([x, y], i) => {
+    const id = list[i], g = svgEl("g", { class: "hex" + (id ? "" : " empty") });
+    g.appendChild(svgEl("polygon", { points: hexPoints(x, y) }));
+    if (id) {
+      const name = skName(id, true), words = name.split(" ");
+      if (words.length > 1 && name.length > 13) { const c = Math.ceil(words.length / 2); label(g, x, y - 9, words.slice(0, c).join(" "), 15); label(g, x, y + 9, words.slice(c).join(" "), 15); }
+      else label(g, x, y, name, 16);
+    }
+    svg.appendChild(g);
+  });
+  fit(svg);
+  const all = allSkills(), who = ST.teacher.trim() || "Sensei";
+  const teach = ST.teach.trim();
+  const langs = [...(teach ? [teach] : []), ...ST.langs.map(l => l.name).filter(n => n.toLowerCase() !== teach.toLowerCase())];
+  const n = Math.min(all.length, 7);
+  $("#mNote").textContent = !all.length
+    ? "Add a topic and its prior skills; each skill becomes one hexagon."
+    : (teach ? `Taught in ${teach}. ` : "Choose the teaching language. ") + `${who}'s class starts with a short check: two questions for each of ${n === 1 ? "this skill" : "these " + n + " skills"}` +
+      (langs.length ? ", in " + (langs.length > 1 ? langs.slice(0, -1).join(", ") + " or " + langs[langs.length - 1] : langs[0]) : "") + ". " +
+      "Afterwards each hexagon turns white if a student knows the skill and black if they still need to learn it, and opens your videos and handouts." +
+      (all.length > 7 ? ` The matrix holds seven, so the first seven go into the check; ${all.length === 8 ? "the last one comes" : "the other " + (all.length - 7) + " come"} in a second round.` : "");
+}
+
+/* ---------- the class plan ---------- */
+$("#dl").addEventListener("click", () => {
+  const plan = {
+    format: "mathskills-class-plan", version: "0.2",
+    teacher: ST.teacher.trim() || "Sensei",
+    subject: ST.subject === "Other" ? (ST.subjectOther.trim() || "Other") : (ST.subject || null),
+    curriculum: { board: ST.board || null, details: CUR_HINT[ST.board] && ST.curriculum.trim() || null },
+    course: [ST.course, ST.courseOther.trim()].filter(Boolean).join(", ") || null,
+    teaching_language: ST.teach.trim() ? { name: ST.teach.trim(), code: findCode(ST.teach) } : null,
+    languages: ST.langs.map(l => ({ name: l.name, code: l.code, direction: l.code && RTL.has(l.code) ? "rtl" : "ltr", in_mathskills: !!(l.code && IN_GAME[l.code]) })),
+    topics: ST.topics.map(t => ({ name: t.name, prior_skills: t.skills })),
+    skills: allSkills().map(id => ({
+      id, name: skName(id), status: SKILLS[id] ? (SKILLS[id].ready ? "game ready" : "questions ready") : "teacher's own",
+      about: SKILLS[id] && SKILLS[id].about || null,
+      check: SKILLS[id] ? SKILLS[id].q.map(([q, a, w]) => ({ question: q, answer: a, typical_wrong: w })) : [],
+      youtube: (ST.videos[id] || []).map(v => v.url),
+      links: ST.links[id] || [],
+      handouts: FILES.filter(x => x.skill === id).map(x => x.name)
+    }))
+  };
+  const a = el("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify(plan, null, 2)], { type: "application/json" }));
+  a.download = "class-plan.json"; document.body.appendChild(a); a.click(); a.remove();
+  window.__lastPlan = plan;
+});
+
+/* ---------- light and dark ---------- */
+const setMode = m => { document.documentElement.dataset.mode = m; try { localStorage.setItem("mathskills.builder.mode", m); } catch (e) {} };
+try { if (localStorage.getItem("mathskills.builder.mode") === "light") setMode("light"); } catch (e) {}
+$("#toggle").addEventListener("click", () => setMode(document.documentElement.dataset.mode === "light" ? "dark" : "light"));
+
+function drawAll() { drawBoards(); drawSubjects(); drawTeach(); drawLangs(); drawTopics(); drawSkills(); drawMatrix(); }
+drawAll();
+openDb().then(drawSkills);
+if (document.fonts) document.fonts.ready.then(() => fit($("#matrix")));
+window.__builder = { ST, FILES, ytId };
+})();
+</script>
+</body>
+</html>
