@@ -1,12 +1,14 @@
 # MathSkills
 
-**Open, multilingual maths learning: first find out what a learner already knows, then teach the rest.**
+Tailored maths learning: a learner is tested on a handful simple maths skills. They get a chance to demonstrate what they already know, and quickly move on to learn what they need to know better or learn from scratch. All of this happens in a learner's chosen learning language, within a gamified enviroment called 'Mathskills Game'. 
 
-MathSkills is a browser game made by maths teachers. A learner walks across a black-and-white map, answers two short questions at each station, and then sees a *learning realm*: a hexagon for every topic, white if they already know it, black if it is still to learn. Every hexagon opens a short video, a step-by-step "underworld" lesson, a practice game and a re-check.
+The environment itself can be put together by any teacher via a 'Mathskills Builder'. Within the builder, a teacher can select their subject (Biology, Chemistry, Economics, Maths or Physics for now), their curriculum, their students' languages and the topics they need students to master in order to teach that topic well. 
 
-It works in seven languages, among them Arabic and Dari, and it needs no account, no installation and no internet connection once loaded. Learners' results stay on their own device.
+On the grounds of the curriculum and the topics specified by the teacher, seven skills for the students to focus on are suggested that the teacher can upload resources for (videos, websites and/or handouts). The teacher can also override and add their preferred skills. 
 
-> 🇩🇪 **Kurz auf Deutsch:** MathSkills ist ein offenes, mehrsprachiges Mathe-Lernspiel von Lehrkräften. Es findet zuerst heraus, was Lernende schon können, und vermittelt dann den Rest, ohne Konten, ohne Tracking, die Daten bleiben auf dem Gerät.
+Based on the teacher's input, an html file is generated that any teacher or student can download and run locally, so that no data on the students is saved elsewhere.  The file runs a game, where the learner first walks across a black-and-white map, answers two short questions at each station. Based on their results, a *learning realm* is generated: a hexagon for every topic, white if they already know it, black if it is still to learn. Every hexagon opens a short video, a step-by-step "underworld" lesson, a practice game and a re-check. 
+
+No account, installation or internet connection are needed, and results stay on the students' own computer unless they decide to share them with their teacher via a QR code. Mathskills works in multiple languages, among them Arabic and Dari, so that children with interrupted education, and among them refugees, do not feel left out. A toggle at the top allows learners to switch between languages when they want to. 
 
 ---
 
@@ -65,16 +67,17 @@ MathSkills doesn't just translate words. It also shows maths the way each langua
 This repository on **Codeberg** is the main home of the project. A copy is mirrored automatically to GitHub; please open issues and contributions here on Codeberg.
 
 Especially welcome:
-- 🌍 checks and corrections of the translations by native speakers
-- 🧮 ideas for questions that reveal typical misconceptions
-- 🐞 bug reports, with the device, browser and language you used
+- checks and corrections of the translations by native speakers
+- ideas for questions that reveal typical misconceptions
+- bug reports, with the device, browser and language you used
 
 Contributions to the code are accepted under the project's AGPL licence.
 
-## Team
+## Team, in alphabetical order of first names
 
 - **Chiara Perrone:** product and education lead, maths teacher
-- **Thomas Haferlach:** technical lead
+  **Gianfranco Dbeis:** game design lead https://giandbeis.com/ 
+- **Thomas Haferlach:** technical lead   
 
 ## Licence
 
