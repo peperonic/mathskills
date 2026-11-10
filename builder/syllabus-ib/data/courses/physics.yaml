@@ -1,0 +1,42 @@
+# DP Physics, SL and HL. Prior skills: the elementary skills of "Tool 3: Mathematics,
+# Applying general mathematics", chosen by the owner on 2026-11-10 (teachers pick their 7).
+subject: Physics
+status: ready
+courses: {SL: DP Physics SL, HL: DP Physics HL}
+guide: {title: Physics guide, first_assessment: 2025, section: "Skills in the study of physics, Tool 3: Mathematics"}
+prior_knowledge:
+  - {id: p1, text: Everyday arithmetic and simple algebra in problems, skills: [arith], origin: guide}
+  - {id: p2, text: "Calculations with decimals, fractions and percentages", skills: [dfp], origin: guide}
+  - {id: p3, text: Calculations with ratios and reciprocals, skills: [ratio_recip], origin: guide}
+  - {id: p4, text: Calculations with exponents, skills: [expo], origin: guide}
+  - {id: p5, text: Using and reading scientific notation, skills: [sci], origin: guide}
+  - {id: p6, text: Mean and range, skills: [mean_range], origin: guide}
+  - {id: p7, text: Selecting and rearranging equations, skills: [rearrange], origin: guide}
+  - {id: p8, text: Direct and inverse proportion, skills: [prop], origin: guide}
+  - {id: p9, text: Areas and volumes of simple shapes, skills: [area_vol], origin: guide}
+hexagon: {SL: [arith, dfp, ratio_recip, expo, sci, rearrange, prop], HL: [arith, dfp, ratio_recip, expo, sci, rearrange, prop]}
+topics:
+  - {code: A.1, name: Kinematics, skills: [rearrange, arith, dfp]}
+  - {code: A.2, name: Forces and momentum, skills: [rearrange, arith, prop]}
+  - {code: A.3, name: "Work, energy and power", skills: [rearrange, arith, expo, dfp]}
+  - {code: A.4, name: Rigid body mechanics, levels: [HL], skills: [rearrange, ratio_recip]}
+  - {code: A.5, name: Galilean and special relativity, levels: [HL], skills: [rearrange, expo, ratio_recip]}
+  - {code: B.1, name: Thermal energy transfers, skills: [rearrange, sci, expo, area_vol]}
+  - {code: B.2, name: Greenhouse effect, skills: [expo, sci, dfp]}
+  - {code: B.3, name: Gas laws, skills: [prop, rearrange, ratio_recip]}
+  - {code: B.4, name: Thermodynamics, levels: [HL], skills: [rearrange, ratio_recip]}
+  - {code: B.5, name: Current and circuits, skills: [rearrange, ratio_recip, prop, area_vol]}
+  - {code: C.1, name: Simple harmonic motion, skills: [rearrange, expo]}
+  - {code: C.2, name: Wave model, skills: [rearrange, ratio_recip, sci]}
+  - {code: C.3, name: Wave phenomena, skills: [rearrange, ratio_recip]}
+  - {code: C.4, name: Standing waves and resonance, skills: [rearrange, ratio_recip]}
+  - {code: C.5, name: Doppler effect, skills: [rearrange, dfp]}
+  - {code: D.1, name: Gravitational fields, skills: [rearrange, sci, expo, prop]}
+  - {code: D.2, name: Electric and magnetic fields, skills: [rearrange, sci, expo, prop]}
+  - {code: D.3, name: Motion in electromagnetic fields, skills: [rearrange, sci]}
+  - {code: D.4, name: Induction, levels: [HL], skills: [rearrange, area_vol]}
+  - {code: E.1, name: Structure of the atom, skills: [sci, expo]}
+  - {code: E.2, name: Quantum physics, levels: [HL], skills: [sci, rearrange]}
+  - {code: E.3, name: Radioactive decay, skills: [dfp, expo, sci]}
+  - {code: E.4, name: Fission, skills: [sci, rearrange]}
+  - {code: E.5, name: Fusion and stars, skills: [sci, expo, rearrange, ratio_recip]}

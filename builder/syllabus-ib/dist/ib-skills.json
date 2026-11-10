@@ -1,0 +1,4317 @@
+{
+ "schema": "ib-skills/1",
+ "generated": "2026-11-10",
+ "note": "Structure and our own wording only; no text from IB publications. IB topic codes and titles are used as labels.",
+ "skills": {
+  "arith": {
+   "name": "Basic arithmetic and algebraic calculations",
+   "mathskills": null
+  },
+  "dfp": {
+   "name": "Decimals, fractions and percentages",
+   "mathskills": null
+  },
+  "ratio_recip": {
+   "name": "Ratios and reciprocals",
+   "mathskills": null
+  },
+  "expo": {
+   "name": "Exponents",
+   "mathskills": "expo"
+  },
+  "sci": {
+   "name": "Scientific notation (standard form)",
+   "mathskills": "sci"
+  },
+  "mean_range": {
+   "name": "Mean and range",
+   "mathskills": null
+  },
+  "averages": {
+   "name": "Mean, median, mode and range",
+   "mathskills": null
+  },
+  "rearrange": {
+   "name": "Rearranging equations and formulas",
+   "mathskills": null
+  },
+  "prop": {
+   "name": "Direct and inverse proportion",
+   "mathskills": "prop",
+   "note": "MathSkills checks direct proportion only"
+  },
+  "area_vol": {
+   "name": "Areas and volumes",
+   "mathskills": null
+  },
+  "pct_change": {
+   "name": "Percentage change",
+   "mathskills": "percent"
+  },
+  "neg": {
+   "name": "Negative numbers",
+   "mathskills": "neg"
+  },
+  "subst": {
+   "name": "Substituting into formulas",
+   "mathskills": "subst"
+  },
+  "lineq": {
+   "name": "Solving linear equations and inequalities",
+   "mathskills": "lineq"
+  },
+  "simul": {
+   "name": "Two linear equations in two unknowns",
+   "mathskills": null
+  },
+  "expand_factor": {
+   "name": "Expanding brackets and factorising",
+   "mathskills": null
+  },
+  "round": {
+   "name": "Rounding to decimal places",
+   "mathskills": "round"
+  },
+  "sf": {
+   "name": "Significant figures and errors from rounding",
+   "mathskills": "sf"
+  },
+  "units": {
+   "name": "SI units and converting between them",
+   "mathskills": "ten"
+  },
+  "rates": {
+   "name": "Speed and other rates",
+   "mathskills": null
+  },
+  "number_sets": {
+   "name": "Number sets: natural, integer, rational, real",
+   "mathskills": null
+  },
+  "abs_value": {
+   "name": "Absolute value",
+   "mathskills": null
+  },
+  "primes_factors": {
+   "name": "Primes, factors and multiples",
+   "mathskills": null
+  },
+  "ineq_intervals": {
+   "name": "Inequality signs and intervals on the number line",
+   "mathskills": null
+  },
+  "surds": {
+   "name": "Simplifying roots (surds)",
+   "mathskills": null
+  },
+  "currency": {
+   "name": "Working with currencies and exchange rates",
+   "mathskills": null
+  },
+  "sets_venn": {
+   "name": "Sets, union, intersection and Venn diagrams",
+   "mathskills": null
+  },
+  "graph_lin_quad": {
+   "name": "Graphing linear and quadratic functions",
+   "mathskills": "line",
+   "note": "MathSkills checks straight lines only"
+  },
+  "mappings": {
+   "name": "Mappings as ordered pairs",
+   "mathskills": null
+  },
+  "pyth": {
+   "name": "Pythagoras' theorem",
+   "mathskills": "pyth"
+  },
+  "coord": {
+   "name": "Coordinates, midpoint and distance",
+   "mathskills": "coord",
+   "note": "MathSkills checks plotting points only"
+  },
+  "geom_basics": {
+   "name": "Points, lines, planes and angles; properties of triangles and quadrilaterals",
+   "mathskills": null
+  },
+  "angles_bearings": {
+   "name": "Measuring angles, compass directions and bearings",
+   "mathskills": null
+  },
+  "angle_sum": {
+   "name": "Angle sum of a triangle",
+   "mathskills": null
+  },
+  "trig_right": {
+   "name": "Trigonometry in right-angled triangles",
+   "mathskills": null
+  },
+  "transformations": {
+   "name": "Translation, reflection, rotation and enlargement",
+   "mathskills": null
+  },
+  "circle": {
+   "name": "Parts of a circle, circumference and area",
+   "mathskills": null
+  },
+  "solids": {
+   "name": "Prisms, pyramids, spheres, cylinders and cones",
+   "mathskills": null
+  },
+  "charts": {
+   "name": "Collecting data, drawing and reading charts",
+   "mathskills": null
+  },
+  "prob_simple": {
+   "name": "Probability of simple events",
+   "mathskills": null
+  },
+  "tree_diagrams": {
+   "name": "Tree diagrams",
+   "mathskills": null
+  },
+  "graph_read": {
+   "name": "Reading values from graphs and diagrams",
+   "mathskills": null
+  },
+  "mult": {
+   "name": "Multiplicative reasoning",
+   "mathskills": "mult"
+  },
+  "weighted_index": {
+   "name": "Weighted averages and index numbers",
+   "mathskills": null
+  },
+  "estimate": {
+   "name": "Approximation and estimation",
+   "mathskills": "estimate"
+  },
+  "plot_graphs": {
+   "name": "Plotting graphs of two variables with suitable scales",
+   "mathskills": "coord",
+   "note": "MathSkills checks plotting points only"
+  },
+  "graph_interpret": {
+   "name": "Reading gradients, intercepts and areas on graphs",
+   "mathskills": null
+  },
+  "line_graphs": {
+   "name": "Straight-line graphs: gradient and intercept",
+   "mathskills": "line"
+  },
+  "functions": {
+   "name": "Functions: one quantity depending on another",
+   "mathskills": null
+  },
+  "frequencies": {
+   "name": "Frequencies and relative frequencies",
+   "mathskills": null
+  },
+  "density": {
+   "name": "An amount per unit of area or volume (density)",
+   "mathskills": null
+  },
+  "dispersion": {
+   "name": "Spread of data: range, interquartile range, standard deviation, standard error",
+   "mathskills": null
+  },
+  "magnification": {
+   "name": "Magnification and scale (image size and actual size)",
+   "mathskills": null
+  },
+  "rates_of_change": {
+   "name": "Rates of change from graphs and tables",
+   "mathskills": null
+  },
+  "correlation": {
+   "name": "Positive and negative correlation",
+   "mathskills": null
+  }
+ },
+ "courses": [
+  {
+   "id": "ib-dp-biology-sl",
+   "board": "IB",
+   "subject": "Biology",
+   "course": "DP Biology SL",
+   "level": "SL",
+   "status": "ready",
+   "guide": {
+    "title": "Biology guide",
+    "first_assessment": 2025,
+    "section": "Skills in the study of biology, Tool 3: Mathematics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "b1",
+     "text": "Everyday arithmetic and simple algebra in problems",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b2",
+     "text": "Calculating with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b3",
+     "text": "Calculating with ratios, proportions and reciprocals",
+     "skills": [
+      "ratio_recip",
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b4",
+     "text": "Frequencies, for example how common an allele is in a population",
+     "skills": [
+      "frequencies"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b5",
+     "text": "Densities: how much there is per unit of area or volume",
+     "skills": [
+      "density"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b6",
+     "text": "Approximating and estimating",
+     "skills": [
+      "estimate"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b7",
+     "text": "Averages: mean, median and mode",
+     "skills": [
+      "averages"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b8",
+     "text": "How spread out data are: range, interquartile range, standard deviation, standard error",
+     "skills": [
+      "dispersion"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b9",
+     "text": "Writing and reading numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b10",
+     "text": "Working out magnification and scale",
+     "skills": [
+      "magnification"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b11",
+     "text": "Working out a rate of change from a graph or a table",
+     "skills": [
+      "rates_of_change"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b12",
+     "text": "Direct and inverse proportion; positive and negative correlation",
+     "skills": [
+      "prop",
+      "correlation"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "prop",
+    "frequencies",
+    "density",
+    "estimate",
+    "averages",
+    "dispersion",
+    "sci",
+    "magnification",
+    "rates_of_change",
+    "correlation"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "averages",
+    "sci",
+    "magnification",
+    "rates_of_change"
+   ],
+   "topics": []
+  },
+  {
+   "id": "ib-dp-biology-hl",
+   "board": "IB",
+   "subject": "Biology",
+   "course": "DP Biology HL",
+   "level": "HL",
+   "status": "ready",
+   "guide": {
+    "title": "Biology guide",
+    "first_assessment": 2025,
+    "section": "Skills in the study of biology, Tool 3: Mathematics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "b1",
+     "text": "Everyday arithmetic and simple algebra in problems",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b2",
+     "text": "Calculating with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b3",
+     "text": "Calculating with ratios, proportions and reciprocals",
+     "skills": [
+      "ratio_recip",
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b4",
+     "text": "Frequencies, for example how common an allele is in a population",
+     "skills": [
+      "frequencies"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b5",
+     "text": "Densities: how much there is per unit of area or volume",
+     "skills": [
+      "density"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b6",
+     "text": "Approximating and estimating",
+     "skills": [
+      "estimate"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b7",
+     "text": "Averages: mean, median and mode",
+     "skills": [
+      "averages"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b8",
+     "text": "How spread out data are: range, interquartile range, standard deviation, standard error",
+     "skills": [
+      "dispersion"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b9",
+     "text": "Writing and reading numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b10",
+     "text": "Working out magnification and scale",
+     "skills": [
+      "magnification"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b11",
+     "text": "Working out a rate of change from a graph or a table",
+     "skills": [
+      "rates_of_change"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b12",
+     "text": "Direct and inverse proportion; positive and negative correlation",
+     "skills": [
+      "prop",
+      "correlation"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "prop",
+    "frequencies",
+    "density",
+    "estimate",
+    "averages",
+    "dispersion",
+    "sci",
+    "magnification",
+    "rates_of_change",
+    "correlation"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "averages",
+    "sci",
+    "magnification",
+    "rates_of_change"
+   ],
+   "topics": []
+  },
+  {
+   "id": "ib-dp-chemistry-sl",
+   "board": "IB",
+   "subject": "Chemistry",
+   "course": "DP Chemistry SL",
+   "level": "SL",
+   "status": "ready",
+   "guide": {
+    "title": "Chemistry guide",
+    "first_assessment": 2025,
+    "published": "February 2023",
+    "section": "Skills in the study of chemistry, Tool 3: Mathematics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "c1",
+     "text": "Everyday arithmetic and simple algebra in problems",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c2",
+     "text": "Calculations with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c3",
+     "text": "Calculations with ratios and reciprocals",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c4",
+     "text": "Calculations with exponents",
+     "skills": [
+      "expo"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c5",
+     "text": "Using and reading scientific notation",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c6",
+     "text": "Mean and range",
+     "skills": [
+      "mean_range"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c7",
+     "text": "Direct and inverse proportion",
+     "skills": [
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c8",
+     "text": "Rearranging equations (for example n = m / M)",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "curator"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "expo",
+    "sci",
+    "mean_range",
+    "prop",
+    "rearrange"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "expo",
+    "sci",
+    "rearrange",
+    "prop"
+   ],
+   "topics": [
+    {
+     "code": "Structure 1.1",
+     "name": "Introduction to the particulate nature of matter",
+     "skills": []
+    },
+    {
+     "code": "Structure 1.2",
+     "name": "The nuclear atom",
+     "skills": [
+      "arith",
+      "dfp"
+     ]
+    },
+    {
+     "code": "Structure 1.3",
+     "name": "Electron configurations",
+     "skills": []
+    },
+    {
+     "code": "Structure 1.4",
+     "name": "Counting particles by mass: the mole",
+     "skills": [
+      "sci",
+      "rearrange",
+      "ratio_recip",
+      "arith",
+      "prop"
+     ]
+    },
+    {
+     "code": "Structure 1.5",
+     "name": "Ideal gases",
+     "skills": [
+      "rearrange",
+      "prop",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "Structure 2.1",
+     "name": "The ionic model",
+     "skills": []
+    },
+    {
+     "code": "Structure 2.2",
+     "name": "The covalent model",
+     "skills": []
+    },
+    {
+     "code": "Structure 2.3",
+     "name": "The metallic model",
+     "skills": []
+    },
+    {
+     "code": "Structure 2.4",
+     "name": "From models to materials",
+     "skills": []
+    },
+    {
+     "code": "Structure 3.1",
+     "name": "The periodic table: classification of elements",
+     "skills": []
+    },
+    {
+     "code": "Structure 3.2",
+     "name": "Functional groups: classification of organic compounds",
+     "skills": []
+    },
+    {
+     "code": "Reactivity 1.1",
+     "name": "Measuring enthalpy changes",
+     "skills": [
+      "rearrange",
+      "arith"
+     ]
+    },
+    {
+     "code": "Reactivity 1.2",
+     "name": "Energy cycles in reactions",
+     "skills": [
+      "arith"
+     ]
+    },
+    {
+     "code": "Reactivity 1.3",
+     "name": "Energy from fuels",
+     "skills": [
+      "arith",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "Reactivity 2.1",
+     "name": "How much? The amount of chemical change",
+     "skills": [
+      "ratio_recip",
+      "rearrange",
+      "dfp"
+     ]
+    },
+    {
+     "code": "Reactivity 2.2",
+     "name": "How fast? The rate of chemical change",
+     "skills": [
+      "ratio_recip",
+      "rearrange"
+     ]
+    },
+    {
+     "code": "Reactivity 2.3",
+     "name": "How far? The extent of chemical change",
+     "skills": [
+      "expo",
+      "rearrange"
+     ]
+    },
+    {
+     "code": "Reactivity 3.1",
+     "name": "Proton transfer reactions",
+     "skills": [
+      "expo",
+      "sci"
+     ]
+    },
+    {
+     "code": "Reactivity 3.2",
+     "name": "Electron transfer reactions",
+     "skills": [
+      "arith"
+     ]
+    },
+    {
+     "code": "Reactivity 3.3",
+     "name": "Electron sharing reactions",
+     "skills": []
+    },
+    {
+     "code": "Reactivity 3.4",
+     "name": "Electron-pair sharing reactions",
+     "skills": []
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-chemistry-hl",
+   "board": "IB",
+   "subject": "Chemistry",
+   "course": "DP Chemistry HL",
+   "level": "HL",
+   "status": "ready",
+   "guide": {
+    "title": "Chemistry guide",
+    "first_assessment": 2025,
+    "published": "February 2023",
+    "section": "Skills in the study of chemistry, Tool 3: Mathematics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "c1",
+     "text": "Everyday arithmetic and simple algebra in problems",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c2",
+     "text": "Calculations with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c3",
+     "text": "Calculations with ratios and reciprocals",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c4",
+     "text": "Calculations with exponents",
+     "skills": [
+      "expo"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c5",
+     "text": "Using and reading scientific notation",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c6",
+     "text": "Mean and range",
+     "skills": [
+      "mean_range"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c7",
+     "text": "Direct and inverse proportion",
+     "skills": [
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "c8",
+     "text": "Rearranging equations (for example n = m / M)",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "curator"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "expo",
+    "sci",
+    "mean_range",
+    "prop",
+    "rearrange"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "expo",
+    "sci",
+    "rearrange",
+    "prop"
+   ],
+   "topics": [
+    {
+     "code": "Structure 1.1",
+     "name": "Introduction to the particulate nature of matter",
+     "skills": []
+    },
+    {
+     "code": "Structure 1.2",
+     "name": "The nuclear atom",
+     "skills": [
+      "arith",
+      "dfp"
+     ]
+    },
+    {
+     "code": "Structure 1.3",
+     "name": "Electron configurations",
+     "skills": []
+    },
+    {
+     "code": "Structure 1.4",
+     "name": "Counting particles by mass: the mole",
+     "skills": [
+      "sci",
+      "rearrange",
+      "ratio_recip",
+      "arith",
+      "prop"
+     ]
+    },
+    {
+     "code": "Structure 1.5",
+     "name": "Ideal gases",
+     "skills": [
+      "rearrange",
+      "prop",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "Structure 2.1",
+     "name": "The ionic model",
+     "skills": []
+    },
+    {
+     "code": "Structure 2.2",
+     "name": "The covalent model",
+     "skills": []
+    },
+    {
+     "code": "Structure 2.3",
+     "name": "The metallic model",
+     "skills": []
+    },
+    {
+     "code": "Structure 2.4",
+     "name": "From models to materials",
+     "skills": []
+    },
+    {
+     "code": "Structure 3.1",
+     "name": "The periodic table: classification of elements",
+     "skills": []
+    },
+    {
+     "code": "Structure 3.2",
+     "name": "Functional groups: classification of organic compounds",
+     "skills": []
+    },
+    {
+     "code": "Reactivity 1.1",
+     "name": "Measuring enthalpy changes",
+     "skills": [
+      "rearrange",
+      "arith"
+     ]
+    },
+    {
+     "code": "Reactivity 1.2",
+     "name": "Energy cycles in reactions",
+     "skills": [
+      "arith"
+     ]
+    },
+    {
+     "code": "Reactivity 1.3",
+     "name": "Energy from fuels",
+     "skills": [
+      "arith",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "Reactivity 1.4",
+     "name": "Entropy and spontaneity",
+     "skills": [
+      "rearrange",
+      "arith"
+     ]
+    },
+    {
+     "code": "Reactivity 2.1",
+     "name": "How much? The amount of chemical change",
+     "skills": [
+      "ratio_recip",
+      "rearrange",
+      "dfp"
+     ]
+    },
+    {
+     "code": "Reactivity 2.2",
+     "name": "How fast? The rate of chemical change",
+     "skills": [
+      "ratio_recip",
+      "rearrange",
+      "expo"
+     ]
+    },
+    {
+     "code": "Reactivity 2.3",
+     "name": "How far? The extent of chemical change",
+     "skills": [
+      "expo",
+      "rearrange"
+     ]
+    },
+    {
+     "code": "Reactivity 3.1",
+     "name": "Proton transfer reactions",
+     "skills": [
+      "expo",
+      "sci"
+     ]
+    },
+    {
+     "code": "Reactivity 3.2",
+     "name": "Electron transfer reactions",
+     "skills": [
+      "arith"
+     ]
+    },
+    {
+     "code": "Reactivity 3.3",
+     "name": "Electron sharing reactions",
+     "skills": []
+    },
+    {
+     "code": "Reactivity 3.4",
+     "name": "Electron-pair sharing reactions",
+     "skills": []
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-economics-sl",
+   "board": "IB",
+   "subject": "Economics",
+   "course": "DP Economics SL",
+   "level": "SL",
+   "status": "ready",
+   "guide": {
+    "title": "Economics guide",
+    "first_assessment": 2022,
+    "published": "February 2020, updated May 2020",
+    "section": "Syllabus content: calculations"
+   },
+   "prior_knowledge": [
+    {
+     "id": "e1",
+     "text": "Adding up and dividing data (GDP, per person figures, balance of payments)",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e2",
+     "text": "Decimals, fractions and percentages (rates such as unemployment)",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e3",
+     "text": "Percentage change (elasticities, growth, inflation, currency values)",
+     "skills": [
+      "pct_change"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e4",
+     "text": "Ratios (an elasticity is a ratio of two percentage changes)",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e5",
+     "text": "Rearranging a formula to find the missing value (for example the change in price from PED)",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e6",
+     "text": "Multiplying by a factor (nominal to real values with a price deflator)",
+     "skills": [
+      "mult"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e7",
+     "text": "Negative numbers (real interest rates, deficits, negative elasticities)",
+     "skills": [
+      "neg"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e8",
+     "text": "Converting prices between currencies",
+     "skills": [
+      "currency"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e9",
+     "text": "Reading values from economic diagrams",
+     "skills": [
+      "graph_read"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e14",
+     "text": "Straight-line graphs: gradient and intercept (demand and supply curves)",
+     "skills": [
+      "line_graphs"
+     ],
+     "origin": "curator"
+    },
+    {
+     "id": "e15",
+     "text": "Functions: one quantity depending on another (quantity demanded depending on price)",
+     "skills": [
+      "functions"
+     ],
+     "origin": "curator"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "pct_change",
+    "ratio_recip",
+    "rearrange",
+    "mult",
+    "neg",
+    "currency",
+    "graph_read",
+    "line_graphs",
+    "functions"
+   ],
+   "hexagon": [
+    "pct_change",
+    "ratio_recip",
+    "rearrange",
+    "line_graphs",
+    "functions",
+    "neg",
+    "graph_read"
+   ],
+   "topics": [
+    {
+     "code": "1.1",
+     "name": "What is economics?",
+     "skills": []
+    },
+    {
+     "code": "1.2",
+     "name": "How do economists approach the world?",
+     "skills": []
+    },
+    {
+     "code": "2.1",
+     "name": "Demand",
+     "skills": [
+      "line_graphs",
+      "functions",
+      "graph_read"
+     ]
+    },
+    {
+     "code": "2.2",
+     "name": "Supply",
+     "skills": [
+      "line_graphs",
+      "functions",
+      "graph_read"
+     ]
+    },
+    {
+     "code": "2.3",
+     "name": "Competitive market equilibrium",
+     "skills": [
+      "line_graphs",
+      "graph_read"
+     ]
+    },
+    {
+     "code": "2.4",
+     "name": "Critique of the maximizing behaviour of consumers and producers",
+     "skills": []
+    },
+    {
+     "code": "2.5",
+     "name": "Elasticity of demand",
+     "skills": [
+      "pct_change",
+      "ratio_recip",
+      "rearrange",
+      "neg"
+     ]
+    },
+    {
+     "code": "2.6",
+     "name": "Elasticity of supply",
+     "skills": [
+      "pct_change",
+      "ratio_recip",
+      "rearrange"
+     ]
+    },
+    {
+     "code": "2.7",
+     "name": "Role of government in microeconomics",
+     "skills": [
+      "graph_read"
+     ]
+    },
+    {
+     "code": "2.8",
+     "name": "Market failure: externalities and common pool resources",
+     "skills": [
+      "graph_read"
+     ]
+    },
+    {
+     "code": "2.9",
+     "name": "Market failure: public goods",
+     "skills": [
+      "graph_read"
+     ]
+    },
+    {
+     "code": "3.1",
+     "name": "Measuring economic activity and illustrating its variations",
+     "skills": [
+      "arith",
+      "pct_change",
+      "mult",
+      "dfp"
+     ]
+    },
+    {
+     "code": "3.2",
+     "name": "Aggregate demand and aggregate supply",
+     "skills": [
+      "graph_read"
+     ]
+    },
+    {
+     "code": "3.3",
+     "name": "Macroeconomic objectives",
+     "skills": [
+      "pct_change",
+      "dfp"
+     ]
+    },
+    {
+     "code": "3.4",
+     "name": "Economics of inequality and poverty",
+     "skills": [
+      "graph_read"
+     ]
+    },
+    {
+     "code": "3.5",
+     "name": "Monetary policy",
+     "skills": [
+      "neg",
+      "arith"
+     ]
+    },
+    {
+     "code": "3.6",
+     "name": "Fiscal policy",
+     "skills": []
+    },
+    {
+     "code": "3.7",
+     "name": "Supply-side policies",
+     "skills": []
+    },
+    {
+     "code": "4.1",
+     "name": "Benefits of international trade",
+     "skills": []
+    },
+    {
+     "code": "4.2",
+     "name": "Types of trade protection",
+     "skills": [
+      "graph_read"
+     ]
+    },
+    {
+     "code": "4.3",
+     "name": "Arguments for and against trade control",
+     "skills": []
+    },
+    {
+     "code": "4.4",
+     "name": "Economic integration",
+     "skills": []
+    },
+    {
+     "code": "4.5",
+     "name": "Exchange rates",
+     "skills": [
+      "currency",
+      "pct_change",
+      "mult",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "4.6",
+     "name": "Balance of payments",
+     "skills": [
+      "arith",
+      "neg"
+     ]
+    },
+    {
+     "code": "4.7",
+     "name": "Sustainable development",
+     "skills": []
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-economics-hl",
+   "board": "IB",
+   "subject": "Economics",
+   "course": "DP Economics HL",
+   "level": "HL",
+   "status": "ready",
+   "guide": {
+    "title": "Economics guide",
+    "first_assessment": 2022,
+    "published": "February 2020, updated May 2020",
+    "section": "Syllabus content: calculations"
+   },
+   "prior_knowledge": [
+    {
+     "id": "e1",
+     "text": "Adding up and dividing data (GDP, per person figures, balance of payments)",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e2",
+     "text": "Decimals, fractions and percentages (rates such as unemployment)",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e3",
+     "text": "Percentage change (elasticities, growth, inflation, currency values)",
+     "skills": [
+      "pct_change"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e4",
+     "text": "Ratios (an elasticity is a ratio of two percentage changes)",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e5",
+     "text": "Rearranging a formula to find the missing value (for example the change in price from PED)",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e6",
+     "text": "Multiplying by a factor (nominal to real values with a price deflator)",
+     "skills": [
+      "mult"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e7",
+     "text": "Negative numbers (real interest rates, deficits, negative elasticities)",
+     "skills": [
+      "neg"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e8",
+     "text": "Converting prices between currencies",
+     "skills": [
+      "currency"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e9",
+     "text": "Reading values from economic diagrams",
+     "skills": [
+      "graph_read"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e14",
+     "text": "Straight-line graphs: gradient and intercept (demand and supply curves)",
+     "skills": [
+      "line_graphs"
+     ],
+     "origin": "curator"
+    },
+    {
+     "id": "e15",
+     "text": "Functions: one quantity depending on another (quantity demanded depending on price)",
+     "skills": [
+      "functions"
+     ],
+     "origin": "curator"
+    },
+    {
+     "id": "e10",
+     "text": "Areas of rectangles and triangles in diagrams (surplus, welfare loss, tax revenue)",
+     "skills": [
+      "area_vol"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e11",
+     "text": "Weighted price indices",
+     "skills": [
+      "weighted_index"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e12",
+     "text": "Reciprocals (the multiplier 1 / (1 - MPC))",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "e13",
+     "text": "Linear demand and supply functions, and solving them for equilibrium",
+     "skills": [
+      "lineq",
+      "subst",
+      "simul"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "pct_change",
+    "ratio_recip",
+    "rearrange",
+    "mult",
+    "neg",
+    "currency",
+    "graph_read",
+    "line_graphs",
+    "functions",
+    "area_vol",
+    "weighted_index",
+    "lineq",
+    "subst",
+    "simul"
+   ],
+   "hexagon": [
+    "pct_change",
+    "ratio_recip",
+    "rearrange",
+    "line_graphs",
+    "functions",
+    "area_vol",
+    "lineq"
+   ],
+   "topics": [
+    {
+     "code": "1.1",
+     "name": "What is economics?",
+     "skills": []
+    },
+    {
+     "code": "1.2",
+     "name": "How do economists approach the world?",
+     "skills": []
+    },
+    {
+     "code": "2.1",
+     "name": "Demand",
+     "skills": [
+      "line_graphs",
+      "functions",
+      "graph_read",
+      "lineq",
+      "subst"
+     ]
+    },
+    {
+     "code": "2.2",
+     "name": "Supply",
+     "skills": [
+      "line_graphs",
+      "functions",
+      "graph_read",
+      "lineq",
+      "subst"
+     ]
+    },
+    {
+     "code": "2.3",
+     "name": "Competitive market equilibrium",
+     "skills": [
+      "line_graphs",
+      "graph_read",
+      "simul",
+      "area_vol"
+     ]
+    },
+    {
+     "code": "2.4",
+     "name": "Critique of the maximizing behaviour of consumers and producers",
+     "skills": []
+    },
+    {
+     "code": "2.5",
+     "name": "Elasticity of demand",
+     "skills": [
+      "pct_change",
+      "ratio_recip",
+      "rearrange",
+      "neg"
+     ]
+    },
+    {
+     "code": "2.6",
+     "name": "Elasticity of supply",
+     "skills": [
+      "pct_change",
+      "ratio_recip",
+      "rearrange"
+     ]
+    },
+    {
+     "code": "2.7",
+     "name": "Role of government in microeconomics",
+     "skills": [
+      "graph_read",
+      "area_vol",
+      "arith"
+     ]
+    },
+    {
+     "code": "2.8",
+     "name": "Market failure: externalities and common pool resources",
+     "skills": [
+      "graph_read",
+      "area_vol"
+     ]
+    },
+    {
+     "code": "2.9",
+     "name": "Market failure: public goods",
+     "skills": [
+      "graph_read"
+     ]
+    },
+    {
+     "code": "2.10",
+     "name": "Market failure: asymmetric information",
+     "skills": []
+    },
+    {
+     "code": "2.11",
+     "name": "Market failure: market power",
+     "skills": [
+      "arith",
+      "graph_read"
+     ]
+    },
+    {
+     "code": "2.12",
+     "name": "The market's inability to achieve equity",
+     "skills": []
+    },
+    {
+     "code": "3.1",
+     "name": "Measuring economic activity and illustrating its variations",
+     "skills": [
+      "arith",
+      "pct_change",
+      "mult",
+      "dfp"
+     ]
+    },
+    {
+     "code": "3.2",
+     "name": "Aggregate demand and aggregate supply",
+     "skills": [
+      "graph_read"
+     ]
+    },
+    {
+     "code": "3.3",
+     "name": "Macroeconomic objectives",
+     "skills": [
+      "pct_change",
+      "dfp",
+      "weighted_index"
+     ]
+    },
+    {
+     "code": "3.4",
+     "name": "Economics of inequality and poverty",
+     "skills": [
+      "graph_read",
+      "pct_change"
+     ]
+    },
+    {
+     "code": "3.5",
+     "name": "Monetary policy",
+     "skills": [
+      "neg",
+      "arith"
+     ]
+    },
+    {
+     "code": "3.6",
+     "name": "Fiscal policy",
+     "skills": [
+      "ratio_recip",
+      "arith"
+     ]
+    },
+    {
+     "code": "3.7",
+     "name": "Supply-side policies",
+     "skills": []
+    },
+    {
+     "code": "4.1",
+     "name": "Benefits of international trade",
+     "skills": [
+      "ratio_recip",
+      "area_vol"
+     ]
+    },
+    {
+     "code": "4.2",
+     "name": "Types of trade protection",
+     "skills": [
+      "graph_read",
+      "area_vol",
+      "arith"
+     ]
+    },
+    {
+     "code": "4.3",
+     "name": "Arguments for and against trade control",
+     "skills": []
+    },
+    {
+     "code": "4.4",
+     "name": "Economic integration",
+     "skills": []
+    },
+    {
+     "code": "4.5",
+     "name": "Exchange rates",
+     "skills": [
+      "currency",
+      "pct_change",
+      "mult",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "4.6",
+     "name": "Balance of payments",
+     "skills": [
+      "arith",
+      "neg"
+     ]
+    },
+    {
+     "code": "4.7",
+     "name": "Sustainable development",
+     "skills": []
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-ess-sl",
+   "board": "IB",
+   "subject": "Environmental Systems and Societies",
+   "course": "DP Environmental Systems and Societies SL",
+   "level": "SL",
+   "status": "ready",
+   "guide": {
+    "title": "Environmental systems and societies guide",
+    "section": "Mathematical requirements for all ESS students"
+   },
+   "prior_knowledge": [
+    {
+     "id": "s1",
+     "text": "The four operations: adding, subtracting, multiplying, dividing",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s2",
+     "text": "Working out a mean",
+     "skills": [
+      "mean_range"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s3",
+     "text": "Calculating with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s4",
+     "text": "Calculating with ratios and reciprocals",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s5",
+     "text": "Approximating and estimating",
+     "skills": [
+      "estimate"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s6",
+     "text": "Writing and reading numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s7",
+     "text": "Direct and inverse proportion",
+     "skills": [
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s8",
+     "text": "Solving simple equations",
+     "skills": [
+      "lineq"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s9",
+     "text": "Drawing graphs of two variables, straight and curved, with sensible scales and axes",
+     "skills": [
+      "plot_graphs"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s10",
+     "text": "Reading what a graph's slope, change of slope, axis crossings and the area under it mean",
+     "skills": [
+      "graph_interpret"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s11",
+     "text": "Reading data from bar charts, histograms, pie charts and similar",
+     "skills": [
+      "charts"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "mean_range",
+    "dfp",
+    "ratio_recip",
+    "estimate",
+    "sci",
+    "prop",
+    "lineq",
+    "plot_graphs",
+    "graph_interpret",
+    "charts"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "sci",
+    "prop",
+    "lineq",
+    "graph_interpret"
+   ],
+   "topics": []
+  },
+  {
+   "id": "ib-dp-ess-hl",
+   "board": "IB",
+   "subject": "Environmental Systems and Societies",
+   "course": "DP Environmental Systems and Societies HL",
+   "level": "HL",
+   "status": "ready",
+   "guide": {
+    "title": "Environmental systems and societies guide",
+    "section": "Mathematical requirements for all ESS students"
+   },
+   "prior_knowledge": [
+    {
+     "id": "s1",
+     "text": "The four operations: adding, subtracting, multiplying, dividing",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s2",
+     "text": "Working out a mean",
+     "skills": [
+      "mean_range"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s3",
+     "text": "Calculating with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s4",
+     "text": "Calculating with ratios and reciprocals",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s5",
+     "text": "Approximating and estimating",
+     "skills": [
+      "estimate"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s6",
+     "text": "Writing and reading numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s7",
+     "text": "Direct and inverse proportion",
+     "skills": [
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s8",
+     "text": "Solving simple equations",
+     "skills": [
+      "lineq"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s9",
+     "text": "Drawing graphs of two variables, straight and curved, with sensible scales and axes",
+     "skills": [
+      "plot_graphs"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s10",
+     "text": "Reading what a graph's slope, change of slope, axis crossings and the area under it mean",
+     "skills": [
+      "graph_interpret"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "s11",
+     "text": "Reading data from bar charts, histograms, pie charts and similar",
+     "skills": [
+      "charts"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "mean_range",
+    "dfp",
+    "ratio_recip",
+    "estimate",
+    "sci",
+    "prop",
+    "lineq",
+    "plot_graphs",
+    "graph_interpret",
+    "charts"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "sci",
+    "prop",
+    "lineq",
+    "graph_interpret"
+   ],
+   "topics": []
+  },
+  {
+   "id": "ib-dp-maths-aa-sl",
+   "board": "IB",
+   "subject": "Mathematics",
+   "course": "DP Analysis and Approaches SL",
+   "level": "SL",
+   "status": "ready",
+   "guide": {
+    "title": "Mathematics: analysis and approaches guide",
+    "first_assessment": 2021,
+    "published": "February 2019",
+    "section": "Syllabus: Prior learning topics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "m1",
+     "text": "Number sets from natural numbers to real numbers",
+     "skills": [
+      "number_sets"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m2",
+     "text": "SI units (metre, kilogram, second and so on), units of area and volume, and units built from them such as m/s",
+     "skills": [
+      "units",
+      "rates"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m3",
+     "text": "Rounding, decimal approximations and significant figures, with a sense of the error made",
+     "skills": [
+      "round",
+      "sf"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m4",
+     "text": "Absolute value",
+     "skills": [
+      "abs_value"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m5",
+     "text": "The four operations with integers, decimals and fractions, including the order of operations",
+     "skills": [
+      "arith",
+      "dfp",
+      "neg"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m6",
+     "text": "Primes, factors and multiples",
+     "skills": [
+      "primes_factors"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m7",
+     "text": "Simple uses of ratio, percentage and proportion",
+     "skills": [
+      "ratio_recip",
+      "pct_change",
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m8",
+     "text": "Expanding and factorising algebraic expressions",
+     "skills": [
+      "expand_factor"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m9",
+     "text": "Rearranging formulas",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m10",
+     "text": "Working out an expression by substituting values",
+     "skills": [
+      "subst"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m11",
+     "text": "Powers with simple positive exponents",
+     "skills": [
+      "expo"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m12",
+     "text": "Inequality signs and intervals on the number line",
+     "skills": [
+      "ineq_intervals"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m13",
+     "text": "Simplifying simple expressions with roots",
+     "skills": [
+      "surds"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m14",
+     "text": "Numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m15",
+     "text": "Familiarity with common world currencies",
+     "skills": [
+      "currency"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m16",
+     "text": "Solving linear equations and inequalities",
+     "skills": [
+      "lineq"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m17",
+     "text": "Solving two linear equations in two unknowns",
+     "skills": [
+      "simul"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m18",
+     "text": "Sets, their notation, union and intersection",
+     "skills": [
+      "sets_venn"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m19",
+     "text": "Graphing linear and quadratic functions with technology",
+     "skills": [
+      "graph_lin_quad"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m20",
+     "text": "Mappings shown as ordered pairs, tables, diagrams and graphs",
+     "skills": [
+      "mappings"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m21",
+     "text": "Pythagoras' theorem and its converse",
+     "skills": [
+      "pyth"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m22",
+     "text": "Midpoint and distance between two points on a coordinate grid",
+     "skills": [
+      "coord"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m23",
+     "text": "Basic geometric objects: point, line, plane, angle",
+     "skills": [
+      "geom_basics"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m24",
+     "text": "Measuring angles in degrees; compass directions and three-figure bearings",
+     "skills": [
+      "angles_bearings"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m25",
+     "text": "The angles of a triangle add up to 180 degrees",
+     "skills": [
+      "angle_sum"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m26",
+     "text": "Trigonometry in right-angled triangles and simple uses of it",
+     "skills": [
+      "trig_right"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m27",
+     "text": "Translation, reflection, rotation and enlargement",
+     "skills": [
+      "transformations"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m28",
+     "text": "The circle: its parts, circumference and area",
+     "skills": [
+      "circle"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m29",
+     "text": "Perimeters and areas of flat shapes, including shapes made of several parts; what makes a triangle or quadrilateral special",
+     "skills": [
+      "area_vol",
+      "geom_basics"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m30",
+     "text": "Familiarity with prisms, pyramids, spheres, cylinders and cones",
+     "skills": [
+      "solids"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m31",
+     "text": "Volume and surface area of cuboids, prisms, cylinders and compound solids",
+     "skills": [
+      "area_vol"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m32",
+     "text": "Collecting data and showing it in bar, pie and line charts and pictograms",
+     "skills": [
+      "charts"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m33",
+     "text": "Mean, median, mode and range of discrete data",
+     "skills": [
+      "averages"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m34",
+     "text": "Probability of simple events",
+     "skills": [
+      "prob_simple"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m35",
+     "text": "Sorting data with Venn diagrams",
+     "skills": [
+      "sets_venn"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m36",
+     "text": "Tree diagrams",
+     "skills": [
+      "tree_diagrams"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m37",
+     "text": "Speed as distance divided by time",
+     "skills": [
+      "rates",
+      "rearrange"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "number_sets",
+    "units",
+    "rates",
+    "round",
+    "sf",
+    "abs_value",
+    "arith",
+    "dfp",
+    "neg",
+    "primes_factors",
+    "ratio_recip",
+    "pct_change",
+    "prop",
+    "expand_factor",
+    "rearrange",
+    "subst",
+    "expo",
+    "ineq_intervals",
+    "surds",
+    "sci",
+    "currency",
+    "lineq",
+    "simul",
+    "sets_venn",
+    "graph_lin_quad",
+    "mappings",
+    "pyth",
+    "coord",
+    "geom_basics",
+    "angles_bearings",
+    "angle_sum",
+    "trig_right",
+    "transformations",
+    "circle",
+    "area_vol",
+    "solids",
+    "charts",
+    "averages",
+    "prob_simple",
+    "tree_diagrams"
+   ],
+   "hexagon": [
+    "dfp",
+    "neg",
+    "expand_factor",
+    "rearrange",
+    "lineq",
+    "expo",
+    "pyth"
+   ],
+   "topics": [
+    {
+     "code": "1",
+     "name": "Number and algebra",
+     "skills": [
+      "number_sets",
+      "units",
+      "rates",
+      "round",
+      "sf",
+      "abs_value",
+      "arith",
+      "dfp",
+      "neg",
+      "primes_factors",
+      "ratio_recip",
+      "pct_change",
+      "prop",
+      "expand_factor",
+      "rearrange",
+      "subst",
+      "expo",
+      "ineq_intervals",
+      "surds",
+      "sci",
+      "currency",
+      "lineq",
+      "simul",
+      "sets_venn"
+     ]
+    },
+    {
+     "code": "2",
+     "name": "Functions",
+     "skills": [
+      "graph_lin_quad",
+      "mappings"
+     ]
+    },
+    {
+     "code": "3",
+     "name": "Geometry and trigonometry",
+     "skills": [
+      "pyth",
+      "coord",
+      "geom_basics",
+      "angles_bearings",
+      "angle_sum",
+      "trig_right",
+      "transformations",
+      "circle",
+      "area_vol",
+      "solids"
+     ]
+    },
+    {
+     "code": "4",
+     "name": "Statistics and probability",
+     "skills": [
+      "charts",
+      "averages",
+      "prob_simple",
+      "sets_venn",
+      "tree_diagrams"
+     ]
+    },
+    {
+     "code": "5",
+     "name": "Calculus",
+     "skills": [
+      "rates",
+      "rearrange"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-maths-aa-hl",
+   "board": "IB",
+   "subject": "Mathematics",
+   "course": "DP Analysis and Approaches HL",
+   "level": "HL",
+   "status": "ready",
+   "guide": {
+    "title": "Mathematics: analysis and approaches guide",
+    "first_assessment": 2021,
+    "published": "February 2019",
+    "section": "Syllabus: Prior learning topics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "m1",
+     "text": "Number sets from natural numbers to real numbers",
+     "skills": [
+      "number_sets"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m2",
+     "text": "SI units (metre, kilogram, second and so on), units of area and volume, and units built from them such as m/s",
+     "skills": [
+      "units",
+      "rates"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m3",
+     "text": "Rounding, decimal approximations and significant figures, with a sense of the error made",
+     "skills": [
+      "round",
+      "sf"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m4",
+     "text": "Absolute value",
+     "skills": [
+      "abs_value"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m5",
+     "text": "The four operations with integers, decimals and fractions, including the order of operations",
+     "skills": [
+      "arith",
+      "dfp",
+      "neg"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m6",
+     "text": "Primes, factors and multiples",
+     "skills": [
+      "primes_factors"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m7",
+     "text": "Simple uses of ratio, percentage and proportion",
+     "skills": [
+      "ratio_recip",
+      "pct_change",
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m8",
+     "text": "Expanding and factorising algebraic expressions",
+     "skills": [
+      "expand_factor"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m9",
+     "text": "Rearranging formulas",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m10",
+     "text": "Working out an expression by substituting values",
+     "skills": [
+      "subst"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m11",
+     "text": "Powers with simple positive exponents",
+     "skills": [
+      "expo"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m12",
+     "text": "Inequality signs and intervals on the number line",
+     "skills": [
+      "ineq_intervals"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m13",
+     "text": "Simplifying simple expressions with roots",
+     "skills": [
+      "surds"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m14",
+     "text": "Numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m15",
+     "text": "Familiarity with common world currencies",
+     "skills": [
+      "currency"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m16",
+     "text": "Solving linear equations and inequalities",
+     "skills": [
+      "lineq"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m17",
+     "text": "Solving two linear equations in two unknowns",
+     "skills": [
+      "simul"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m18",
+     "text": "Sets, their notation, union and intersection",
+     "skills": [
+      "sets_venn"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m19",
+     "text": "Graphing linear and quadratic functions with technology",
+     "skills": [
+      "graph_lin_quad"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m20",
+     "text": "Mappings shown as ordered pairs, tables, diagrams and graphs",
+     "skills": [
+      "mappings"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m21",
+     "text": "Pythagoras' theorem and its converse",
+     "skills": [
+      "pyth"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m22",
+     "text": "Midpoint and distance between two points on a coordinate grid",
+     "skills": [
+      "coord"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m23",
+     "text": "Basic geometric objects: point, line, plane, angle",
+     "skills": [
+      "geom_basics"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m24",
+     "text": "Measuring angles in degrees; compass directions and three-figure bearings",
+     "skills": [
+      "angles_bearings"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m25",
+     "text": "The angles of a triangle add up to 180 degrees",
+     "skills": [
+      "angle_sum"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m26",
+     "text": "Trigonometry in right-angled triangles and simple uses of it",
+     "skills": [
+      "trig_right"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m27",
+     "text": "Translation, reflection, rotation and enlargement",
+     "skills": [
+      "transformations"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m28",
+     "text": "The circle: its parts, circumference and area",
+     "skills": [
+      "circle"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m29",
+     "text": "Perimeters and areas of flat shapes, including shapes made of several parts; what makes a triangle or quadrilateral special",
+     "skills": [
+      "area_vol",
+      "geom_basics"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m30",
+     "text": "Familiarity with prisms, pyramids, spheres, cylinders and cones",
+     "skills": [
+      "solids"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m31",
+     "text": "Volume and surface area of cuboids, prisms, cylinders and compound solids",
+     "skills": [
+      "area_vol"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m32",
+     "text": "Collecting data and showing it in bar, pie and line charts and pictograms",
+     "skills": [
+      "charts"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m33",
+     "text": "Mean, median, mode and range of discrete data",
+     "skills": [
+      "averages"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m34",
+     "text": "Probability of simple events",
+     "skills": [
+      "prob_simple"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m35",
+     "text": "Sorting data with Venn diagrams",
+     "skills": [
+      "sets_venn"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m36",
+     "text": "Tree diagrams",
+     "skills": [
+      "tree_diagrams"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m37",
+     "text": "Speed as distance divided by time",
+     "skills": [
+      "rates",
+      "rearrange"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "number_sets",
+    "units",
+    "rates",
+    "round",
+    "sf",
+    "abs_value",
+    "arith",
+    "dfp",
+    "neg",
+    "primes_factors",
+    "ratio_recip",
+    "pct_change",
+    "prop",
+    "expand_factor",
+    "rearrange",
+    "subst",
+    "expo",
+    "ineq_intervals",
+    "surds",
+    "sci",
+    "currency",
+    "lineq",
+    "simul",
+    "sets_venn",
+    "graph_lin_quad",
+    "mappings",
+    "pyth",
+    "coord",
+    "geom_basics",
+    "angles_bearings",
+    "angle_sum",
+    "trig_right",
+    "transformations",
+    "circle",
+    "area_vol",
+    "solids",
+    "charts",
+    "averages",
+    "prob_simple",
+    "tree_diagrams"
+   ],
+   "hexagon": [
+    "dfp",
+    "neg",
+    "expand_factor",
+    "rearrange",
+    "lineq",
+    "expo",
+    "pyth"
+   ],
+   "topics": [
+    {
+     "code": "1",
+     "name": "Number and algebra",
+     "skills": [
+      "number_sets",
+      "units",
+      "rates",
+      "round",
+      "sf",
+      "abs_value",
+      "arith",
+      "dfp",
+      "neg",
+      "primes_factors",
+      "ratio_recip",
+      "pct_change",
+      "prop",
+      "expand_factor",
+      "rearrange",
+      "subst",
+      "expo",
+      "ineq_intervals",
+      "surds",
+      "sci",
+      "currency",
+      "lineq",
+      "simul",
+      "sets_venn"
+     ]
+    },
+    {
+     "code": "2",
+     "name": "Functions",
+     "skills": [
+      "graph_lin_quad",
+      "mappings"
+     ]
+    },
+    {
+     "code": "3",
+     "name": "Geometry and trigonometry",
+     "skills": [
+      "pyth",
+      "coord",
+      "geom_basics",
+      "angles_bearings",
+      "angle_sum",
+      "trig_right",
+      "transformations",
+      "circle",
+      "area_vol",
+      "solids"
+     ]
+    },
+    {
+     "code": "4",
+     "name": "Statistics and probability",
+     "skills": [
+      "charts",
+      "averages",
+      "prob_simple",
+      "sets_venn",
+      "tree_diagrams"
+     ]
+    },
+    {
+     "code": "5",
+     "name": "Calculus",
+     "skills": [
+      "rates",
+      "rearrange"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-maths-ai-sl",
+   "board": "IB",
+   "subject": "Mathematics",
+   "course": "DP Applications and Interpretation SL",
+   "level": "SL",
+   "status": "assumed",
+   "guide": {
+    "title": "Mathematics: applications and interpretation guide",
+    "first_assessment": 2021,
+    "section": "Syllabus: Prior learning topics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "m1",
+     "text": "Number sets from natural numbers to real numbers",
+     "skills": [
+      "number_sets"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m2",
+     "text": "SI units (metre, kilogram, second and so on), units of area and volume, and units built from them such as m/s",
+     "skills": [
+      "units",
+      "rates"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m3",
+     "text": "Rounding, decimal approximations and significant figures, with a sense of the error made",
+     "skills": [
+      "round",
+      "sf"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m4",
+     "text": "Absolute value",
+     "skills": [
+      "abs_value"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m5",
+     "text": "The four operations with integers, decimals and fractions, including the order of operations",
+     "skills": [
+      "arith",
+      "dfp",
+      "neg"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m6",
+     "text": "Primes, factors and multiples",
+     "skills": [
+      "primes_factors"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m7",
+     "text": "Simple uses of ratio, percentage and proportion",
+     "skills": [
+      "ratio_recip",
+      "pct_change",
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m8",
+     "text": "Expanding and factorising algebraic expressions",
+     "skills": [
+      "expand_factor"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m9",
+     "text": "Rearranging formulas",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m10",
+     "text": "Working out an expression by substituting values",
+     "skills": [
+      "subst"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m11",
+     "text": "Powers with simple positive exponents",
+     "skills": [
+      "expo"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m12",
+     "text": "Inequality signs and intervals on the number line",
+     "skills": [
+      "ineq_intervals"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m13",
+     "text": "Simplifying simple expressions with roots",
+     "skills": [
+      "surds"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m14",
+     "text": "Numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m15",
+     "text": "Familiarity with common world currencies",
+     "skills": [
+      "currency"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m16",
+     "text": "Solving linear equations and inequalities",
+     "skills": [
+      "lineq"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m17",
+     "text": "Solving two linear equations in two unknowns",
+     "skills": [
+      "simul"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m18",
+     "text": "Sets, their notation, union and intersection",
+     "skills": [
+      "sets_venn"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m19",
+     "text": "Graphing linear and quadratic functions with technology",
+     "skills": [
+      "graph_lin_quad"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m20",
+     "text": "Mappings shown as ordered pairs, tables, diagrams and graphs",
+     "skills": [
+      "mappings"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m21",
+     "text": "Pythagoras' theorem and its converse",
+     "skills": [
+      "pyth"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m22",
+     "text": "Midpoint and distance between two points on a coordinate grid",
+     "skills": [
+      "coord"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m23",
+     "text": "Basic geometric objects: point, line, plane, angle",
+     "skills": [
+      "geom_basics"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m24",
+     "text": "Measuring angles in degrees; compass directions and three-figure bearings",
+     "skills": [
+      "angles_bearings"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m25",
+     "text": "The angles of a triangle add up to 180 degrees",
+     "skills": [
+      "angle_sum"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m26",
+     "text": "Trigonometry in right-angled triangles and simple uses of it",
+     "skills": [
+      "trig_right"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m27",
+     "text": "Translation, reflection, rotation and enlargement",
+     "skills": [
+      "transformations"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m28",
+     "text": "The circle: its parts, circumference and area",
+     "skills": [
+      "circle"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m29",
+     "text": "Perimeters and areas of flat shapes, including shapes made of several parts; what makes a triangle or quadrilateral special",
+     "skills": [
+      "area_vol",
+      "geom_basics"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m30",
+     "text": "Familiarity with prisms, pyramids, spheres, cylinders and cones",
+     "skills": [
+      "solids"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m31",
+     "text": "Volume and surface area of cuboids, prisms, cylinders and compound solids",
+     "skills": [
+      "area_vol"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m32",
+     "text": "Collecting data and showing it in bar, pie and line charts and pictograms",
+     "skills": [
+      "charts"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m33",
+     "text": "Mean, median, mode and range of discrete data",
+     "skills": [
+      "averages"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m34",
+     "text": "Probability of simple events",
+     "skills": [
+      "prob_simple"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m35",
+     "text": "Sorting data with Venn diagrams",
+     "skills": [
+      "sets_venn"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m36",
+     "text": "Tree diagrams",
+     "skills": [
+      "tree_diagrams"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m37",
+     "text": "Speed as distance divided by time",
+     "skills": [
+      "rates",
+      "rearrange"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "number_sets",
+    "units",
+    "rates",
+    "round",
+    "sf",
+    "abs_value",
+    "arith",
+    "dfp",
+    "neg",
+    "primes_factors",
+    "ratio_recip",
+    "pct_change",
+    "prop",
+    "expand_factor",
+    "rearrange",
+    "subst",
+    "expo",
+    "ineq_intervals",
+    "surds",
+    "sci",
+    "currency",
+    "lineq",
+    "simul",
+    "sets_venn",
+    "graph_lin_quad",
+    "mappings",
+    "pyth",
+    "coord",
+    "geom_basics",
+    "angles_bearings",
+    "angle_sum",
+    "trig_right",
+    "transformations",
+    "circle",
+    "area_vol",
+    "solids",
+    "charts",
+    "averages",
+    "prob_simple",
+    "tree_diagrams"
+   ],
+   "hexagon": [
+    "dfp",
+    "pct_change",
+    "rearrange",
+    "lineq",
+    "sci",
+    "averages",
+    "trig_right"
+   ],
+   "topics": [
+    {
+     "code": "1",
+     "name": "Number and algebra",
+     "skills": [
+      "number_sets",
+      "units",
+      "rates",
+      "round",
+      "sf",
+      "abs_value",
+      "arith",
+      "dfp",
+      "neg",
+      "primes_factors",
+      "ratio_recip",
+      "pct_change",
+      "prop",
+      "expand_factor",
+      "rearrange",
+      "subst",
+      "expo",
+      "ineq_intervals",
+      "surds",
+      "sci",
+      "currency",
+      "lineq",
+      "simul",
+      "sets_venn"
+     ]
+    },
+    {
+     "code": "2",
+     "name": "Functions",
+     "skills": [
+      "graph_lin_quad",
+      "mappings"
+     ]
+    },
+    {
+     "code": "3",
+     "name": "Geometry and trigonometry",
+     "skills": [
+      "pyth",
+      "coord",
+      "geom_basics",
+      "angles_bearings",
+      "angle_sum",
+      "trig_right",
+      "transformations",
+      "circle",
+      "area_vol",
+      "solids"
+     ]
+    },
+    {
+     "code": "4",
+     "name": "Statistics and probability",
+     "skills": [
+      "charts",
+      "averages",
+      "prob_simple",
+      "sets_venn",
+      "tree_diagrams"
+     ]
+    },
+    {
+     "code": "5",
+     "name": "Calculus",
+     "skills": [
+      "rates",
+      "rearrange"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-maths-ai-hl",
+   "board": "IB",
+   "subject": "Mathematics",
+   "course": "DP Applications and Interpretation HL",
+   "level": "HL",
+   "status": "assumed",
+   "guide": {
+    "title": "Mathematics: applications and interpretation guide",
+    "first_assessment": 2021,
+    "section": "Syllabus: Prior learning topics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "m1",
+     "text": "Number sets from natural numbers to real numbers",
+     "skills": [
+      "number_sets"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m2",
+     "text": "SI units (metre, kilogram, second and so on), units of area and volume, and units built from them such as m/s",
+     "skills": [
+      "units",
+      "rates"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m3",
+     "text": "Rounding, decimal approximations and significant figures, with a sense of the error made",
+     "skills": [
+      "round",
+      "sf"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m4",
+     "text": "Absolute value",
+     "skills": [
+      "abs_value"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m5",
+     "text": "The four operations with integers, decimals and fractions, including the order of operations",
+     "skills": [
+      "arith",
+      "dfp",
+      "neg"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m6",
+     "text": "Primes, factors and multiples",
+     "skills": [
+      "primes_factors"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m7",
+     "text": "Simple uses of ratio, percentage and proportion",
+     "skills": [
+      "ratio_recip",
+      "pct_change",
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m8",
+     "text": "Expanding and factorising algebraic expressions",
+     "skills": [
+      "expand_factor"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m9",
+     "text": "Rearranging formulas",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m10",
+     "text": "Working out an expression by substituting values",
+     "skills": [
+      "subst"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m11",
+     "text": "Powers with simple positive exponents",
+     "skills": [
+      "expo"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m12",
+     "text": "Inequality signs and intervals on the number line",
+     "skills": [
+      "ineq_intervals"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m13",
+     "text": "Simplifying simple expressions with roots",
+     "skills": [
+      "surds"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m14",
+     "text": "Numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m15",
+     "text": "Familiarity with common world currencies",
+     "skills": [
+      "currency"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m16",
+     "text": "Solving linear equations and inequalities",
+     "skills": [
+      "lineq"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m17",
+     "text": "Solving two linear equations in two unknowns",
+     "skills": [
+      "simul"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m18",
+     "text": "Sets, their notation, union and intersection",
+     "skills": [
+      "sets_venn"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m19",
+     "text": "Graphing linear and quadratic functions with technology",
+     "skills": [
+      "graph_lin_quad"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m20",
+     "text": "Mappings shown as ordered pairs, tables, diagrams and graphs",
+     "skills": [
+      "mappings"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m21",
+     "text": "Pythagoras' theorem and its converse",
+     "skills": [
+      "pyth"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m22",
+     "text": "Midpoint and distance between two points on a coordinate grid",
+     "skills": [
+      "coord"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m23",
+     "text": "Basic geometric objects: point, line, plane, angle",
+     "skills": [
+      "geom_basics"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m24",
+     "text": "Measuring angles in degrees; compass directions and three-figure bearings",
+     "skills": [
+      "angles_bearings"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m25",
+     "text": "The angles of a triangle add up to 180 degrees",
+     "skills": [
+      "angle_sum"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m26",
+     "text": "Trigonometry in right-angled triangles and simple uses of it",
+     "skills": [
+      "trig_right"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m27",
+     "text": "Translation, reflection, rotation and enlargement",
+     "skills": [
+      "transformations"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m28",
+     "text": "The circle: its parts, circumference and area",
+     "skills": [
+      "circle"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m29",
+     "text": "Perimeters and areas of flat shapes, including shapes made of several parts; what makes a triangle or quadrilateral special",
+     "skills": [
+      "area_vol",
+      "geom_basics"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m30",
+     "text": "Familiarity with prisms, pyramids, spheres, cylinders and cones",
+     "skills": [
+      "solids"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m31",
+     "text": "Volume and surface area of cuboids, prisms, cylinders and compound solids",
+     "skills": [
+      "area_vol"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m32",
+     "text": "Collecting data and showing it in bar, pie and line charts and pictograms",
+     "skills": [
+      "charts"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m33",
+     "text": "Mean, median, mode and range of discrete data",
+     "skills": [
+      "averages"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m34",
+     "text": "Probability of simple events",
+     "skills": [
+      "prob_simple"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m35",
+     "text": "Sorting data with Venn diagrams",
+     "skills": [
+      "sets_venn"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m36",
+     "text": "Tree diagrams",
+     "skills": [
+      "tree_diagrams"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "m37",
+     "text": "Speed as distance divided by time",
+     "skills": [
+      "rates",
+      "rearrange"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "number_sets",
+    "units",
+    "rates",
+    "round",
+    "sf",
+    "abs_value",
+    "arith",
+    "dfp",
+    "neg",
+    "primes_factors",
+    "ratio_recip",
+    "pct_change",
+    "prop",
+    "expand_factor",
+    "rearrange",
+    "subst",
+    "expo",
+    "ineq_intervals",
+    "surds",
+    "sci",
+    "currency",
+    "lineq",
+    "simul",
+    "sets_venn",
+    "graph_lin_quad",
+    "mappings",
+    "pyth",
+    "coord",
+    "geom_basics",
+    "angles_bearings",
+    "angle_sum",
+    "trig_right",
+    "transformations",
+    "circle",
+    "area_vol",
+    "solids",
+    "charts",
+    "averages",
+    "prob_simple",
+    "tree_diagrams"
+   ],
+   "hexagon": [
+    "dfp",
+    "pct_change",
+    "rearrange",
+    "lineq",
+    "sci",
+    "averages",
+    "trig_right"
+   ],
+   "topics": [
+    {
+     "code": "1",
+     "name": "Number and algebra",
+     "skills": [
+      "number_sets",
+      "units",
+      "rates",
+      "round",
+      "sf",
+      "abs_value",
+      "arith",
+      "dfp",
+      "neg",
+      "primes_factors",
+      "ratio_recip",
+      "pct_change",
+      "prop",
+      "expand_factor",
+      "rearrange",
+      "subst",
+      "expo",
+      "ineq_intervals",
+      "surds",
+      "sci",
+      "currency",
+      "lineq",
+      "simul",
+      "sets_venn"
+     ]
+    },
+    {
+     "code": "2",
+     "name": "Functions",
+     "skills": [
+      "graph_lin_quad",
+      "mappings"
+     ]
+    },
+    {
+     "code": "3",
+     "name": "Geometry and trigonometry",
+     "skills": [
+      "pyth",
+      "coord",
+      "geom_basics",
+      "angles_bearings",
+      "angle_sum",
+      "trig_right",
+      "transformations",
+      "circle",
+      "area_vol",
+      "solids"
+     ]
+    },
+    {
+     "code": "4",
+     "name": "Statistics and probability",
+     "skills": [
+      "charts",
+      "averages",
+      "prob_simple",
+      "sets_venn",
+      "tree_diagrams"
+     ]
+    },
+    {
+     "code": "5",
+     "name": "Calculus",
+     "skills": [
+      "rates",
+      "rearrange"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-physics-sl",
+   "board": "IB",
+   "subject": "Physics",
+   "course": "DP Physics SL",
+   "level": "SL",
+   "status": "ready",
+   "guide": {
+    "title": "Physics guide",
+    "first_assessment": 2025,
+    "section": "Skills in the study of physics, Tool 3: Mathematics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "p1",
+     "text": "Everyday arithmetic and simple algebra in problems",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p2",
+     "text": "Calculations with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p3",
+     "text": "Calculations with ratios and reciprocals",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p4",
+     "text": "Calculations with exponents",
+     "skills": [
+      "expo"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p5",
+     "text": "Using and reading scientific notation",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p6",
+     "text": "Mean and range",
+     "skills": [
+      "mean_range"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p7",
+     "text": "Selecting and rearranging equations",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p8",
+     "text": "Direct and inverse proportion",
+     "skills": [
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p9",
+     "text": "Areas and volumes of simple shapes",
+     "skills": [
+      "area_vol"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "expo",
+    "sci",
+    "mean_range",
+    "rearrange",
+    "prop",
+    "area_vol"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "expo",
+    "sci",
+    "rearrange",
+    "prop"
+   ],
+   "topics": [
+    {
+     "code": "A.1",
+     "name": "Kinematics",
+     "skills": [
+      "rearrange",
+      "arith",
+      "dfp"
+     ]
+    },
+    {
+     "code": "A.2",
+     "name": "Forces and momentum",
+     "skills": [
+      "rearrange",
+      "arith",
+      "prop"
+     ]
+    },
+    {
+     "code": "A.3",
+     "name": "Work, energy and power",
+     "skills": [
+      "rearrange",
+      "arith",
+      "expo",
+      "dfp"
+     ]
+    },
+    {
+     "code": "B.1",
+     "name": "Thermal energy transfers",
+     "skills": [
+      "rearrange",
+      "sci",
+      "expo",
+      "area_vol"
+     ]
+    },
+    {
+     "code": "B.2",
+     "name": "Greenhouse effect",
+     "skills": [
+      "expo",
+      "sci",
+      "dfp"
+     ]
+    },
+    {
+     "code": "B.3",
+     "name": "Gas laws",
+     "skills": [
+      "prop",
+      "rearrange",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "B.5",
+     "name": "Current and circuits",
+     "skills": [
+      "rearrange",
+      "ratio_recip",
+      "prop",
+      "area_vol"
+     ]
+    },
+    {
+     "code": "C.1",
+     "name": "Simple harmonic motion",
+     "skills": [
+      "rearrange",
+      "expo"
+     ]
+    },
+    {
+     "code": "C.2",
+     "name": "Wave model",
+     "skills": [
+      "rearrange",
+      "ratio_recip",
+      "sci"
+     ]
+    },
+    {
+     "code": "C.3",
+     "name": "Wave phenomena",
+     "skills": [
+      "rearrange",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "C.4",
+     "name": "Standing waves and resonance",
+     "skills": [
+      "rearrange",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "C.5",
+     "name": "Doppler effect",
+     "skills": [
+      "rearrange",
+      "dfp"
+     ]
+    },
+    {
+     "code": "D.1",
+     "name": "Gravitational fields",
+     "skills": [
+      "rearrange",
+      "sci",
+      "expo",
+      "prop"
+     ]
+    },
+    {
+     "code": "D.2",
+     "name": "Electric and magnetic fields",
+     "skills": [
+      "rearrange",
+      "sci",
+      "expo",
+      "prop"
+     ]
+    },
+    {
+     "code": "D.3",
+     "name": "Motion in electromagnetic fields",
+     "skills": [
+      "rearrange",
+      "sci"
+     ]
+    },
+    {
+     "code": "E.1",
+     "name": "Structure of the atom",
+     "skills": [
+      "sci",
+      "expo"
+     ]
+    },
+    {
+     "code": "E.3",
+     "name": "Radioactive decay",
+     "skills": [
+      "dfp",
+      "expo",
+      "sci"
+     ]
+    },
+    {
+     "code": "E.4",
+     "name": "Fission",
+     "skills": [
+      "sci",
+      "rearrange"
+     ]
+    },
+    {
+     "code": "E.5",
+     "name": "Fusion and stars",
+     "skills": [
+      "sci",
+      "expo",
+      "rearrange",
+      "ratio_recip"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ib-dp-physics-hl",
+   "board": "IB",
+   "subject": "Physics",
+   "course": "DP Physics HL",
+   "level": "HL",
+   "status": "ready",
+   "guide": {
+    "title": "Physics guide",
+    "first_assessment": 2025,
+    "section": "Skills in the study of physics, Tool 3: Mathematics"
+   },
+   "prior_knowledge": [
+    {
+     "id": "p1",
+     "text": "Everyday arithmetic and simple algebra in problems",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p2",
+     "text": "Calculations with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p3",
+     "text": "Calculations with ratios and reciprocals",
+     "skills": [
+      "ratio_recip"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p4",
+     "text": "Calculations with exponents",
+     "skills": [
+      "expo"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p5",
+     "text": "Using and reading scientific notation",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p6",
+     "text": "Mean and range",
+     "skills": [
+      "mean_range"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p7",
+     "text": "Selecting and rearranging equations",
+     "skills": [
+      "rearrange"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p8",
+     "text": "Direct and inverse proportion",
+     "skills": [
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "p9",
+     "text": "Areas and volumes of simple shapes",
+     "skills": [
+      "area_vol"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "expo",
+    "sci",
+    "mean_range",
+    "rearrange",
+    "prop",
+    "area_vol"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "expo",
+    "sci",
+    "rearrange",
+    "prop"
+   ],
+   "topics": [
+    {
+     "code": "A.1",
+     "name": "Kinematics",
+     "skills": [
+      "rearrange",
+      "arith",
+      "dfp"
+     ]
+    },
+    {
+     "code": "A.2",
+     "name": "Forces and momentum",
+     "skills": [
+      "rearrange",
+      "arith",
+      "prop"
+     ]
+    },
+    {
+     "code": "A.3",
+     "name": "Work, energy and power",
+     "skills": [
+      "rearrange",
+      "arith",
+      "expo",
+      "dfp"
+     ]
+    },
+    {
+     "code": "A.4",
+     "name": "Rigid body mechanics",
+     "skills": [
+      "rearrange",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "A.5",
+     "name": "Galilean and special relativity",
+     "skills": [
+      "rearrange",
+      "expo",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "B.1",
+     "name": "Thermal energy transfers",
+     "skills": [
+      "rearrange",
+      "sci",
+      "expo",
+      "area_vol"
+     ]
+    },
+    {
+     "code": "B.2",
+     "name": "Greenhouse effect",
+     "skills": [
+      "expo",
+      "sci",
+      "dfp"
+     ]
+    },
+    {
+     "code": "B.3",
+     "name": "Gas laws",
+     "skills": [
+      "prop",
+      "rearrange",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "B.4",
+     "name": "Thermodynamics",
+     "skills": [
+      "rearrange",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "B.5",
+     "name": "Current and circuits",
+     "skills": [
+      "rearrange",
+      "ratio_recip",
+      "prop",
+      "area_vol"
+     ]
+    },
+    {
+     "code": "C.1",
+     "name": "Simple harmonic motion",
+     "skills": [
+      "rearrange",
+      "expo"
+     ]
+    },
+    {
+     "code": "C.2",
+     "name": "Wave model",
+     "skills": [
+      "rearrange",
+      "ratio_recip",
+      "sci"
+     ]
+    },
+    {
+     "code": "C.3",
+     "name": "Wave phenomena",
+     "skills": [
+      "rearrange",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "C.4",
+     "name": "Standing waves and resonance",
+     "skills": [
+      "rearrange",
+      "ratio_recip"
+     ]
+    },
+    {
+     "code": "C.5",
+     "name": "Doppler effect",
+     "skills": [
+      "rearrange",
+      "dfp"
+     ]
+    },
+    {
+     "code": "D.1",
+     "name": "Gravitational fields",
+     "skills": [
+      "rearrange",
+      "sci",
+      "expo",
+      "prop"
+     ]
+    },
+    {
+     "code": "D.2",
+     "name": "Electric and magnetic fields",
+     "skills": [
+      "rearrange",
+      "sci",
+      "expo",
+      "prop"
+     ]
+    },
+    {
+     "code": "D.3",
+     "name": "Motion in electromagnetic fields",
+     "skills": [
+      "rearrange",
+      "sci"
+     ]
+    },
+    {
+     "code": "D.4",
+     "name": "Induction",
+     "skills": [
+      "rearrange",
+      "area_vol"
+     ]
+    },
+    {
+     "code": "E.1",
+     "name": "Structure of the atom",
+     "skills": [
+      "sci",
+      "expo"
+     ]
+    },
+    {
+     "code": "E.2",
+     "name": "Quantum physics",
+     "skills": [
+      "sci",
+      "rearrange"
+     ]
+    },
+    {
+     "code": "E.3",
+     "name": "Radioactive decay",
+     "skills": [
+      "dfp",
+      "expo",
+      "sci"
+     ]
+    },
+    {
+     "code": "E.4",
+     "name": "Fission",
+     "skills": [
+      "sci",
+      "rearrange"
+     ]
+    },
+    {
+     "code": "E.5",
+     "name": "Fusion and stars",
+     "skills": [
+      "sci",
+      "expo",
+      "rearrange",
+      "ratio_recip"
+     ]
+    }
+   ]
+  }
+ ]
+}

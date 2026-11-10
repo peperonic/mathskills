@@ -1,0 +1,21 @@
+# DP Environmental systems and societies, SL and HL. Prior skills: the list of mathematical
+# requirements for all ESS students, as given by the owner on 2026-11-10 (same for SL and HL).
+# Texts are our own wording. Topics are not filled in yet: the guide itself has not been provided.
+subject: Environmental Systems and Societies
+status: ready
+courses: {SL: DP Environmental Systems and Societies SL, HL: DP Environmental Systems and Societies HL}
+guide: {title: Environmental systems and societies guide, section: Mathematical requirements for all ESS students}
+prior_knowledge:
+  - {id: s1, text: "The four operations: adding, subtracting, multiplying, dividing", skills: [arith], origin: guide}
+  - {id: s2, text: Working out a mean, skills: [mean_range], origin: guide}
+  - {id: s3, text: "Calculating with decimals, fractions and percentages", skills: [dfp], origin: guide}
+  - {id: s4, text: Calculating with ratios and reciprocals, skills: [ratio_recip], origin: guide}
+  - {id: s5, text: Approximating and estimating, skills: [estimate], origin: guide}
+  - {id: s6, text: Writing and reading numbers in standard form, skills: [sci], origin: guide}
+  - {id: s7, text: Direct and inverse proportion, skills: [prop], origin: guide}
+  - {id: s8, text: Solving simple equations, skills: [lineq], origin: guide}
+  - {id: s9, text: "Drawing graphs of two variables, straight and curved, with sensible scales and axes", skills: [plot_graphs], origin: guide}
+  - {id: s10, text: "Reading what a graph's slope, change of slope, axis crossings and the area under it mean", skills: [graph_interpret], origin: guide}
+  - {id: s11, text: "Reading data from bar charts, histograms, pie charts and similar", skills: [charts], origin: guide}
+hexagon: {SL: [arith, dfp, ratio_recip, sci, prop, lineq, graph_interpret], HL: [arith, dfp, ratio_recip, sci, prop, lineq, graph_interpret]}
+topics: []

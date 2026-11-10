@@ -1,0 +1,62 @@
+# Skill catalogue. One entry per prior skill a course can ask for.
+#   id         stable short id, used in course files and in the generated JSON
+#   name       our own wording (never text copied from an IB guide)
+#   mathskills id of the same skill in MathSkills Builder (builder/builder-src.html, SKILLS),
+#              when it exists and means the same thing; null otherwise
+#   note       optional, e.g. when the MathSkills skill covers only part of this one
+skills:
+  - {id: arith, name: Basic arithmetic and algebraic calculations, mathskills: null}
+  - {id: dfp, name: "Decimals, fractions and percentages", mathskills: null}
+  - {id: ratio_recip, name: Ratios and reciprocals, mathskills: null}
+  - {id: expo, name: Exponents, mathskills: expo}
+  - {id: sci, name: Scientific notation (standard form), mathskills: sci}
+  - {id: mean_range, name: Mean and range, mathskills: null}
+  - {id: averages, name: "Mean, median, mode and range", mathskills: null}
+  - {id: rearrange, name: Rearranging equations and formulas, mathskills: null}
+  - {id: prop, name: Direct and inverse proportion, mathskills: prop, note: "MathSkills checks direct proportion only"}
+  - {id: area_vol, name: Areas and volumes, mathskills: null}
+  - {id: pct_change, name: Percentage change, mathskills: percent}
+  - {id: neg, name: Negative numbers, mathskills: neg}
+  - {id: subst, name: Substituting into formulas, mathskills: subst}
+  - {id: lineq, name: Solving linear equations and inequalities, mathskills: lineq}
+  - {id: simul, name: Two linear equations in two unknowns, mathskills: null}
+  - {id: expand_factor, name: Expanding brackets and factorising, mathskills: null}
+  - {id: round, name: Rounding to decimal places, mathskills: round}
+  - {id: sf, name: Significant figures and errors from rounding, mathskills: sf}
+  - {id: units, name: SI units and converting between them, mathskills: ten}
+  - {id: rates, name: Speed and other rates, mathskills: null}
+  - {id: number_sets, name: "Number sets: natural, integer, rational, real", mathskills: null}
+  - {id: abs_value, name: Absolute value, mathskills: null}
+  - {id: primes_factors, name: "Primes, factors and multiples", mathskills: null}
+  - {id: ineq_intervals, name: Inequality signs and intervals on the number line, mathskills: null}
+  - {id: surds, name: Simplifying roots (surds), mathskills: null}
+  - {id: currency, name: Working with currencies and exchange rates, mathskills: null}
+  - {id: sets_venn, name: "Sets, union, intersection and Venn diagrams", mathskills: null}
+  - {id: graph_lin_quad, name: Graphing linear and quadratic functions, mathskills: line, note: "MathSkills checks straight lines only"}
+  - {id: mappings, name: Mappings as ordered pairs, tables and graphs, mathskills: null}
+  - {id: pyth, name: Pythagoras' theorem, mathskills: pyth}
+  - {id: coord, name: "Coordinates, midpoint and distance", mathskills: coord, note: "MathSkills checks plotting points only"}
+  - {id: geom_basics, name: "Points, lines, planes and angles; properties of triangles and quadrilaterals", mathskills: null}
+  - {id: angles_bearings, name: "Measuring angles, compass directions and bearings", mathskills: null}
+  - {id: angle_sum, name: Angle sum of a triangle, mathskills: null}
+  - {id: trig_right, name: Trigonometry in right-angled triangles, mathskills: null}
+  - {id: transformations, name: "Translation, reflection, rotation and enlargement", mathskills: null}
+  - {id: circle, name: "Parts of a circle, circumference and area", mathskills: null}
+  - {id: solids, name: "Prisms, pyramids, spheres, cylinders and cones", mathskills: null}
+  - {id: charts, name: "Collecting data, drawing and reading charts", mathskills: null}
+  - {id: prob_simple, name: Probability of simple events, mathskills: null}
+  - {id: tree_diagrams, name: Tree diagrams, mathskills: null}
+  - {id: graph_read, name: Reading values from graphs and diagrams, mathskills: null}
+  - {id: mult, name: Multiplicative reasoning, mathskills: mult}
+  - {id: weighted_index, name: Weighted averages and index numbers, mathskills: null}
+  - {id: estimate, name: Approximation and estimation, mathskills: estimate}
+  - {id: plot_graphs, name: Plotting graphs of two variables with suitable scales, mathskills: coord, note: "MathSkills checks plotting points only"}
+  - {id: graph_interpret, name: "Reading gradients, intercepts and areas on graphs", mathskills: null}
+  - {id: line_graphs, name: "Straight-line graphs: gradient and intercept", mathskills: line}
+  - {id: functions, name: "Functions: one quantity depending on another", mathskills: null}
+  - {id: frequencies, name: Frequencies and relative frequencies, mathskills: null}
+  - {id: density, name: An amount per unit of area or volume (density), mathskills: null}
+  - {id: dispersion, name: "Spread of data: range, interquartile range, standard deviation, standard error", mathskills: null}
+  - {id: magnification, name: Magnification and scale (image size and actual size), mathskills: null}
+  - {id: rates_of_change, name: Rates of change from graphs and tables, mathskills: null}
+  - {id: correlation, name: Positive and negative correlation, mathskills: null}
