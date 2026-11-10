@@ -1,0 +1,276 @@
+# DP Mathematics: applications and interpretation, SL and HL.
+# ASSUMPTION until the AI guide is provided: the prior learning list is taken from the
+# analysis and approaches guide (SL items only). Check it against the
+# "Mathematics: applications and interpretation guide" and correct this file.
+subject: Mathematics
+status: assumed
+courses:
+  SL: DP Applications and Interpretation SL
+  HL: DP Applications and Interpretation HL
+guide:
+  title: 'Mathematics: applications and interpretation guide'
+  first_assessment: 2021
+  section: 'Syllabus: Prior learning topics'
+prior_knowledge:
+- id: m1
+  text: Number sets from natural numbers to real numbers
+  skills:
+  - number_sets
+  origin: guide
+- id: m2
+  text: SI units (metre, kilogram, second and so on), units of area and volume, and units built from them such as m/s
+  skills:
+  - units
+  - rates
+  origin: guide
+- id: m3
+  text: Rounding, decimal approximations and significant figures, with a sense of the error made
+  skills:
+  - round
+  - sf
+  origin: guide
+- id: m4
+  text: Absolute value
+  skills:
+  - abs_value
+  origin: guide
+- id: m5
+  text: The four operations with integers, decimals and fractions, including the order of operations
+  skills:
+  - arith
+  - dfp
+  - neg
+  origin: guide
+- id: m6
+  text: Primes, factors and multiples
+  skills:
+  - primes_factors
+  origin: guide
+- id: m7
+  text: Simple uses of ratio, percentage and proportion
+  skills:
+  - ratio_recip
+  - pct_change
+  - prop
+  origin: guide
+- id: m8
+  text: Expanding and factorising algebraic expressions
+  skills:
+  - expand_factor
+  origin: guide
+- id: m9
+  text: Rearranging formulas
+  skills:
+  - rearrange
+  origin: guide
+- id: m10
+  text: Working out an expression by substituting values
+  skills:
+  - subst
+  origin: guide
+- id: m11
+  text: Powers with simple positive exponents
+  skills:
+  - expo
+  origin: guide
+- id: m12
+  text: Inequality signs and intervals on the number line
+  skills:
+  - ineq_intervals
+  origin: guide
+- id: m13
+  text: Simplifying simple expressions with roots
+  skills:
+  - surds
+  origin: guide
+- id: m14
+  text: Numbers in standard form
+  skills:
+  - sci
+  origin: guide
+- id: m15
+  text: Familiarity with common world currencies
+  skills:
+  - currency
+  origin: guide
+- id: m16
+  text: Solving linear equations and inequalities
+  skills:
+  - lineq
+  origin: guide
+- id: m17
+  text: Solving two linear equations in two unknowns
+  skills:
+  - simul
+  origin: guide
+- id: m18
+  text: Sets, their notation, union and intersection
+  skills:
+  - sets_venn
+  origin: guide
+- id: m19
+  text: Graphing linear and quadratic functions with technology
+  skills:
+  - graph_lin_quad
+  origin: guide
+- id: m20
+  text: Mappings shown as ordered pairs, tables, diagrams and graphs
+  skills:
+  - mappings
+  origin: guide
+- id: m21
+  text: Pythagoras' theorem and its converse
+  skills:
+  - pyth
+  origin: guide
+- id: m22
+  text: Midpoint and distance between two points on a coordinate grid
+  skills:
+  - coord
+  origin: guide
+- id: m23
+  text: 'Basic geometric objects: point, line, plane, angle'
+  skills:
+  - geom_basics
+  origin: guide
+- id: m24
+  text: Measuring angles in degrees; compass directions and three-figure bearings
+  skills:
+  - angles_bearings
+  origin: guide
+- id: m25
+  text: The angles of a triangle add up to 180 degrees
+  skills:
+  - angle_sum
+  origin: guide
+- id: m26
+  text: Trigonometry in right-angled triangles and simple uses of it
+  skills:
+  - trig_right
+  origin: guide
+- id: m27
+  text: Translation, reflection, rotation and enlargement
+  skills:
+  - transformations
+  origin: guide
+- id: m28
+  text: 'The circle: its parts, circumference and area'
+  skills:
+  - circle
+  origin: guide
+- id: m29
+  text: Perimeters and areas of flat shapes, including shapes made of several parts; what makes a triangle or quadrilateral special
+  skills:
+  - area_vol
+  - geom_basics
+  origin: guide
+- id: m30
+  text: Familiarity with prisms, pyramids, spheres, cylinders and cones
+  skills:
+  - solids
+  origin: guide
+- id: m31
+  text: Volume and surface area of cuboids, prisms, cylinders and compound solids
+  skills:
+  - area_vol
+  origin: guide
+- id: m32
+  text: Collecting data and showing it in bar, pie and line charts and pictograms
+  skills:
+  - charts
+  origin: guide
+- id: m33
+  text: Mean, median, mode and range of discrete data
+  skills:
+  - averages
+  origin: guide
+- id: m34
+  text: Probability of simple events
+  skills:
+  - prob_simple
+  origin: guide
+- id: m35
+  text: Sorting data with Venn diagrams
+  skills:
+  - sets_venn
+  origin: guide
+- id: m36
+  text: Tree diagrams
+  skills:
+  - tree_diagrams
+  origin: guide
+- id: m37
+  text: Speed as distance divided by time
+  skills:
+  - rates
+  - rearrange
+  origin: guide
+hexagon:
+  SL: &id001
+  - dfp
+  - pct_change
+  - rearrange
+  - lineq
+  - sci
+  - averages
+  - trig_right
+  HL: *id001
+topics:
+- code: '1'
+  name: Number and algebra
+  skills:
+  - number_sets
+  - units
+  - rates
+  - round
+  - sf
+  - abs_value
+  - arith
+  - dfp
+  - neg
+  - primes_factors
+  - ratio_recip
+  - pct_change
+  - prop
+  - expand_factor
+  - rearrange
+  - subst
+  - expo
+  - ineq_intervals
+  - surds
+  - sci
+  - currency
+  - lineq
+  - simul
+  - sets_venn
+- code: '2'
+  name: Functions
+  skills:
+  - graph_lin_quad
+  - mappings
+- code: '3'
+  name: Geometry and trigonometry
+  skills:
+  - pyth
+  - coord
+  - geom_basics
+  - angles_bearings
+  - angle_sum
+  - trig_right
+  - transformations
+  - circle
+  - area_vol
+  - solids
+- code: '4'
+  name: Statistics and probability
+  skills:
+  - charts
+  - averages
+  - prob_simple
+  - sets_venn
+  - tree_diagrams
+- code: '5'
+  name: Calculus
+  skills:
+  - rates
+  - rearrange

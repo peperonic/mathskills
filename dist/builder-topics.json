@@ -1,0 +1,819 @@
+{
+ "DP Chemistry SL": {
+  "Structure 1.1 Introduction to the particulate nature of matter": [],
+  "Structure 1.2 The nuclear atom": [
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages"
+  ],
+  "Structure 1.3 Electron configurations": [],
+  "Structure 1.4 Counting particles by mass: the mole": [
+   "sci",
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals",
+   "Basic arithmetic and algebraic calculations",
+   "prop"
+  ],
+  "Structure 1.5 Ideal gases": [
+   "Rearranging equations and formulas",
+   "prop",
+   "Ratios and reciprocals"
+  ],
+  "Structure 2.1 The ionic model": [],
+  "Structure 2.2 The covalent model": [],
+  "Structure 2.3 The metallic model": [],
+  "Structure 2.4 From models to materials": [],
+  "Structure 3.1 The periodic table: classification of elements": [],
+  "Structure 3.2 Functional groups: classification of organic compounds": [],
+  "Reactivity 1.1 Measuring enthalpy changes": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "Reactivity 1.2 Energy cycles in reactions": [
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "Reactivity 1.3 Energy from fuels": [
+   "Basic arithmetic and algebraic calculations",
+   "Ratios and reciprocals"
+  ],
+  "Reactivity 2.1 How much? The amount of chemical change": [
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas",
+   "Decimals, fractions and percentages"
+  ],
+  "Reactivity 2.2 How fast? The rate of chemical change": [
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas"
+  ],
+  "Reactivity 2.3 How far? The extent of chemical change": [
+   "expo",
+   "Rearranging equations and formulas"
+  ],
+  "Reactivity 3.1 Proton transfer reactions": [
+   "expo",
+   "sci"
+  ],
+  "Reactivity 3.2 Electron transfer reactions": [
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "Reactivity 3.3 Electron sharing reactions": [],
+  "Reactivity 3.4 Electron-pair sharing reactions": [],
+  "(whole course)": [
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "Ratios and reciprocals",
+   "expo",
+   "sci",
+   "Rearranging equations and formulas",
+   "prop"
+  ]
+ },
+ "DP Chemistry HL": {
+  "Structure 1.1 Introduction to the particulate nature of matter": [],
+  "Structure 1.2 The nuclear atom": [
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages"
+  ],
+  "Structure 1.3 Electron configurations": [],
+  "Structure 1.4 Counting particles by mass: the mole": [
+   "sci",
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals",
+   "Basic arithmetic and algebraic calculations",
+   "prop"
+  ],
+  "Structure 1.5 Ideal gases": [
+   "Rearranging equations and formulas",
+   "prop",
+   "Ratios and reciprocals"
+  ],
+  "Structure 2.1 The ionic model": [],
+  "Structure 2.2 The covalent model": [],
+  "Structure 2.3 The metallic model": [],
+  "Structure 2.4 From models to materials": [],
+  "Structure 3.1 The periodic table: classification of elements": [],
+  "Structure 3.2 Functional groups: classification of organic compounds": [],
+  "Reactivity 1.1 Measuring enthalpy changes": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "Reactivity 1.2 Energy cycles in reactions": [
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "Reactivity 1.3 Energy from fuels": [
+   "Basic arithmetic and algebraic calculations",
+   "Ratios and reciprocals"
+  ],
+  "Reactivity 1.4 Entropy and spontaneity": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "Reactivity 2.1 How much? The amount of chemical change": [
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas",
+   "Decimals, fractions and percentages"
+  ],
+  "Reactivity 2.2 How fast? The rate of chemical change": [
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas",
+   "expo"
+  ],
+  "Reactivity 2.3 How far? The extent of chemical change": [
+   "expo",
+   "Rearranging equations and formulas"
+  ],
+  "Reactivity 3.1 Proton transfer reactions": [
+   "expo",
+   "sci"
+  ],
+  "Reactivity 3.2 Electron transfer reactions": [
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "Reactivity 3.3 Electron sharing reactions": [],
+  "Reactivity 3.4 Electron-pair sharing reactions": [],
+  "(whole course)": [
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "Ratios and reciprocals",
+   "expo",
+   "sci",
+   "Rearranging equations and formulas",
+   "prop"
+  ]
+ },
+ "DP Economics SL": {
+  "1.1 What is economics?": [],
+  "1.2 How do economists approach the world?": [],
+  "2.1 Demand": [
+   "Reading values from graphs and diagrams"
+  ],
+  "2.2 Supply": [
+   "Reading values from graphs and diagrams"
+  ],
+  "2.3 Competitive market equilibrium": [
+   "Reading values from graphs and diagrams"
+  ],
+  "2.4 Critique of the maximizing behaviour of consumers and producers": [],
+  "2.5 Elasticity of demand": [
+   "percent",
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas",
+   "neg"
+  ],
+  "2.6 Elasticity of supply": [
+   "percent",
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas"
+  ],
+  "2.7 Role of government in microeconomics": [
+   "Reading values from graphs and diagrams"
+  ],
+  "2.8 Market failure: externalities and common pool resources": [
+   "Reading values from graphs and diagrams"
+  ],
+  "2.9 Market failure: public goods": [
+   "Reading values from graphs and diagrams"
+  ],
+  "3.1 Measuring economic activity and illustrating its variations": [
+   "Basic arithmetic and algebraic calculations",
+   "percent",
+   "mult",
+   "Decimals, fractions and percentages"
+  ],
+  "3.2 Aggregate demand and aggregate supply": [
+   "Reading values from graphs and diagrams"
+  ],
+  "3.3 Macroeconomic objectives": [
+   "percent",
+   "Decimals, fractions and percentages"
+  ],
+  "3.4 Economics of inequality and poverty": [
+   "Reading values from graphs and diagrams"
+  ],
+  "3.5 Monetary policy": [
+   "neg",
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "3.6 Fiscal policy": [],
+  "3.7 Supply-side policies": [],
+  "4.1 Benefits of international trade": [],
+  "4.2 Types of trade protection": [
+   "Reading values from graphs and diagrams"
+  ],
+  "4.3 Arguments for and against trade control": [],
+  "4.4 Economic integration": [],
+  "4.5 Exchange rates": [
+   "Working with currencies and exchange rates",
+   "percent",
+   "mult",
+   "Ratios and reciprocals"
+  ],
+  "4.6 Balance of payments": [
+   "Basic arithmetic and algebraic calculations",
+   "neg"
+  ],
+  "4.7 Sustainable development": [],
+  "(whole course)": [
+   "percent",
+   "Decimals, fractions and percentages",
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas",
+   "neg",
+   "Working with currencies and exchange rates",
+   "Reading values from graphs and diagrams"
+  ]
+ },
+ "DP Economics HL": {
+  "1.1 What is economics?": [],
+  "1.2 How do economists approach the world?": [],
+  "2.1 Demand": [
+   "Reading values from graphs and diagrams",
+   "lineq",
+   "subst"
+  ],
+  "2.2 Supply": [
+   "Reading values from graphs and diagrams",
+   "lineq",
+   "subst"
+  ],
+  "2.3 Competitive market equilibrium": [
+   "Reading values from graphs and diagrams",
+   "Two linear equations in two unknowns",
+   "Areas and volumes"
+  ],
+  "2.4 Critique of the maximizing behaviour of consumers and producers": [],
+  "2.5 Elasticity of demand": [
+   "percent",
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas",
+   "neg"
+  ],
+  "2.6 Elasticity of supply": [
+   "percent",
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas"
+  ],
+  "2.7 Role of government in microeconomics": [
+   "Reading values from graphs and diagrams",
+   "Areas and volumes",
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "2.8 Market failure: externalities and common pool resources": [
+   "Reading values from graphs and diagrams",
+   "Areas and volumes"
+  ],
+  "2.9 Market failure: public goods": [
+   "Reading values from graphs and diagrams"
+  ],
+  "2.10 Market failure: asymmetric information": [],
+  "2.11 Market failure: market power": [
+   "Basic arithmetic and algebraic calculations",
+   "Reading values from graphs and diagrams"
+  ],
+  "2.12 The market's inability to achieve equity": [],
+  "3.1 Measuring economic activity and illustrating its variations": [
+   "Basic arithmetic and algebraic calculations",
+   "percent",
+   "mult",
+   "Decimals, fractions and percentages"
+  ],
+  "3.2 Aggregate demand and aggregate supply": [
+   "Reading values from graphs and diagrams"
+  ],
+  "3.3 Macroeconomic objectives": [
+   "percent",
+   "Decimals, fractions and percentages",
+   "Weighted averages and index numbers"
+  ],
+  "3.4 Economics of inequality and poverty": [
+   "Reading values from graphs and diagrams",
+   "percent"
+  ],
+  "3.5 Monetary policy": [
+   "neg",
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "3.6 Fiscal policy": [
+   "Ratios and reciprocals",
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "3.7 Supply-side policies": [],
+  "4.1 Benefits of international trade": [
+   "Ratios and reciprocals",
+   "Areas and volumes"
+  ],
+  "4.2 Types of trade protection": [
+   "Reading values from graphs and diagrams",
+   "Areas and volumes",
+   "Basic arithmetic and algebraic calculations"
+  ],
+  "4.3 Arguments for and against trade control": [],
+  "4.4 Economic integration": [],
+  "4.5 Exchange rates": [
+   "Working with currencies and exchange rates",
+   "percent",
+   "mult",
+   "Ratios and reciprocals"
+  ],
+  "4.6 Balance of payments": [
+   "Basic arithmetic and algebraic calculations",
+   "neg"
+  ],
+  "4.7 Sustainable development": [],
+  "(whole course)": [
+   "percent",
+   "Ratios and reciprocals",
+   "Rearranging equations and formulas",
+   "Areas and volumes",
+   "lineq",
+   "neg",
+   "Reading values from graphs and diagrams"
+  ]
+ },
+ "DP Analysis and Approaches SL": {
+  "1 Number and algebra": [
+   "Number sets: natural, integer, rational, real",
+   "ten",
+   "Speed and other rates",
+   "round",
+   "sf",
+   "Absolute value",
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "neg",
+   "Primes, factors and multiples",
+   "Ratios and reciprocals",
+   "percent",
+   "prop",
+   "Expanding brackets and factorising",
+   "Rearranging equations and formulas",
+   "subst",
+   "expo",
+   "Inequality signs and intervals on the number line",
+   "Simplifying roots (surds)",
+   "sci",
+   "Working with currencies and exchange rates",
+   "lineq",
+   "Two linear equations in two unknowns",
+   "Sets, union, intersection and Venn diagrams"
+  ],
+  "2 Functions": [
+   "line",
+   "Mappings as ordered pairs"
+  ],
+  "3 Geometry and trigonometry": [
+   "pyth",
+   "coord",
+   "Points, lines, planes and angles; properties of triangles and quadrilaterals",
+   "Measuring angles, compass directions and bearings",
+   "Angle sum of a triangle",
+   "Trigonometry in right-angled triangles",
+   "Translation, reflection, rotation and enlargement",
+   "Parts of a circle, circumference and area",
+   "Areas and volumes",
+   "Prisms, pyramids, spheres, cylinders and cones"
+  ],
+  "4 Statistics and probability": [
+   "Collecting data and drawing charts",
+   "Mean, median, mode and range",
+   "Probability of simple events",
+   "Sets, union, intersection and Venn diagrams",
+   "Tree diagrams"
+  ],
+  "5 Calculus": [
+   "Speed and other rates",
+   "Rearranging equations and formulas"
+  ],
+  "(whole course)": [
+   "Decimals, fractions and percentages",
+   "neg",
+   "Expanding brackets and factorising",
+   "Rearranging equations and formulas",
+   "lineq",
+   "expo",
+   "pyth"
+  ]
+ },
+ "DP Analysis and Approaches HL": {
+  "1 Number and algebra": [
+   "Number sets: natural, integer, rational, real",
+   "ten",
+   "Speed and other rates",
+   "round",
+   "sf",
+   "Absolute value",
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "neg",
+   "Primes, factors and multiples",
+   "Ratios and reciprocals",
+   "percent",
+   "prop",
+   "Expanding brackets and factorising",
+   "Rearranging equations and formulas",
+   "subst",
+   "expo",
+   "Inequality signs and intervals on the number line",
+   "Simplifying roots (surds)",
+   "sci",
+   "Working with currencies and exchange rates",
+   "lineq",
+   "Two linear equations in two unknowns",
+   "Sets, union, intersection and Venn diagrams"
+  ],
+  "2 Functions": [
+   "line",
+   "Mappings as ordered pairs"
+  ],
+  "3 Geometry and trigonometry": [
+   "pyth",
+   "coord",
+   "Points, lines, planes and angles; properties of triangles and quadrilaterals",
+   "Measuring angles, compass directions and bearings",
+   "Angle sum of a triangle",
+   "Trigonometry in right-angled triangles",
+   "Translation, reflection, rotation and enlargement",
+   "Parts of a circle, circumference and area",
+   "Areas and volumes",
+   "Prisms, pyramids, spheres, cylinders and cones"
+  ],
+  "4 Statistics and probability": [
+   "Collecting data and drawing charts",
+   "Mean, median, mode and range",
+   "Probability of simple events",
+   "Sets, union, intersection and Venn diagrams",
+   "Tree diagrams"
+  ],
+  "5 Calculus": [
+   "Speed and other rates",
+   "Rearranging equations and formulas"
+  ],
+  "(whole course)": [
+   "Decimals, fractions and percentages",
+   "neg",
+   "Expanding brackets and factorising",
+   "Rearranging equations and formulas",
+   "lineq",
+   "expo",
+   "pyth"
+  ]
+ },
+ "DP Applications and Interpretation SL": {
+  "1 Number and algebra": [
+   "Number sets: natural, integer, rational, real",
+   "ten",
+   "Speed and other rates",
+   "round",
+   "sf",
+   "Absolute value",
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "neg",
+   "Primes, factors and multiples",
+   "Ratios and reciprocals",
+   "percent",
+   "prop",
+   "Expanding brackets and factorising",
+   "Rearranging equations and formulas",
+   "subst",
+   "expo",
+   "Inequality signs and intervals on the number line",
+   "Simplifying roots (surds)",
+   "sci",
+   "Working with currencies and exchange rates",
+   "lineq",
+   "Two linear equations in two unknowns",
+   "Sets, union, intersection and Venn diagrams"
+  ],
+  "2 Functions": [
+   "line",
+   "Mappings as ordered pairs"
+  ],
+  "3 Geometry and trigonometry": [
+   "pyth",
+   "coord",
+   "Points, lines, planes and angles; properties of triangles and quadrilaterals",
+   "Measuring angles, compass directions and bearings",
+   "Angle sum of a triangle",
+   "Trigonometry in right-angled triangles",
+   "Translation, reflection, rotation and enlargement",
+   "Parts of a circle, circumference and area",
+   "Areas and volumes",
+   "Prisms, pyramids, spheres, cylinders and cones"
+  ],
+  "4 Statistics and probability": [
+   "Collecting data and drawing charts",
+   "Mean, median, mode and range",
+   "Probability of simple events",
+   "Sets, union, intersection and Venn diagrams",
+   "Tree diagrams"
+  ],
+  "5 Calculus": [
+   "Speed and other rates",
+   "Rearranging equations and formulas"
+  ],
+  "(whole course)": [
+   "Decimals, fractions and percentages",
+   "percent",
+   "Rearranging equations and formulas",
+   "lineq",
+   "sci",
+   "Mean, median, mode and range",
+   "Trigonometry in right-angled triangles"
+  ]
+ },
+ "DP Applications and Interpretation HL": {
+  "1 Number and algebra": [
+   "Number sets: natural, integer, rational, real",
+   "ten",
+   "Speed and other rates",
+   "round",
+   "sf",
+   "Absolute value",
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "neg",
+   "Primes, factors and multiples",
+   "Ratios and reciprocals",
+   "percent",
+   "prop",
+   "Expanding brackets and factorising",
+   "Rearranging equations and formulas",
+   "subst",
+   "expo",
+   "Inequality signs and intervals on the number line",
+   "Simplifying roots (surds)",
+   "sci",
+   "Working with currencies and exchange rates",
+   "lineq",
+   "Two linear equations in two unknowns",
+   "Sets, union, intersection and Venn diagrams"
+  ],
+  "2 Functions": [
+   "line",
+   "Mappings as ordered pairs"
+  ],
+  "3 Geometry and trigonometry": [
+   "pyth",
+   "coord",
+   "Points, lines, planes and angles; properties of triangles and quadrilaterals",
+   "Measuring angles, compass directions and bearings",
+   "Angle sum of a triangle",
+   "Trigonometry in right-angled triangles",
+   "Translation, reflection, rotation and enlargement",
+   "Parts of a circle, circumference and area",
+   "Areas and volumes",
+   "Prisms, pyramids, spheres, cylinders and cones"
+  ],
+  "4 Statistics and probability": [
+   "Collecting data and drawing charts",
+   "Mean, median, mode and range",
+   "Probability of simple events",
+   "Sets, union, intersection and Venn diagrams",
+   "Tree diagrams"
+  ],
+  "5 Calculus": [
+   "Speed and other rates",
+   "Rearranging equations and formulas"
+  ],
+  "(whole course)": [
+   "Decimals, fractions and percentages",
+   "percent",
+   "Rearranging equations and formulas",
+   "lineq",
+   "sci",
+   "Mean, median, mode and range",
+   "Trigonometry in right-angled triangles"
+  ]
+ },
+ "DP Physics SL": {
+  "A.1 Kinematics": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages"
+  ],
+  "A.2 Forces and momentum": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations",
+   "prop"
+  ],
+  "A.3 Work, energy and power": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations",
+   "expo",
+   "Decimals, fractions and percentages"
+  ],
+  "B.1 Thermal energy transfers": [
+   "Rearranging equations and formulas",
+   "sci",
+   "expo",
+   "Areas and volumes"
+  ],
+  "B.2 Greenhouse effect": [
+   "expo",
+   "sci",
+   "Decimals, fractions and percentages"
+  ],
+  "B.3 Gas laws": [
+   "prop",
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "B.5 Current and circuits": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals",
+   "prop",
+   "Areas and volumes"
+  ],
+  "C.1 Simple harmonic motion": [
+   "Rearranging equations and formulas",
+   "expo"
+  ],
+  "C.2 Wave model": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals",
+   "sci"
+  ],
+  "C.3 Wave phenomena": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "C.4 Standing waves and resonance": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "C.5 Doppler effect": [
+   "Rearranging equations and formulas",
+   "Decimals, fractions and percentages"
+  ],
+  "D.1 Gravitational fields": [
+   "Rearranging equations and formulas",
+   "sci",
+   "expo",
+   "prop"
+  ],
+  "D.2 Electric and magnetic fields": [
+   "Rearranging equations and formulas",
+   "sci",
+   "expo",
+   "prop"
+  ],
+  "D.3 Motion in electromagnetic fields": [
+   "Rearranging equations and formulas",
+   "sci"
+  ],
+  "E.1 Structure of the atom": [
+   "sci",
+   "expo"
+  ],
+  "E.3 Radioactive decay": [
+   "Decimals, fractions and percentages",
+   "expo",
+   "sci"
+  ],
+  "E.4 Fission": [
+   "sci",
+   "Rearranging equations and formulas"
+  ],
+  "E.5 Fusion and stars": [
+   "sci",
+   "expo",
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "(whole course)": [
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "Ratios and reciprocals",
+   "expo",
+   "sci",
+   "Rearranging equations and formulas",
+   "prop"
+  ]
+ },
+ "DP Physics HL": {
+  "A.1 Kinematics": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages"
+  ],
+  "A.2 Forces and momentum": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations",
+   "prop"
+  ],
+  "A.3 Work, energy and power": [
+   "Rearranging equations and formulas",
+   "Basic arithmetic and algebraic calculations",
+   "expo",
+   "Decimals, fractions and percentages"
+  ],
+  "A.4 Rigid body mechanics": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "A.5 Galilean and special relativity": [
+   "Rearranging equations and formulas",
+   "expo",
+   "Ratios and reciprocals"
+  ],
+  "B.1 Thermal energy transfers": [
+   "Rearranging equations and formulas",
+   "sci",
+   "expo",
+   "Areas and volumes"
+  ],
+  "B.2 Greenhouse effect": [
+   "expo",
+   "sci",
+   "Decimals, fractions and percentages"
+  ],
+  "B.3 Gas laws": [
+   "prop",
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "B.4 Thermodynamics": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "B.5 Current and circuits": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals",
+   "prop",
+   "Areas and volumes"
+  ],
+  "C.1 Simple harmonic motion": [
+   "Rearranging equations and formulas",
+   "expo"
+  ],
+  "C.2 Wave model": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals",
+   "sci"
+  ],
+  "C.3 Wave phenomena": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "C.4 Standing waves and resonance": [
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "C.5 Doppler effect": [
+   "Rearranging equations and formulas",
+   "Decimals, fractions and percentages"
+  ],
+  "D.1 Gravitational fields": [
+   "Rearranging equations and formulas",
+   "sci",
+   "expo",
+   "prop"
+  ],
+  "D.2 Electric and magnetic fields": [
+   "Rearranging equations and formulas",
+   "sci",
+   "expo",
+   "prop"
+  ],
+  "D.3 Motion in electromagnetic fields": [
+   "Rearranging equations and formulas",
+   "sci"
+  ],
+  "D.4 Induction": [
+   "Rearranging equations and formulas",
+   "Areas and volumes"
+  ],
+  "E.1 Structure of the atom": [
+   "sci",
+   "expo"
+  ],
+  "E.2 Quantum physics": [
+   "sci",
+   "Rearranging equations and formulas"
+  ],
+  "E.3 Radioactive decay": [
+   "Decimals, fractions and percentages",
+   "expo",
+   "sci"
+  ],
+  "E.4 Fission": [
+   "sci",
+   "Rearranging equations and formulas"
+  ],
+  "E.5 Fusion and stars": [
+   "sci",
+   "expo",
+   "Rearranging equations and formulas",
+   "Ratios and reciprocals"
+  ],
+  "(whole course)": [
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "Ratios and reciprocals",
+   "expo",
+   "sci",
+   "Rearranging equations and formulas",
+   "prop"
+  ]
+ }
+}
