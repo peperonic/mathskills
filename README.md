@@ -1,14 +1,14 @@
 # MathSkills
 
-Tailored maths learning: a learner is tested on a handful simple maths skills. They get a chance to demonstrate what they already know, and quickly move on to learn what they need to know better or learn from scratch. All of this happens in a learner's chosen learning language, within a gamified enviroment called 'Mathskills Game'. 
+Tailored maths skills: a learner is tested on a handful of simple maths skills. They get a chance to demonstrate what they already know, and quickly move on to learn what they need to know better or learn from scratch. All of this happens in a learner’s chosen language, within a gamified environment called ‘Mathskills Game’.
 
-The environment itself can be put together by any teacher via a 'Mathskills Builder'. Within the builder, a teacher can select their subject (Biology, Chemistry, Economics, Maths or Physics for now), their curriculum, their students' languages and the topics they need students to master in order to teach that topic well. 
+The environment itself can be put together by any teacher via a ‘Mathskills Builder’. Within the builder, a teacher can select their subject (Biology, Chemistry, Economics, Maths or Physics for now), their curriculum, their students’ languages and the topics they need students to master in order to teach that topic well.
 
-On the grounds of the curriculum and the topics specified by the teacher, seven skills for the students to focus on are suggested that the teacher can upload resources for (videos, websites and/or handouts). The teacher can also override and add their preferred skills. 
+On the grounds of the curriculum and the topics specified by the teacher, seven skills for the students to focus on are suggested that the teacher can upload resources for (videos, websites and/or handouts). The teacher can also override and add the skills that, according to their experience, are required for a student to do well on a topic.
 
-Based on the teacher's input, an html file is generated that any teacher or student can download and run locally, so that no data on the students is saved elsewhere.  The file runs a game, where the learner first walks across a black-and-white map, answers two short questions at each station. Based on their results, a *learning realm* is generated: a hexagon for every topic, white if they already know it, black if it is still to learn. Every hexagon opens a short video, a step-by-step "underworld" lesson, a practice game and a re-check. 
+Based on the teacher’s input, an html file is generated that any teacher or student can download and run locally, so that no data on the students is saved elsewhere. The file runs a game in two realms. In the Discovery Realm, the learner walks across a black-and-white map and answers two short questions at each station, discovering what they already know. Based on their results, a Learning Realm is generated: a hexagon for every topic, white if they already know it, black if it is still to learn. Every hexagon opens a short video, a step-by-step “underworld” lesson, a practice game and a re-check.
 
-No account, installation or internet connection are needed, and results stay on the students' own computer unless they decide to share them with their teacher via a QR code. Mathskills works in multiple languages, among them Arabic and Dari, so that children with interrupted education, and among them refugees, do not feel left out. A toggle at the top allows learners to switch between languages when they want to. 
+No account, installation or internet connection are needed, and results stay on the students’ own device unless they decide to share them with their teacher via a QR code. Mathskills works in multiple languages, among them Arabic and Dari, so that learners with interrupted education, in particular refugees, do not feel left out. A toggle at the top allows learners to switch between languages when they want to.
 
 ---
 
@@ -24,7 +24,7 @@ That's it: no server, no build step, no sign-up.
 
 **Diagnostic land:** 7 stations, 2 questions each, aimed at the most common misconceptions:
 
-| Station | Example |
+| Station | Example Question (misconceptions in brackets) |
 |---|---|
 | Rounding to decimal places | 3.4449 → 3.44 (not 3.45: never round twice) |
 | × and ÷ by powers of ten | 7 cm = 0.07 m, by "hopping" the decimal point |
@@ -43,7 +43,7 @@ That's it: no server, no build step, no sign-up.
 
 ## Languages
 
-العربية · دری · English · Deutsch · Français · Español · Русский
+Arabic (العربية) · Dari (دری) · English · German (Deutsch) · French (Français) · Spanish (Español) · Russian (Русский)
 
 MathSkills doesn't just translate words. It also shows maths the way each language writes it: decimal comma, point or ٫, right-to-left text with maths kept left-to-right, and each country's notation (for example y = mx + b, y = kx + b).
 
@@ -75,9 +75,9 @@ Contributions to the code are accepted under the project's AGPL licence.
 
 ## Team, in alphabetical order of first names
 
-- **Chiara Perrone:** product and education lead, maths teacher
-  **Gianfranco Dbeis:** game design lead https://giandbeis.com/ 
-- **Thomas Haferlach:** technical lead   
+- **Chiara Perrone:** product and education lead, maths teacher 
+- **Gianfranco Dbeis:** game design lead https://giandbeis.com/ 
+- **Thomas Haferlach:** technical lead https://github.com/voodoohop/json-resume-thomash/blob/master/Thomas-Haferlach-CV-2026-09-28.pdf 
 
 ## Licence
 
