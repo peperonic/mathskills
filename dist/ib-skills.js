@@ -239,7 +239,7 @@ window.IB_SKILLS = {
    "guide": {
     "title": "Biology guide",
     "first_assessment": 2025,
-    "section": "Skills in the study of biology, Tool 3: Mathematics (partial)"
+    "section": "Skills in the study of biology, Tool 3: Mathematics"
    },
    "prior_knowledge": [
     {
@@ -377,7 +377,7 @@ window.IB_SKILLS = {
    "guide": {
     "title": "Biology guide",
     "first_assessment": 2025,
-    "section": "Skills in the study of biology, Tool 3: Mathematics (partial)"
+    "section": "Skills in the study of biology, Tool 3: Mathematics"
    },
    "prior_knowledge": [
     {

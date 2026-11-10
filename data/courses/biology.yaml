@@ -1,11 +1,11 @@
 # DP Biology, SL and HL. Prior skills: the guide's "Tool 3: Mathematics" list, pasted by the owner on
-# 2026-11-10 (the PDF did not arrive). The pasted text was cut off after the item on proportionality and
-# correlation: the remaining items are missing until the owner sends them. Texts are our own wording.
+# 2026-11-10 (the PDF did not arrive). The owner confirmed this list as complete for our purpose.
+# Texts are our own wording.
 # Topics are not filled in yet: they need the guide's syllabus roadmap.
 subject: Biology
 status: ready
 courses: {SL: DP Biology SL, HL: DP Biology HL}
-guide: {title: Biology guide, first_assessment: 2025, section: "Skills in the study of biology, Tool 3: Mathematics (partial)"}
+guide: {title: Biology guide, first_assessment: 2025, section: "Skills in the study of biology, Tool 3: Mathematics"}
 prior_knowledge:
   - {id: b1, text: Everyday arithmetic and simple algebra in problems, skills: [arith], origin: guide}
   - {id: b2, text: "Calculating with decimals, fractions and percentages", skills: [dfp], origin: guide}

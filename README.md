@@ -11,7 +11,7 @@ Courses, each at SL and HL:
 | Physics | ready | guide, Tool 3 "Applying general mathematics", owner's selection |
 | Chemistry | ready | guide, Tool 3, same selection rules as Physics |
 | Economics | ready | the calculations named in the syllabus |
-| Biology | ready (partial list, no topics yet) | the guide's Tool 3 list as pasted by the owner; its last items were cut off |
+| Biology | ready (no topics yet) | the guide's Tool 3 list as given by the owner |
 | Environmental systems and societies | ready (no topics yet) | the mathematical requirements for all ESS students, as given by the owner |
 
 ## What is in it

@@ -9,7 +9,7 @@ All guides were provided by the owner as PDFs on 2026-11-10. They are not stored
 | Physics | Physics guide | 2025 | Skills in the study of physics, Tool 3 "Applying general mathematics"; syllabus roadmap |
 | Chemistry | Chemistry guide (published February 2023) | 2025 | Skills in the study of chemistry, Tool 3; syllabus topics |
 | Economics | Economics guide (published February 2020, updated May 2020) | 2022 | Syllabus outline and the calculations named in each subtopic |
-| Biology | Tool 3 list pasted as text by the owner on 2026-11-10 (the PDF did not arrive); the text stops after the item on proportionality and correlation | 2025 | Prior skills; syllabus topics wait for the guide |
+| Biology | Tool 3 list pasted as text by the owner on 2026-11-10 (the PDF did not arrive); confirmed by the owner as the list to use | 2025 | Prior skills; syllabus topics wait for the guide |
 | Environmental systems and societies | list of mathematical requirements, sent by the owner as text on 2026-11-10 | | Prior skills; syllabus topics wait for the guide |
 
 ## Decisions by the owner (2026-11-10)
