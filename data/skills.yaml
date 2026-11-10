@@ -52,3 +52,11 @@ skills:
   - {id: estimate, name: Approximation and estimation, mathskills: estimate}
   - {id: plot_graphs, name: Plotting graphs of two variables with suitable scales, mathskills: coord, note: "MathSkills checks plotting points only"}
   - {id: graph_interpret, name: "Reading gradients, intercepts and areas on graphs", mathskills: null}
+  - {id: line_graphs, name: "Straight-line graphs: gradient and intercept", mathskills: line}
+  - {id: functions, name: "Functions: one quantity depending on another", mathskills: null}
+  - {id: frequencies, name: Frequencies and relative frequencies, mathskills: null}
+  - {id: density, name: An amount per unit of area or volume (density), mathskills: null}
+  - {id: dispersion, name: "Spread of data: range, interquartile range, standard deviation, standard error", mathskills: null}
+  - {id: magnification, name: Magnification and scale (image size and actual size), mathskills: null}
+  - {id: rates_of_change, name: Rates of change from graphs and tables, mathskills: null}
+  - {id: correlation, name: Positive and negative correlation, mathskills: null}

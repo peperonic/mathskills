@@ -11,7 +11,7 @@ Courses, each at SL and HL:
 | Physics | ready | guide, Tool 3 "Applying general mathematics", owner's selection |
 | Chemistry | ready | guide, Tool 3, same selection rules as Physics |
 | Economics | ready | the calculations named in the syllabus |
-| Biology | pending | waiting for the source |
+| Biology | ready (partial list, no topics yet) | the guide's Tool 3 list as pasted by the owner; its last items were cut off |
 | Environmental systems and societies | ready (no topics yet) | the mathematical requirements for all ESS students, as given by the owner |
 
 ## What is in it
@@ -38,7 +38,7 @@ python3 build.py
 ## Rules
 
 - **No IB text.** IB guides are copyright of the International Baccalaureate Organization. This database holds only structure (topic codes and titles as labels, SL/HL), our own short wording, and references to the guides. Keep the guide PDFs out of the repository.
-- **Commercial use needs care.** The guides state that operators of curriculum mapping or teacher resource platforms need a written IB licence for commercial use of IB publications. Ask copyright@ibo.org before IB course data goes live on a public or paid site. This is not legal advice.
+- **Commercial use needs care.** The guides state that operators of curriculum mapping or teacher resource platforms need a written IB licence for commercial use of IB publications. The owner does not intend commercial use; if that changes, or before IB course data goes live on a public site, ask copyright@ibo.org. This is not legal advice.
 - Every skill and prior-knowledge item says where it comes from (`origin: guide` or `origin: curator`).
 
 See `docs/sources.md`, `docs/mathskills-builder.md` and `docs/upload-to-codeberg.md`.

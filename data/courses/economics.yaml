@@ -1,5 +1,6 @@
 # DP Economics, SL and HL. The guide asks for no prior learning; its maths appears as the
-# calculations named in the syllabus. Prior skills are the skills those calculations use.
+# calculations named in the syllabus. Prior skills are the skills those calculations use, plus
+# straight-line graphs and functions, which the owner rates as more important (2026-11-10).
 subject: Economics
 status: ready
 courses: {SL: DP Economics SL, HL: DP Economics HL}
@@ -14,17 +15,19 @@ prior_knowledge:
   - {id: e7, text: "Negative numbers (real interest rates, deficits, negative elasticities)", skills: [neg], origin: guide}
   - {id: e8, text: Converting prices between currencies, skills: [currency], origin: guide}
   - {id: e9, text: Reading values from economic diagrams, skills: [graph_read], origin: guide}
+  - {id: e14, text: "Straight-line graphs: gradient and intercept (demand and supply curves)", skills: [line_graphs], origin: curator}
+  - {id: e15, text: "Functions: one quantity depending on another (quantity demanded depending on price)", skills: [functions], origin: curator}
   - {id: e10, text: "Areas of rectangles and triangles in diagrams (surplus, welfare loss, tax revenue)", skills: [area_vol], levels: [HL], origin: guide}
   - {id: e11, text: Weighted price indices, skills: [weighted_index], levels: [HL], origin: guide}
   - {id: e12, text: "Reciprocals (the multiplier 1 / (1 - MPC))", skills: [ratio_recip], levels: [HL], origin: guide}
   - {id: e13, text: "Linear demand and supply functions, and solving them for equilibrium", skills: [lineq, subst, simul], levels: [HL], origin: guide}
-hexagon: {SL: [pct_change, dfp, ratio_recip, rearrange, neg, currency, graph_read], HL: [pct_change, ratio_recip, rearrange, area_vol, lineq, neg, graph_read]}
+hexagon: {SL: [pct_change, ratio_recip, rearrange, line_graphs, functions, neg, graph_read], HL: [pct_change, ratio_recip, rearrange, line_graphs, functions, area_vol, lineq]}
 topics:
   - {code: "1.1", name: "What is economics?", skills: []}
   - {code: "1.2", name: "How do economists approach the world?", skills: []}
-  - {code: "2.1", name: Demand, skills: [graph_read], hl_skills: [lineq, subst]}
-  - {code: "2.2", name: Supply, skills: [graph_read], hl_skills: [lineq, subst]}
-  - {code: "2.3", name: Competitive market equilibrium, skills: [graph_read], hl_skills: [simul, area_vol]}
+  - {code: "2.1", name: Demand, skills: [line_graphs, functions, graph_read], hl_skills: [lineq, subst]}
+  - {code: "2.2", name: Supply, skills: [line_graphs, functions, graph_read], hl_skills: [lineq, subst]}
+  - {code: "2.3", name: Competitive market equilibrium, skills: [line_graphs, graph_read], hl_skills: [simul, area_vol]}
   - {code: "2.4", name: Critique of the maximizing behaviour of consumers and producers, skills: []}
   - {code: "2.5", name: Elasticity of demand, skills: [pct_change, ratio_recip, rearrange, neg]}
   - {code: "2.6", name: Elasticity of supply, skills: [pct_change, ratio_recip, rearrange]}

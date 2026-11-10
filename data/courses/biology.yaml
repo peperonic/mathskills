@@ -1,8 +1,23 @@
-# DP Biology, SL and HL. Waiting for the owner's source material (guide or prior knowledge page).
+# DP Biology, SL and HL. Prior skills: the guide's "Tool 3: Mathematics" list, pasted by the owner on
+# 2026-11-10 (the PDF did not arrive). The pasted text was cut off after the item on proportionality and
+# correlation: the remaining items are missing until the owner sends them. Texts are our own wording.
+# Topics are not filled in yet: they need the guide's syllabus roadmap.
 subject: Biology
-status: pending
+status: ready
 courses: {SL: DP Biology SL, HL: DP Biology HL}
-guide: {title: Biology guide, first_assessment: 2025}
-prior_knowledge: []
-hexagon: {SL: [], HL: []}
+guide: {title: Biology guide, first_assessment: 2025, section: "Skills in the study of biology, Tool 3: Mathematics (partial)"}
+prior_knowledge:
+  - {id: b1, text: Everyday arithmetic and simple algebra in problems, skills: [arith], origin: guide}
+  - {id: b2, text: "Calculating with decimals, fractions and percentages", skills: [dfp], origin: guide}
+  - {id: b3, text: "Calculating with ratios, proportions and reciprocals", skills: [ratio_recip, prop], origin: guide}
+  - {id: b4, text: "Frequencies, for example how common an allele is in a population", skills: [frequencies], origin: guide}
+  - {id: b5, text: "Densities: how much there is per unit of area or volume", skills: [density], origin: guide}
+  - {id: b6, text: Approximating and estimating, skills: [estimate], origin: guide}
+  - {id: b7, text: "Averages: mean, median and mode", skills: [averages], origin: guide}
+  - {id: b8, text: "How spread out data are: range, interquartile range, standard deviation, standard error", skills: [dispersion], origin: guide}
+  - {id: b9, text: Writing and reading numbers in standard form, skills: [sci], origin: guide}
+  - {id: b10, text: Working out magnification and scale, skills: [magnification], origin: guide}
+  - {id: b11, text: Working out a rate of change from a graph or a table, skills: [rates_of_change], origin: guide}
+  - {id: b12, text: Direct and inverse proportion; positive and negative correlation, skills: [prop, correlation], origin: guide}
+hexagon: {SL: [arith, dfp, ratio_recip, averages, sci, magnification, rates_of_change], HL: [arith, dfp, ratio_recip, averages, sci, magnification, rates_of_change]}
 topics: []

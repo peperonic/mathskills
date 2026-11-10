@@ -194,6 +194,38 @@ window.IB_SKILLS = {
   "graph_interpret": {
    "name": "Reading gradients, intercepts and areas on graphs",
    "mathskills": null
+  },
+  "line_graphs": {
+   "name": "Straight-line graphs: gradient and intercept",
+   "mathskills": "line"
+  },
+  "functions": {
+   "name": "Functions: one quantity depending on another",
+   "mathskills": null
+  },
+  "frequencies": {
+   "name": "Frequencies and relative frequencies",
+   "mathskills": null
+  },
+  "density": {
+   "name": "An amount per unit of area or volume (density)",
+   "mathskills": null
+  },
+  "dispersion": {
+   "name": "Spread of data: range, interquartile range, standard deviation, standard error",
+   "mathskills": null
+  },
+  "magnification": {
+   "name": "Magnification and scale (image size and actual size)",
+   "mathskills": null
+  },
+  "rates_of_change": {
+   "name": "Rates of change from graphs and tables",
+   "mathskills": null
+  },
+  "correlation": {
+   "name": "Positive and negative correlation",
+   "mathskills": null
   }
  },
  "courses": [
@@ -203,14 +235,136 @@ window.IB_SKILLS = {
    "subject": "Biology",
    "course": "DP Biology SL",
    "level": "SL",
-   "status": "pending",
+   "status": "ready",
    "guide": {
     "title": "Biology guide",
-    "first_assessment": 2025
+    "first_assessment": 2025,
+    "section": "Skills in the study of biology, Tool 3: Mathematics (partial)"
    },
-   "prior_knowledge": [],
-   "prior_skills": [],
-   "hexagon": [],
+   "prior_knowledge": [
+    {
+     "id": "b1",
+     "text": "Everyday arithmetic and simple algebra in problems",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b2",
+     "text": "Calculating with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b3",
+     "text": "Calculating with ratios, proportions and reciprocals",
+     "skills": [
+      "ratio_recip",
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b4",
+     "text": "Frequencies, for example how common an allele is in a population",
+     "skills": [
+      "frequencies"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b5",
+     "text": "Densities: how much there is per unit of area or volume",
+     "skills": [
+      "density"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b6",
+     "text": "Approximating and estimating",
+     "skills": [
+      "estimate"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b7",
+     "text": "Averages: mean, median and mode",
+     "skills": [
+      "averages"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b8",
+     "text": "How spread out data are: range, interquartile range, standard deviation, standard error",
+     "skills": [
+      "dispersion"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b9",
+     "text": "Writing and reading numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b10",
+     "text": "Working out magnification and scale",
+     "skills": [
+      "magnification"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b11",
+     "text": "Working out a rate of change from a graph or a table",
+     "skills": [
+      "rates_of_change"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b12",
+     "text": "Direct and inverse proportion; positive and negative correlation",
+     "skills": [
+      "prop",
+      "correlation"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "prop",
+    "frequencies",
+    "density",
+    "estimate",
+    "averages",
+    "dispersion",
+    "sci",
+    "magnification",
+    "rates_of_change",
+    "correlation"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "averages",
+    "sci",
+    "magnification",
+    "rates_of_change"
+   ],
    "topics": []
   },
   {
@@ -219,14 +373,136 @@ window.IB_SKILLS = {
    "subject": "Biology",
    "course": "DP Biology HL",
    "level": "HL",
-   "status": "pending",
+   "status": "ready",
    "guide": {
     "title": "Biology guide",
-    "first_assessment": 2025
+    "first_assessment": 2025,
+    "section": "Skills in the study of biology, Tool 3: Mathematics (partial)"
    },
-   "prior_knowledge": [],
-   "prior_skills": [],
-   "hexagon": [],
+   "prior_knowledge": [
+    {
+     "id": "b1",
+     "text": "Everyday arithmetic and simple algebra in problems",
+     "skills": [
+      "arith"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b2",
+     "text": "Calculating with decimals, fractions and percentages",
+     "skills": [
+      "dfp"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b3",
+     "text": "Calculating with ratios, proportions and reciprocals",
+     "skills": [
+      "ratio_recip",
+      "prop"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b4",
+     "text": "Frequencies, for example how common an allele is in a population",
+     "skills": [
+      "frequencies"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b5",
+     "text": "Densities: how much there is per unit of area or volume",
+     "skills": [
+      "density"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b6",
+     "text": "Approximating and estimating",
+     "skills": [
+      "estimate"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b7",
+     "text": "Averages: mean, median and mode",
+     "skills": [
+      "averages"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b8",
+     "text": "How spread out data are: range, interquartile range, standard deviation, standard error",
+     "skills": [
+      "dispersion"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b9",
+     "text": "Writing and reading numbers in standard form",
+     "skills": [
+      "sci"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b10",
+     "text": "Working out magnification and scale",
+     "skills": [
+      "magnification"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b11",
+     "text": "Working out a rate of change from a graph or a table",
+     "skills": [
+      "rates_of_change"
+     ],
+     "origin": "guide"
+    },
+    {
+     "id": "b12",
+     "text": "Direct and inverse proportion; positive and negative correlation",
+     "skills": [
+      "prop",
+      "correlation"
+     ],
+     "origin": "guide"
+    }
+   ],
+   "prior_skills": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "prop",
+    "frequencies",
+    "density",
+    "estimate",
+    "averages",
+    "dispersion",
+    "sci",
+    "magnification",
+    "rates_of_change",
+    "correlation"
+   ],
+   "hexagon": [
+    "arith",
+    "dfp",
+    "ratio_recip",
+    "averages",
+    "sci",
+    "magnification",
+    "rates_of_change"
+   ],
    "topics": []
   },
   {
@@ -807,6 +1083,22 @@ window.IB_SKILLS = {
       "graph_read"
      ],
      "origin": "guide"
+    },
+    {
+     "id": "e14",
+     "text": "Straight-line graphs: gradient and intercept (demand and supply curves)",
+     "skills": [
+      "line_graphs"
+     ],
+     "origin": "curator"
+    },
+    {
+     "id": "e15",
+     "text": "Functions: one quantity depending on another (quantity demanded depending on price)",
+     "skills": [
+      "functions"
+     ],
+     "origin": "curator"
     }
    ],
    "prior_skills": [
@@ -818,15 +1110,17 @@ window.IB_SKILLS = {
     "mult",
     "neg",
     "currency",
-    "graph_read"
+    "graph_read",
+    "line_graphs",
+    "functions"
    ],
    "hexagon": [
     "pct_change",
-    "dfp",
     "ratio_recip",
     "rearrange",
+    "line_graphs",
+    "functions",
     "neg",
-    "currency",
     "graph_read"
    ],
    "topics": [
@@ -844,6 +1138,8 @@ window.IB_SKILLS = {
      "code": "2.1",
      "name": "Demand",
      "skills": [
+      "line_graphs",
+      "functions",
       "graph_read"
      ]
     },
@@ -851,6 +1147,8 @@ window.IB_SKILLS = {
      "code": "2.2",
      "name": "Supply",
      "skills": [
+      "line_graphs",
+      "functions",
       "graph_read"
      ]
     },
@@ -858,6 +1156,7 @@ window.IB_SKILLS = {
      "code": "2.3",
      "name": "Competitive market equilibrium",
      "skills": [
+      "line_graphs",
       "graph_read"
      ]
     },
@@ -1090,6 +1389,22 @@ window.IB_SKILLS = {
      "origin": "guide"
     },
     {
+     "id": "e14",
+     "text": "Straight-line graphs: gradient and intercept (demand and supply curves)",
+     "skills": [
+      "line_graphs"
+     ],
+     "origin": "curator"
+    },
+    {
+     "id": "e15",
+     "text": "Functions: one quantity depending on another (quantity demanded depending on price)",
+     "skills": [
+      "functions"
+     ],
+     "origin": "curator"
+    },
+    {
      "id": "e10",
      "text": "Areas of rectangles and triangles in diagrams (surplus, welfare loss, tax revenue)",
      "skills": [
@@ -1134,6 +1449,8 @@ window.IB_SKILLS = {
     "neg",
     "currency",
     "graph_read",
+    "line_graphs",
+    "functions",
     "area_vol",
     "weighted_index",
     "lineq",
@@ -1144,10 +1461,10 @@ window.IB_SKILLS = {
     "pct_change",
     "ratio_recip",
     "rearrange",
+    "line_graphs",
+    "functions",
     "area_vol",
-    "lineq",
-    "neg",
-    "graph_read"
+    "lineq"
    ],
    "topics": [
     {
@@ -1164,6 +1481,8 @@ window.IB_SKILLS = {
      "code": "2.1",
      "name": "Demand",
      "skills": [
+      "line_graphs",
+      "functions",
       "graph_read",
       "lineq",
       "subst"
@@ -1173,6 +1492,8 @@ window.IB_SKILLS = {
      "code": "2.2",
      "name": "Supply",
      "skills": [
+      "line_graphs",
+      "functions",
       "graph_read",
       "lineq",
       "subst"
@@ -1182,6 +1503,7 @@ window.IB_SKILLS = {
      "code": "2.3",
      "name": "Competitive market equilibrium",
      "skills": [
+      "line_graphs",
       "graph_read",
       "simul",
       "area_vol"

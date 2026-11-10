@@ -1,4 +1,26 @@
 {
+ "DP Biology SL": {
+  "(whole course)": [
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "Ratios and reciprocals",
+   "Mean, median, mode and range",
+   "sci",
+   "Magnification and scale (image size and actual size)",
+   "Rates of change from graphs and tables"
+  ]
+ },
+ "DP Biology HL": {
+  "(whole course)": [
+   "Basic arithmetic and algebraic calculations",
+   "Decimals, fractions and percentages",
+   "Ratios and reciprocals",
+   "Mean, median, mode and range",
+   "sci",
+   "Magnification and scale (image size and actual size)",
+   "Rates of change from graphs and tables"
+  ]
+ },
  "DP Chemistry SL": {
   "Structure 1.1 Introduction to the particulate nature of matter": [],
   "Structure 1.2 The nuclear atom": [
@@ -144,12 +166,17 @@
   "1.1 What is economics?": [],
   "1.2 How do economists approach the world?": [],
   "2.1 Demand": [
+   "line",
+   "Functions: one quantity depending on another",
    "Reading values from graphs and diagrams"
   ],
   "2.2 Supply": [
+   "line",
+   "Functions: one quantity depending on another",
    "Reading values from graphs and diagrams"
   ],
   "2.3 Competitive market equilibrium": [
+   "line",
    "Reading values from graphs and diagrams"
   ],
   "2.4 Critique of the maximizing behaviour of consumers and producers": [],
@@ -214,11 +241,11 @@
   "4.7 Sustainable development": [],
   "(whole course)": [
    "percent",
-   "Decimals, fractions and percentages",
    "Ratios and reciprocals",
    "Rearranging equations and formulas",
+   "line",
+   "Functions: one quantity depending on another",
    "neg",
-   "Working with currencies and exchange rates",
    "Reading values from graphs and diagrams"
   ]
  },
@@ -226,16 +253,21 @@
   "1.1 What is economics?": [],
   "1.2 How do economists approach the world?": [],
   "2.1 Demand": [
+   "line",
+   "Functions: one quantity depending on another",
    "Reading values from graphs and diagrams",
    "lineq",
    "subst"
   ],
   "2.2 Supply": [
+   "line",
+   "Functions: one quantity depending on another",
    "Reading values from graphs and diagrams",
    "lineq",
    "subst"
   ],
   "2.3 Competitive market equilibrium": [
+   "line",
    "Reading values from graphs and diagrams",
    "Two linear equations in two unknowns",
    "Areas and volumes"
@@ -323,10 +355,10 @@
    "percent",
    "Ratios and reciprocals",
    "Rearranging equations and formulas",
+   "line",
+   "Functions: one quantity depending on another",
    "Areas and volumes",
-   "lineq",
-   "neg",
-   "Reading values from graphs and diagrams"
+   "lineq"
   ]
  },
  "DP Environmental Systems and Societies SL": {
