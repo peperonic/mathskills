@@ -1,0 +1,82 @@
+# Draft domain pack, conjecture style: everything field-specific in one file.
+# Code (fetcher, parsers, graph builder, kb_api) reads this and never hard-codes a Land.
+version: 1
+name: de-school-mint
+title: "German school curricula: Mathematik, Chemie, Physik, Biologie, Politik/Wirtschaft, Arbeitslehre/WAT"
+
+scope:
+  subjects: [Mathematik, Chemie, Physik, Biologie, Politik/Wirtschaft, Arbeitslehre/WAT, Naturwissenschaften, Gesellschaftslehre, Sachunterricht]
+  levels: [Primar, Sek I, Sek II]
+  excluded: [berufliche Schulen, Förderschulen]
+
+inventory: ../inventory/curricula_inventory.yaml
+
+corpus:
+  raw_dir: data/raw                 # downloads, named by sha256
+  knowledgebase: data/kb.sqlite     # schema: design/schema.sql
+  cache_ttl_days: 30
+
+fetch:
+  user_agent: "curricula-kb research crawler (+https://github.com/peperonic/syllabus-de; contact: chiaramariaperrone@pm.me)"
+  contact: "chiaramariaperrone@pm.me"   # given by the project owner 2026-11-07, spelling corrected 2026-11-09
+  rate_limit_per_second: 1
+  respect_robots_txt: true
+  headless_browser_for: [BY, RP, ST, SN, TH, SL]
+  reindex_each_run: [HE, NW]        # PDF URLs change on re-upload
+  html_bundles: [BW]                # plans published as an index page plus sub-pages
+
+backbone:
+  mathematik:
+    anchors: [KMK Leitideen L1-L5, IQB Inhaltliche Vereinbarungen Mathematik]
+  chemie:
+    anchors: [KMK Basiskonzepte Chemie (WeBiS 2024, AHR 2020), IQB Inhaltliche Vereinbarungen Chemie]
+  physik:
+    anchors: [KMK Basiskonzepte und Inhaltsbereiche Physik (WeBiS 2024, AHR 2020), IQB Inhaltliche Vereinbarungen Physik]
+  biologie:
+    anchors: [KMK Basiskonzepte Biologie (WeBiS 2024, AHR 2020), IQB Inhaltliche Vereinbarungen Biologie]
+  politik_wirtschaft:
+    anchors: [no KMK Bildungsstandards; use GPJE Bildungsstandards Politische Bildung and DeGÖB Kompetenzen ökonomischer Bildung as structure only, plus KMK Empfehlungen Verbraucherbildung, Demokratiebildung, Berufs- und Studienorientierung]
+  vocabularies: [OpenEduHub oeh-metadata-vocabs (CC0)]
+
+mapping:
+  # Without an API key (owner decision 2026-11-09) proposals and verdicts are files:
+  # the proposer is the model in the build session, the judge an independent agent
+  # that sees only text and topic (scripts/mapping_worksheet.py). With a key, use
+  #   proposer: anthropic:claude-sonnet-4-6
+  #   judge: anthropic:claude-opus-5-5
+  proposer: file:../data/mapping/bw_mathematik_proposals.yaml
+  judge: file:../data/mapping/bw_mathematik_verdicts.json
+  mechanical_checks:
+    - cited node_id exists
+    - subject of node equals subject of topic
+    - node grade span overlaps topic grade band (warn, not fail)
+  held_out_gold: ../data/gold_mappings.csv   # never shown to proposer or judge (path relative to this pack)
+
+licence_policy:
+  curriculum_default: "amtliches Werk (§ 5 UrhG)"   # curriculum texts; see README legal position
+  curriculum_by_land:
+    ST: "CC BY-SA 4.0 (Sachsen-Anhalt Lehrplan-PDFs) and amtliches Werk (§ 5 UrhG)"
+  full_text: ["amtliches Werk (§ 5 UrhG)", "CC BY-SA 4.0", "CC BY 4.0", "CC0"]
+  structure_only: [KMK, IQB, exam focus documents]
+  cross_check_only: [textbook plans, LEIFIphysik, commercial platforms]
+
+# Curated inputs: human decisions, reloaded on every build, never overwritten by it.
+curated:
+  context_aliases: ../inventory/context_aliases.yaml      # school form aliases, pathways, grade aliases
+  validity_overrides: ../inventory/validity_overrides.yaml # manual fixes for S0b
+  backbone: [../backbone/mathematik.yaml]                  # topic YAML files per subject
+  evidence: []
+  coverage: []
+
+backbone_auto:
+  operators_from_plans: true   # S4 turns parsed operator tables into competence rows
+
+nodes:
+  content_kinds: [Kompetenzerwartung, Inhalt, Kompetenz, Standard, Teilkompetenz]   # what counts as teachable content
+
+parse:
+  profiles:             # Land code -> module in builder/parse/
+    BW: bw
+
+outputs:
+  dir: outputs
