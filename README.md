@@ -83,3 +83,15 @@ Contributions to the code are accepted under the project's AGPL licence.
 
 - **Code:** GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later). See [`LICENSE`](LICENSE).
 - **Videos, comics, songs and their characters, artwork and music:** © 2026 Chiara Perrone. All rights reserved. They are **not** covered by the AGPL and may not be copied, changed, redistributed or used in other projects without written permission. Learners and teachers may of course watch and use them within MathSkills.
+
+## Folders
+
+| Folder | What it is |
+|---|---|
+| `index.html` | Start page: links to the game and the builder |
+| `game/` | The Mathskills Game, one HTML file |
+| `builder/` | The Mathskills Builder for teachers, one HTML file (built from `builder-src.html`, see `builder/README.md`) |
+| `builder/syllabus-ib/` | Prior skills for IB Diploma courses (Mathematics AA and AI, Physics, Chemistry, Biology, ESS, Economics; SL and HL), in a form the builder reads |
+| `builder/syllabus-de/` | German school curricula knowledge base (Baden-Württemberg Mathematik so far) with a read-only MCP server |
+
+`builder/syllabus-ib` holds no text from IB publications: only structure, our own wording and references to the guides.
