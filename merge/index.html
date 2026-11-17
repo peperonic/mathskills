@@ -103,7 +103,7 @@ const T = {
   en:{title:"Merge and Clear",intro:"Drag one disc onto another (or tap one, then the other). Clear the board before the time runs out.",
       level:"Level",score:"Score",time:"Time",undo:"Undo",restart:"Restart",back:"Activities",
       cleared:"Board cleared!",bonus:"Time bonus",next:"Next level",timeUp:"Time's up",again:"Try again",
-      stuck:"No moves left. Undo or restart.",nope:"That doesn't work here.",best:"Best",
+      stuckTitle:"No moves left",stuckWhy:"Every move you made was allowed, but these discs can't combine. The clock is paused.",undoLast:"Undo last move",restartLevel:"Restart level",l1frac:"Level 1: find two fractions that make exactly 1.",nope:"That doesn't work here.",best:"Best",
       modes:{
         div:["Common divisor","Drop a number on one that shares a divisor. Both are divided by it; 1s vanish."],
         frac:["Make a whole","Drop a fraction on another to add them. Exactly 1 and both vanish. More than 1 is not allowed."],
@@ -112,7 +112,7 @@ const T = {
   de:{title:"Verbinden und Leeren",intro:"Zieh eine Scheibe auf eine andere (oder tippe nacheinander beide an). Leere das Feld, bevor die Zeit abläuft.",
       level:"Level",score:"Punkte",time:"Zeit",undo:"Zurück",restart:"Neu starten",back:"Spiele",
       cleared:"Feld leer!",bonus:"Zeitbonus",next:"Nächstes Level",timeUp:"Zeit abgelaufen",again:"Nochmal",
-      stuck:"Kein Zug mehr möglich. Zurück oder neu starten.",nope:"Das geht hier nicht.",best:"Rekord",
+      stuckTitle:"Kein Zug mehr möglich",stuckWhy:"Alle Züge waren erlaubt, aber diese Scheiben passen nicht mehr zusammen. Die Uhr ist angehalten.",undoLast:"Letzten Zug zurück",restartLevel:"Level neu starten",l1frac:"Level 1: Finde zwei Brüche, die zusammen genau 1 ergeben.",nope:"Das geht hier nicht.",best:"Rekord",
       modes:{
         div:["Gemeinsamer Teiler","Zieh eine Zahl auf eine mit gemeinsamem Teiler. Beide werden durch ihn geteilt; Einsen verschwinden."],
         frac:["Ein Ganzes","Zieh einen Bruch auf einen anderen, um sie zu addieren. Genau 1: beide verschwinden. Über 1 geht nicht."],
@@ -121,7 +121,7 @@ const T = {
   it:{title:"Unisci e Svuota",intro:"Trascina un dischetto sopra un altro (o tocca prima uno, poi l'altro). Svuota la griglia prima che scada il tempo.",
       level:"Livello",score:"Punti",time:"Tempo",undo:"Annulla",restart:"Ricomincia",back:"Attività",
       cleared:"Griglia vuota!",bonus:"Bonus tempo",next:"Livello successivo",timeUp:"Tempo scaduto",again:"Riprova",
-      stuck:"Nessuna mossa possibile. Annulla o ricomincia.",nope:"Qui non funziona.",best:"Record",
+      stuckTitle:"Nessuna mossa possibile",stuckWhy:"Tutte le mosse erano valide, ma questi dischetti non si combinano più. Il tempo è in pausa.",undoLast:"Annulla l'ultima mossa",restartLevel:"Ricomincia il livello",l1frac:"Livello 1: trova due frazioni che fanno esattamente 1.",nope:"Qui non funziona.",best:"Record",
       modes:{
         div:["Divisore comune","Trascina un numero su uno con un divisore in comune. Entrambi vengono divisi; gli 1 spariscono."],
         frac:["Fai un intero","Trascina una frazione su un'altra per sommarle. Esattamente 1: spariscono entrambe. Oltre 1 non si può."],
@@ -150,6 +150,16 @@ const MODES = {
     eg:"12 + 18 → 2, 3",
     count:L=>Math.min(10+2*L,24),
     gen(L){
+      if(L===1){
+        // Each group uses its own primes, so groups never block each other:
+        // {p·q, p, q} or {n, n}. Neither can get stuck, whatever the order.
+        const ps=shuffle([2,3,5,7,11,13]), out=[];
+        while(ps.length){
+          if(ps.length>=2 && Math.random()<.6){ const p=ps.pop(), q=ps.pop(); out.push(p*q,p,q); }
+          else { const p=ps.pop(), n=(p<=5&&Math.random()<.5)?p*p:p; out.push(n,n); }
+        }
+        return out;
+      }
       const N=this.count(L), max=Math.min(40+20*L,144);
       const gs = L<2?[2,3,5] : L<4?[2,3,5,7,4,6] : [2,3,5,7,11,4,6,9,10];
       for(let tries=0;tries<300;tries++){
@@ -172,17 +182,17 @@ const MODES = {
     eg:"1/4 + 3/4 = 1",
     count:L=>Math.min(8+L,16),
     gen(L){
-      const dens = L<2?[2,4] : L<3?[2,3,4,6] : L<4?[2,3,4,6,8,12] : [2,3,4,5,6,8,10,12];
+      const dens = L<2?[2,3,4,5] : L<3?[2,3,4,6] : L<4?[2,3,4,6,8,12] : [2,3,4,5,6,8,10,12];
       const N=this.count(L), out=[];
       while(out.length<N-1){
-        const d=pick(dens); let k = (d>=3 && Math.random()<(L<2?.3:.55)) ? 3 : 2; if(k>d) k=d;
+        const d=pick(dens); let k = (L>=2 && d>=3 && Math.random()<.55) ? 3 : 2; if(k>d) k=d;
         const cuts=new Set(); while(cuts.size<k-1) cuts.add(1+rnd(d-1));
         const pts=[0,...[...cuts].sort((x,y)=>x-y),d];
         for(let i=1;i<pts.length;i++) out.push(frac(pts[i]-pts[i-1],d));
       }
       return out;
     },
-    merge(a,b){ const n=a.n*b.d+b.n*a.d, d=a.d*b.d; if(n>d) return null; if(n===d) return {a:null,b:null,pts:10}; return {a:null,b:frac(n,d),pts:2}; },
+    merge(a,b){ const n=a.n*b.d+b.n*a.d, d=a.d*b.d; if(n>d || (level<2 && n<d)) return null; if(n===d) return {a:null,b:null,pts:10}; return {a:null,b:frac(n,d),pts:2}; },
     html:v=>fracHTML(v.n,v.d), len:v=>Math.max(String(v.n).length,String(v.d).length)
   },
   same:{
@@ -225,7 +235,7 @@ const MODES = {
 };
 
 /* ---------- state ---------- */
-let mode=null, level=1, score=0, discs=[], history=[], timeLeft=0, timer=null, selected=null, playing=false, nextId=1;
+let stuck=false, mode=null, level=1, score=0, discs=[], history=[], timeLeft=0, timer=null, selected=null, playing=false, nextId=1;
 const $ = id => document.getElementById(id);
 
 function renderText(){
@@ -239,25 +249,46 @@ function renderText(){
     const best=store.get("merge.best."+k);
     return `<button class="mode" data-m="${k}"><b>${x.modes[k][0]}</b><small>${x.modes[k][1]}</small>
       <span class="eg">${MODES[k].eg}${best?` · ${x.best}: ${best}`:""}</span></button>`;}).join("");
-  if(mode) $("rule").textContent=x.modes[mode][1];
+  setRule();
   if(playing||discs.length) renderBoard();
 }
 $("langs").addEventListener("click",e=>{const l=e.target.dataset.l; if(l){lang=l; store.set("merge.lang",l); renderText();}});
 $("modes").addEventListener("click",e=>{const b=e.target.closest(".mode"); if(b) startMode(b.dataset.m);});
 
 function startMode(m){ mode=m; level=1; score=0; $("menu").hidden=true; $("game").hidden=false; $("rule").textContent=t().modes[m][1]; startLevel(); }
+function trapFree(M,vals){
+  for(let r=0;r<300;r++){
+    let v=vals.slice();
+    while(v.length){
+      const moves=[];
+      for(let i=0;i<v.length;i++) for(let j=0;j<v.length;j++) if(i!==j){ const x=M.merge(v[i],v[j]); if(x) moves.push([i,j,x]); }
+      if(!moves.length) return false;
+      const [i,j,x]=pick(moves), nv=[];
+      v.forEach((y,k)=>{ if(k===i){ if(x.a!==null) nv.push(x.a); } else if(k===j){ if(x.b!==null) nv.push(x.b); } else nv.push(y); });
+      v=nv;
+    }
+  }
+  return true;
+}
+function makeBoard(){
+  const M=MODES[mode]; let vals=M.gen(level);
+  if(level===1) for(let i=0;i<200 && !trapFree(M,vals);i++) vals=M.gen(level);
+  return vals;
+}
 function startLevel(){
-  const vals=shuffle(MODES[mode].gen(level));
+  const vals=shuffle(makeBoard());
   const cells=shuffle([...Array(36).keys()]).slice(0,vals.length);
   discs=vals.map((v,i)=>({id:nextId++, cell:cells[i], v}));
-  history=[]; selected=null; playing=true;
+  history=[]; selected=null; playing=true; stuck=false;
   timeLeft=Math.round(25+5*vals.length - 1.5*(level-1)*vals.length/6);
   levelStartScore=score;
   clearInterval(timer); timer=setInterval(tick,1000);
   $("msg").textContent=""; updateStats(); renderBoard();
+  setRule();
 }
+function setRule(){ if(mode) $("rule").textContent = t().modes[mode][1] + (mode==="frac"&&level<2 ? " "+t().l1frac : ""); }
 let levelStartScore=0;
-function tick(){ if(!playing) return; timeLeft--; updateStats(); if(timeLeft<=0) endLevel(false); }
+function tick(){ if(!playing||stuck) return; timeLeft--; updateStats(); if(timeLeft<=0) endLevel(false); }
 function updateStats(){
   $("vLevel").textContent=level; $("vScore").textContent=score;
   const s=Math.max(0,timeLeft); $("vTime").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
@@ -293,8 +324,18 @@ function attempt(fromId,toId){
     renderBoard();
     [fromId,toId].forEach(id=>discEl(id)?.classList.add("merged"));
     if(!discs.length) endLevel(true);
-    else if(!anyMove()) $("msg").textContent=t().stuck;
+      else if(!anyMove()) showStuck();
   },180);
+}
+function showStuck(){
+  stuck=true; const x=t();
+  const o=document.createElement("div"); o.className="overlay"; o.id="stuckPanel";
+  o.innerHTML=`<h2>${x.stuckTitle}</h2><p>${x.stuckWhy}</p>
+    <button class="btn primary" id="sUndo">↶ ${x.undoLast}</button><button class="btn" id="sRestart">⟳ ${x.restartLevel}</button>`;
+  $("board").appendChild(o);
+  o.querySelector("#sUndo").addEventListener("click",()=>$("undo").click());
+  o.querySelector("#sRestart").addEventListener("click",()=>$("restart").click());
+  o.querySelector("#sUndo").focus();
 }
 function anyMove(){
   const M=MODES[mode];
@@ -315,7 +356,7 @@ function endLevel(won){
   o.querySelector("#go").addEventListener("click",()=>{ if(won) level++; else score=levelStartScore; startLevel(); });
   o.querySelector("#go").focus();
 }
-$("undo").addEventListener("click",()=>{ if(!playing||!history.length) return; const s=history.pop(); discs=s.discs; score=s.score; selected=null; $("msg").textContent=""; updateStats(); renderBoard(); });
+$("undo").addEventListener("click",()=>{ if(!playing||!history.length) return; const s=history.pop(); stuck=false; discs=s.discs; score=s.score; selected=null; $("msg").textContent=""; updateStats(); renderBoard(); });
 $("restart").addEventListener("click",()=>{ score=levelStartScore; startLevel(); });
 $("back").addEventListener("click",()=>{ playing=false; clearInterval(timer); discs=[]; mode=null; $("game").hidden=true; $("menu").hidden=false; renderText(); });
 
