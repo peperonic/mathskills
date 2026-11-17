@@ -106,7 +106,7 @@ const T = {
       stuckTitle:"No moves left",stuckWhy:"Every move you made was allowed, but these discs can't combine. The clock is paused.",undoLast:"Undo last move",restartLevel:"Restart level",l1frac:"Level 1: find two fractions that make exactly 1.",nope:"That doesn't work here.",best:"Best",
       modes:{
         div:["Common divisor","Drop a number on one that shares a divisor. Both are divided by it; 1s vanish."],
-        frac:["Make a whole","Drop a fraction on another to add them. Exactly 1 and both vanish. More than 1 is not allowed."],
+        frac:["Make a whole","Drop a fraction on the one that makes exactly 1 with it. Both vanish."],
         same:["Same value","Drop a fraction, decimal or percentage on one with the same value. Both vanish."],
         alg:["Like terms","Drop a term on a like term to add them. At 0 both vanish. x and x² are not like terms."]}},
   de:{title:"Verbinden und Leeren",intro:"Zieh eine Scheibe auf eine andere (oder tippe nacheinander beide an). Leere das Feld, bevor die Zeit abläuft.",
@@ -115,7 +115,7 @@ const T = {
       stuckTitle:"Kein Zug mehr möglich",stuckWhy:"Alle Züge waren erlaubt, aber diese Scheiben passen nicht mehr zusammen. Die Uhr ist angehalten.",undoLast:"Letzten Zug zurück",restartLevel:"Level neu starten",l1frac:"Level 1: Finde zwei Brüche, die zusammen genau 1 ergeben.",nope:"Das geht hier nicht.",best:"Rekord",
       modes:{
         div:["Gemeinsamer Teiler","Zieh eine Zahl auf eine mit gemeinsamem Teiler. Beide werden durch ihn geteilt; Einsen verschwinden."],
-        frac:["Ein Ganzes","Zieh einen Bruch auf einen anderen, um sie zu addieren. Genau 1: beide verschwinden. Über 1 geht nicht."],
+        frac:["Ein Ganzes","Zieh einen Bruch auf den, der mit ihm zusammen genau 1 ergibt. Beide verschwinden."],
         same:["Gleicher Wert","Zieh Bruch, Dezimalzahl oder Prozent auf einen gleichwertigen. Beide verschwinden."],
         alg:["Gleichartige Terme","Zieh einen Term auf einen gleichartigen, um sie zu addieren. Bei 0 verschwinden beide. x und x² sind nicht gleichartig."]}},
   it:{title:"Unisci e Svuota",intro:"Trascina un dischetto sopra un altro (o tocca prima uno, poi l'altro). Svuota la griglia prima che scada il tempo.",
@@ -124,7 +124,7 @@ const T = {
       stuckTitle:"Nessuna mossa possibile",stuckWhy:"Tutte le mosse erano valide, ma questi dischetti non si combinano più. Il tempo è in pausa.",undoLast:"Annulla l'ultima mossa",restartLevel:"Ricomincia il livello",l1frac:"Livello 1: trova due frazioni che fanno esattamente 1.",nope:"Qui non funziona.",best:"Record",
       modes:{
         div:["Divisore comune","Trascina un numero su uno con un divisore in comune. Entrambi vengono divisi; gli 1 spariscono."],
-        frac:["Fai un intero","Trascina una frazione su un'altra per sommarle. Esattamente 1: spariscono entrambe. Oltre 1 non si può."],
+        frac:["Fai un intero","Trascina una frazione su quella che insieme a lei fa esattamente 1. Spariscono entrambe."],
         same:["Stesso valore","Trascina frazione, decimale o percentuale su uno con lo stesso valore. Spariscono entrambi."],
         alg:["Monomi simili","Trascina un monomio su uno simile per sommarli. Se fa 0 spariscono. x e x² non sono simili."]}}
 };
@@ -148,51 +148,49 @@ function pctStr(n,d){ let s=String(+(100*n/d).toFixed(2)); return s.replace(".",
 const MODES = {
   div:{
     eg:"12 + 18 → 2, 3",
-    count:L=>Math.min(10+2*L,24),
     gen(L){
-      if(L===1){
-        // Each group uses its own primes, so groups never block each other:
-        // {p·q, p, q} or {n, n}. Neither can get stuck, whatever the order.
-        const ps=shuffle([2,3,5,7,11,13]), out=[];
-        while(ps.length){
-          if(ps.length>=2 && Math.random()<.6){ const p=ps.pop(), q=ps.pop(); out.push(p*q,p,q); }
-          else { const p=ps.pop(), n=(p<=5&&Math.random()<.5)?p*p:p; out.push(n,n); }
+      // Every group uses its own primes, so groups never block each other.
+      // Group shapes that clear in any order: {x·y, x, y} with x, y coprime;
+      // {n, n}; and from level 3 {p·q, p·r, q·r}.
+      const pool = L<2?[2,3,5,7,11,13] : L<3?[2,3,5,7,11,13,17] : L<4?[2,3,5,7,11,13,17,19] : [2,3,5,7,11,13,17,19,23];
+      const max = L<2?50 : L<3?100 : L<4?150 : 200;
+      const ps=pool.slice(), out=[];
+      const take=()=>ps.splice(rnd(ps.length),1)[0];
+      while(ps.length){
+        const q=ps.pop(), r=Math.random();
+        if(L>=3 && ps.length>=2 && r<.35){
+          const p=take(), t=take();
+          if(p*q<=max && t*q<=max){ out.push(p*q,t*q,p*t); continue; }
+          ps.push(p,t); ps.sort((m,n)=>m-n);
         }
-        return out;
-      }
-      const N=this.count(L), max=Math.min(40+20*L,144);
-      const gs = L<2?[2,3,5] : L<4?[2,3,5,7,4,6] : [2,3,5,7,11,4,6,9,10];
-      for(let tries=0;tries<300;tries++){
-        const v=Array(N).fill(1); let steps=0;
-        for(let k=0;k<2000;k++){
-          const i=rnd(N), j=rnd(N); if(i===j||gcd(v[i],v[j])!==1) continue;
-          const g=pick(gs); if(v[i]*g>max||v[j]*g>max) continue;
-          v[i]*=g; v[j]*=g; steps++;
-          if(v.every(x=>x>1) && steps>=N*0.6+L) break;
+        if(ps.length && r<.85){
+          const i=rnd(ps.length); let y=ps[i];
+          if(L>=2 && y*y*q<=max && Math.random()<.5) y*=ps[i];
+          if(q*y<=max){ ps.splice(i,1); out.push(q*y,q,y); continue; }
         }
-        const out=v.filter(x=>x>1);
-        if(out.length>=N-2 && out.length%1===0) return out;
+        let n=q; if(L>=2 && n*q<=max && Math.random()<.5) n*=q;
+        out.push(n,n);
       }
-      return [6,6,10,15,4,2];
+      return out;
     },
     merge(a,b){ const g=gcd(a,b); if(g<2) return null; const na=a/g, nb=b/g; return {a:na===1?null:na, b:nb===1?null:nb, pts:g}; },
     html:v=>String(v), len:v=>String(v).length
   },
   frac:{
-    eg:"1/4 + 3/4 = 1",
-    count:L=>Math.min(8+L,16),
+    eg:"1/4 + 3/4 = 1 · 2/6 + 2/3 = 1",
     gen(L){
-      const dens = L<2?[2,3,4,5] : L<3?[2,3,4,6] : L<4?[2,3,4,6,8,12] : [2,3,4,5,6,8,10,12];
-      const N=this.count(L), out=[];
-      while(out.length<N-1){
-        const d=pick(dens); let k = (L>=2 && d>=3 && Math.random()<.55) ? 3 : 2; if(k>d) k=d;
-        const cuts=new Set(); while(cuts.size<k-1) cuts.add(1+rnd(d-1));
-        const pts=[0,...[...cuts].sort((x,y)=>x-y),d];
-        for(let i=1;i<pts.length;i++) out.push(frac(pts[i]-pts[i-1],d));
+      // Pairs that make exactly 1. Only exact wholes merge, so any order clears the board.
+      const dens = L<2?[2,3,4,5] : L<3?[3,4,5,6,8] : L<4?[5,6,8,10,12] : [6,7,8,9,10,12];
+      const out=[];
+      for(let i=0;i<Math.min(4+L,9);i++){
+        const d=pick(dens), a=1+rnd(d-1);
+        const pair=[frac(a,d), frac(d-a,d)];
+        if(L>=2 && Math.random()<.45){ const j=rnd(2), k=2+rnd(2); if(pair[j].d*k<=24) pair[j]={n:pair[j].n*k,d:pair[j].d*k}; }
+        out.push(...pair);
       }
       return out;
     },
-    merge(a,b){ const n=a.n*b.d+b.n*a.d, d=a.d*b.d; if(n>d || (level<2 && n<d)) return null; if(n===d) return {a:null,b:null,pts:10}; return {a:null,b:frac(n,d),pts:2}; },
+    merge(a,b){ return a.n*b.d+b.n*a.d===a.d*b.d ? {a:null,b:null,pts:10} : null; },
     html:v=>fracHTML(v.n,v.d), len:v=>Math.max(String(v.n).length,String(v.d).length)
   },
   same:{
@@ -286,7 +284,7 @@ function startLevel(){
   $("msg").textContent=""; updateStats(); renderBoard();
   setRule();
 }
-function setRule(){ if(mode) $("rule").textContent = t().modes[mode][1] + (mode==="frac"&&level<2 ? " "+t().l1frac : ""); }
+function setRule(){ if(mode) $("rule").textContent = t().modes[mode][1] ; }
 let levelStartScore=0;
 function tick(){ if(!playing||stuck) return; timeLeft--; updateStats(); if(timeLeft<=0) endLevel(false); }
 function updateStats(){
