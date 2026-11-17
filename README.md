@@ -90,6 +90,7 @@ Contributions to the code are accepted under the project's AGPL licence.
 |---|---|
 | `index.html` | Start page: links to the game and the builder |
 | `game/` | The Mathskills Game, one HTML file |
+| `merge/` | Merge and Clear, a timed practice game in one HTML file: drop one disc on another to clear the board (common divisors, fractions that make a whole, equal fractions/decimals/percentages, like terms). English, German, Italian |
 | `builder/` | The Mathskills Builder for teachers, one HTML file (built from `builder-src.html`, see `builder/README.md`) |
 | `builder/syllabus-ib/` | Prior skills for IB Diploma courses (Mathematics AA and AI, Physics, Chemistry, Biology, ESS, Economics; SL and HL), in a form the builder reads |
 | `builder/syllabus-de/` | German school curricula knowledge base (Baden-Württemberg Mathematik so far) with a read-only MCP server |

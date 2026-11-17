@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merge and Clear</title>
+<style>
+:root{
+  --bg:#f5f1e8; --panel:#fffdf8; --ink:#1d2433; --muted:#6b7280; --line:#ddd5c4;
+  --cell:#ebe4d4; --disc:#ffffff; --accent:#d9572b; --ok:#2f8f5b; --bad:#c2410c; --sel:#f2b705;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#13161d; --panel:#1c2029; --ink:#eef0f4; --muted:#9aa3b2; --line:#2c3240;
+    --cell:#232836; --disc:#2b3142; --accent:#ff7a4d; --ok:#4cc38a; --bad:#ff8a5c; --sel:#ffd34d;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#13161d; --panel:#1c2029; --ink:#eef0f4; --muted:#9aa3b2; --line:#2c3240;
+  --cell:#232836; --disc:#2b3142; --accent:#ff7a4d; --ok:#4cc38a; --bad:#ff8a5c; --sel:#ffd34d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;}
+main{max-width:560px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:.2em 0 .1em}
+.sub{color:var(--muted);margin:0 0 16px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.langs button,.btn{font:inherit;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:6px 12px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.modes{grid-template-columns:1fr}}
+.mode{text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:14px;padding:14px;cursor:pointer;font:inherit}
+.mode:hover{border-color:var(--accent)}
+.mode b{display:block;font-size:1.05rem;margin-bottom:4px}
+.mode small{color:var(--muted)}
+.mode .eg{display:block;margin-top:8px;font-weight:600;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;text-align:center;padding:6px}
+.stat span{display:block;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.stat strong{font-size:1.25rem;font-variant-numeric:tabular-nums}
+.stat.low strong{color:var(--bad)}
+.rule{font-size:.9rem;color:var(--muted);margin:0 0 10px;min-height:2.6em}
+.board{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;background:var(--line);padding:6px;border-radius:16px;touch-action:none;user-select:none;-webkit-user-select:none}
+.cell{aspect-ratio:1;background:var(--cell);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative}
+.disc{width:94%;height:94%;border-radius:50%;border:3px solid var(--accent);background:var(--disc);color:var(--ink);font:700 clamp(14px,4.6vw,24px)/1 system-ui,sans-serif;display:flex;align-items:center;justify-content:center;cursor:grab;padding:0;touch-action:none;transition:transform .12s, box-shadow .12s}
+.disc.s{font-size:clamp(11px,3.4vw,18px)}
+.disc.xs{font-size:clamp(10px,2.9vw,15px)}
+.disc.sel{border-color:var(--sel);box-shadow:0 0 0 4px color-mix(in srgb,var(--sel) 45%,transparent)}
+.disc.over{transform:scale(1.12);border-color:var(--ok)}
+.disc.drag{position:relative;z-index:10;cursor:grabbing;transition:none;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.disc.pop{animation:pop .2s ease-in forwards}
+.disc.shake{animation:shake .3s}
+.disc.merged{animation:grow .25s}
+@keyframes pop{to{transform:scale(0);opacity:0}}
+@keyframes grow{50%{transform:scale(1.18)}}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.fr{display:inline-flex;flex-direction:column;align-items:center;line-height:1.05}
+.fr span:first-child{border-bottom:2px solid currentColor;padding:0 2px}
+sup{font-size:.6em}
+.tools{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tools .grow{flex:1}
+.msg{margin-top:10px;min-height:1.4em;font-weight:600;color:var(--bad)}
+.overlay{position:absolute;inset:0;background:color-mix(in srgb,var(--bg) 88%,transparent);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px}
+.overlay h2{margin:0;font-size:1.6rem}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <h1 id="title"></h1>
+    <div class="langs" id="langs"></div>
+  </div>
+
+  <section id="menu">
+    <p class="sub" id="intro"></p>
+    <div class="modes" id="modes"></div>
+  </section>
+
+  <section id="game" hidden>
+    <div class="stats">
+      <div class="stat"><span id="lLevel"></span><strong id="vLevel">1</strong></div>
+      <div class="stat"><span id="lScore"></span><strong id="vScore">0</strong></div>
+      <div class="stat" id="timeBox"><span id="lTime"></span><strong id="vTime">0:00</strong></div>
+    </div>
+    <p class="rule" id="rule"></p>
+    <div class="board" id="board"></div>
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    <div class="tools">
+      <button class="btn" id="undo"></button>
+      <button class="btn" id="restart"></button>
+      <span class="grow"></span>
+      <button class="btn" id="back"></button>
+    </div>
+  </section>
+</main>
+
+<script>
+"use strict";
+/* ---------- text ---------- */
+const T = {
+  en:{title:"Merge and Clear",intro:"Drag one disc onto another (or tap one, then the other). Clear the board before the time runs out.",
+      level:"Level",score:"Score",time:"Time",undo:"Undo",restart:"Restart",back:"Activities",
+      cleared:"Board cleared!",bonus:"Time bonus",next:"Next level",timeUp:"Time's up",again:"Try again",
+      stuck:"No moves left. Undo or restart.",nope:"That doesn't work here.",best:"Best",
+      modes:{
+        div:["Common divisor","Drop a number on one that shares a divisor. Both are divided by it; 1s vanish."],
+        frac:["Make a whole","Drop a fraction on another to add them. Exactly 1 and both vanish. More than 1 is not allowed."],
+        same:["Same value","Drop a fraction, decimal or percentage on one with the same value. Both vanish."],
+        alg:["Like terms","Drop a term on a like term to add them. At 0 both vanish. x and x² are not like terms."]}},
+  de:{title:"Verbinden und Leeren",intro:"Zieh eine Scheibe auf eine andere (oder tippe nacheinander beide an). Leere das Feld, bevor die Zeit abläuft.",
+      level:"Level",score:"Punkte",time:"Zeit",undo:"Zurück",restart:"Neu starten",back:"Spiele",
+      cleared:"Feld leer!",bonus:"Zeitbonus",next:"Nächstes Level",timeUp:"Zeit abgelaufen",again:"Nochmal",
+      stuck:"Kein Zug mehr möglich. Zurück oder neu starten.",nope:"Das geht hier nicht.",best:"Rekord",
+      modes:{
+        div:["Gemeinsamer Teiler","Zieh eine Zahl auf eine mit gemeinsamem Teiler. Beide werden durch ihn geteilt; Einsen verschwinden."],
+        frac:["Ein Ganzes","Zieh einen Bruch auf einen anderen, um sie zu addieren. Genau 1: beide verschwinden. Über 1 geht nicht."],
+        same:["Gleicher Wert","Zieh Bruch, Dezimalzahl oder Prozent auf einen gleichwertigen. Beide verschwinden."],
+        alg:["Gleichartige Terme","Zieh einen Term auf einen gleichartigen, um sie zu addieren. Bei 0 verschwinden beide. x und x² sind nicht gleichartig."]}},
+  it:{title:"Unisci e Svuota",intro:"Trascina un dischetto sopra un altro (o tocca prima uno, poi l'altro). Svuota la griglia prima che scada il tempo.",
+      level:"Livello",score:"Punti",time:"Tempo",undo:"Annulla",restart:"Ricomincia",back:"Attività",
+      cleared:"Griglia vuota!",bonus:"Bonus tempo",next:"Livello successivo",timeUp:"Tempo scaduto",again:"Riprova",
+      stuck:"Nessuna mossa possibile. Annulla o ricomincia.",nope:"Qui non funziona.",best:"Record",
+      modes:{
+        div:["Divisore comune","Trascina un numero su uno con un divisore in comune. Entrambi vengono divisi; gli 1 spariscono."],
+        frac:["Fai un intero","Trascina una frazione su un'altra per sommarle. Esattamente 1: spariscono entrambe. Oltre 1 non si può."],
+        same:["Stesso valore","Trascina frazione, decimale o percentuale su uno con lo stesso valore. Spariscono entrambi."],
+        alg:["Monomi simili","Trascina un monomio su uno simile per sommarli. Se fa 0 spariscono. x e x² non sono simili."]}}
+};
+const store = {get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let lang = store.get("merge.lang") || ((navigator.language||"en").slice(0,2) in T ? navigator.language.slice(0,2) : "en");
+const t = () => T[lang];
+const sep = () => lang === "en" ? "." : ",";
+
+/* ---------- maths helpers ---------- */
+const gcd = (a,b) => { a=Math.abs(a); b=Math.abs(b); while(b){[a,b]=[b,a%b]} return a; };
+const rnd = n => Math.floor(Math.random()*n);
+const pick = a => a[rnd(a.length)];
+const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]} return a; };
+const frac = (n,d) => { const g=gcd(n,d); return {n:n/g,d:d/g}; };
+const fracHTML = (n,d) => `<span class="fr"><span>${n}</span><span>${d}</span></span>`;
+const minus = "−";
+function decStr(n,d){ let s=String(+(n/d).toFixed(4)); return s.replace(".", sep()); }
+function pctStr(n,d){ let s=String(+(100*n/d).toFixed(2)); return s.replace(".", sep()) + (lang==="en"?"%":" %"); }
+
+/* ---------- activities ---------- */
+const MODES = {
+  div:{
+    eg:"12 + 18 → 2, 3",
+    count:L=>Math.min(10+2*L,24),
+    gen(L){
+      const N=this.count(L), max=Math.min(40+20*L,144);
+      const gs = L<2?[2,3,5] : L<4?[2,3,5,7,4,6] : [2,3,5,7,11,4,6,9,10];
+      for(let tries=0;tries<300;tries++){
+        const v=Array(N).fill(1); let steps=0;
+        for(let k=0;k<2000;k++){
+          const i=rnd(N), j=rnd(N); if(i===j||gcd(v[i],v[j])!==1) continue;
+          const g=pick(gs); if(v[i]*g>max||v[j]*g>max) continue;
+          v[i]*=g; v[j]*=g; steps++;
+          if(v.every(x=>x>1) && steps>=N*0.6+L) break;
+        }
+        const out=v.filter(x=>x>1);
+        if(out.length>=N-2 && out.length%1===0) return out;
+      }
+      return [6,6,10,15,4,2];
+    },
+    merge(a,b){ const g=gcd(a,b); if(g<2) return null; const na=a/g, nb=b/g; return {a:na===1?null:na, b:nb===1?null:nb, pts:g}; },
+    html:v=>String(v), len:v=>String(v).length
+  },
+  frac:{
+    eg:"1/4 + 3/4 = 1",
+    count:L=>Math.min(8+L,16),
+    gen(L){
+      const dens = L<2?[2,4] : L<3?[2,3,4,6] : L<4?[2,3,4,6,8,12] : [2,3,4,5,6,8,10,12];
+      const N=this.count(L), out=[];
+      while(out.length<N-1){
+        const d=pick(dens); let k = (d>=3 && Math.random()<(L<2?.3:.55)) ? 3 : 2; if(k>d) k=d;
+        const cuts=new Set(); while(cuts.size<k-1) cuts.add(1+rnd(d-1));
+        const pts=[0,...[...cuts].sort((x,y)=>x-y),d];
+        for(let i=1;i<pts.length;i++) out.push(frac(pts[i]-pts[i-1],d));
+      }
+      return out;
+    },
+    merge(a,b){ const n=a.n*b.d+b.n*a.d, d=a.d*b.d; if(n>d) return null; if(n===d) return {a:null,b:null,pts:10}; return {a:null,b:frac(n,d),pts:2}; },
+    html:v=>fracHTML(v.n,v.d), len:v=>Math.max(String(v.n).length,String(v.d).length)
+  },
+  same:{
+    eg:"3/4 = 0.75 = 75%",
+    count:L=>2*Math.min(4+L,11),
+    gen(L){
+      let vals=[[1,2],[1,4],[3,4],[1,10],[3,10],[7,10],[9,10]];
+      if(L>=2) vals=vals.concat([[1,5],[2,5],[3,5],[4,5],[1,20],[3,20]]);
+      if(L>=3) vals=vals.concat([[1,8],[3,8],[5,8],[7,8],[1,25],[6,25]]);
+      shuffle(vals); const out=[];
+      for(const [n,d] of vals.slice(0,this.count(L)/2)){
+        const forms=shuffle(["f","d","p"]).slice(0,2);
+        for(const f of forms){ const k=(f==="f"&&L>=2&&Math.random()<.4)?2+rnd(2):1; out.push({n:n*k,d:d*k,f}); }
+      }
+      return out;
+    },
+    merge(a,b){ return a.n*b.d===b.n*a.d ? {a:null,b:null,pts:10} : null; },
+    html:v=> v.f==="f"?fracHTML(v.n,v.d) : v.f==="d"?decStr(v.n,v.d) : pctStr(v.n,v.d),
+    len:v=> v.f==="f"?Math.max(String(v.n).length,String(v.d).length) : (v.f==="d"?decStr(v.n,v.d):pctStr(v.n,v.d)).length
+  },
+  alg:{
+    eg:"3x + (−3x) = 0",
+    count:L=>Math.min(10+2*L,24),
+    gen(L){
+      const vars = L<2?["x","y"] : L<3?["x","y","x2"] : L<4?["x","y","x2","xy"] : ["x","x2","y","y2","xy","ab"];
+      const R = L<2?5 : L<4?9 : 12, N=this.count(L), out=[];
+      const nz=()=>{let c=0; while(!c) c=rnd(2*R+1)-R; return c;};
+      while(out.length<N-1){
+        const v=pick(vars);
+        if(L>=2 && Math.random()<.5){ const a=nz(), b=nz(), c=-(a+b); if(!c||Math.abs(c)>R) continue; out.push({c:a,v},{c:b,v},{c,v}); }
+        else { const a=nz(); out.push({c:a,v},{c:-a,v}); }
+      }
+      return out;
+    },
+    merge(a,b){ if(a.v!==b.v) return null; const s=a.c+b.c; if(s===0) return {a:null,b:null,pts:10}; return {a:null,b:{c:s,v:a.v},pts:2}; },
+    html(v){ const vs={x:"x",y:"y",x2:"x<sup>2</sup>",y2:"y<sup>2</sup>",xy:"xy",ab:"ab"}[v.v];
+      const c = v.c===1?"" : v.c===-1?minus : (v.c<0?minus+(-v.c):String(v.c)); return c+vs; },
+    len:v=>String(Math.abs(v.c)).length+(v.c<0?1:0)+(v.v.length)
+  }
+};
+
+/* ---------- state ---------- */
+let mode=null, level=1, score=0, discs=[], history=[], timeLeft=0, timer=null, selected=null, playing=false, nextId=1;
+const $ = id => document.getElementById(id);
+
+function renderText(){
+  document.documentElement.lang=lang;
+  const x=t();
+  $("title").textContent=x.title; $("intro").textContent=x.intro;
+  $("lLevel").textContent=x.level; $("lScore").textContent=x.score; $("lTime").textContent=x.time;
+  $("undo").textContent="↶ "+x.undo; $("restart").textContent="⟳ "+x.restart; $("back").textContent=x.back;
+  $("langs").innerHTML=Object.keys(T).map(l=>`<button aria-pressed="${l===lang}" data-l="${l}">${l.toUpperCase()}</button>`).join(" ");
+  $("modes").innerHTML=Object.keys(MODES).map(k=>{
+    const best=store.get("merge.best."+k);
+    return `<button class="mode" data-m="${k}"><b>${x.modes[k][0]}</b><small>${x.modes[k][1]}</small>
+      <span class="eg">${MODES[k].eg}${best?` · ${x.best}: ${best}`:""}</span></button>`;}).join("");
+  if(mode) $("rule").textContent=x.modes[mode][1];
+  if(playing||discs.length) renderBoard();
+}
+$("langs").addEventListener("click",e=>{const l=e.target.dataset.l; if(l){lang=l; store.set("merge.lang",l); renderText();}});
+$("modes").addEventListener("click",e=>{const b=e.target.closest(".mode"); if(b) startMode(b.dataset.m);});
+
+function startMode(m){ mode=m; level=1; score=0; $("menu").hidden=true; $("game").hidden=false; $("rule").textContent=t().modes[m][1]; startLevel(); }
+function startLevel(){
+  const vals=shuffle(MODES[mode].gen(level));
+  const cells=shuffle([...Array(36).keys()]).slice(0,vals.length);
+  discs=vals.map((v,i)=>({id:nextId++, cell:cells[i], v}));
+  history=[]; selected=null; playing=true;
+  timeLeft=Math.round(25+5*vals.length - 1.5*(level-1)*vals.length/6);
+  levelStartScore=score;
+  clearInterval(timer); timer=setInterval(tick,1000);
+  $("msg").textContent=""; updateStats(); renderBoard();
+}
+let levelStartScore=0;
+function tick(){ if(!playing) return; timeLeft--; updateStats(); if(timeLeft<=0) endLevel(false); }
+function updateStats(){
+  $("vLevel").textContent=level; $("vScore").textContent=score;
+  const s=Math.max(0,timeLeft); $("vTime").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+  $("timeBox").classList.toggle("low", s<=10);
+}
+
+function renderBoard(){
+  const M=MODES[mode], b=$("board");
+  const byCell={}; discs.forEach(d=>byCell[d.cell]=d);
+  let h="";
+  for(let c=0;c<36;c++){
+    const d=byCell[c];
+    if(!d){h+=`<div class="cell"></div>`; continue;}
+    const L=M.len(d.v), sz=L>=5?" xs":L>=4?" s":"";
+    h+=`<div class="cell"><button class="disc${sz}${selected===d.id?" sel":""}" data-id="${d.id}">${M.html(d.v)}</button></div>`;
+  }
+  b.innerHTML=h;
+}
+const discEl = id => $("board").querySelector(`.disc[data-id="${id}"]`);
+
+function attempt(fromId,toId){
+  const A=discs.find(d=>d.id===fromId), B=discs.find(d=>d.id===toId); if(!A||!B||A===B) return;
+  const r=MODES[mode].merge(A.v,B.v);
+  selected=null;
+  if(!r){ [discEl(fromId),discEl(toId)].forEach(e=>{if(e){e.classList.remove("shake","sel");void e.offsetWidth;e.classList.add("shake");}}); $("msg").textContent=t().nope; return; }
+  history.push({discs:JSON.parse(JSON.stringify(discs)),score});
+  score+=r.pts; $("msg").textContent="";
+  if(r.a===null) discEl(fromId)?.classList.add("pop"); else A.v=r.a;
+  if(r.b===null) discEl(toId)?.classList.add("pop"); else B.v=r.b;
+  discs=discs.filter(d=>!((d===A&&r.a===null)||(d===B&&r.b===null)));
+  updateStats();
+  setTimeout(()=>{
+    renderBoard();
+    [fromId,toId].forEach(id=>discEl(id)?.classList.add("merged"));
+    if(!discs.length) endLevel(true);
+    else if(!anyMove()) $("msg").textContent=t().stuck;
+  },180);
+}
+function anyMove(){
+  const M=MODES[mode];
+  for(const a of discs) for(const b of discs) if(a!==b && M.merge(a.v,b.v)) return true;
+  return false;
+}
+function endLevel(won){
+  playing=false; clearInterval(timer);
+  const x=t(); let h;
+  if(won){
+    const bonus=Math.max(0,timeLeft); score+=bonus; updateStats();
+    h=`<h2>${x.cleared}</h2><p>${x.bonus}: +${bonus}</p><button class="btn primary" id="go">${x.next} →</button>`;
+  } else {
+    h=`<h2>${x.timeUp}</h2><p>${x.score}: ${score}</p><button class="btn primary" id="go">${x.again}</button>`;
+  }
+  const best=+(store.get("merge.best."+mode)||0); if(score>best) store.set("merge.best."+mode,score);
+  const o=document.createElement("div"); o.className="overlay"; o.innerHTML=h; $("board").appendChild(o);
+  o.querySelector("#go").addEventListener("click",()=>{ if(won) level++; else score=levelStartScore; startLevel(); });
+  o.querySelector("#go").focus();
+}
+$("undo").addEventListener("click",()=>{ if(!playing||!history.length) return; const s=history.pop(); discs=s.discs; score=s.score; selected=null; $("msg").textContent=""; updateStats(); renderBoard(); });
+$("restart").addEventListener("click",()=>{ score=levelStartScore; startLevel(); });
+$("back").addEventListener("click",()=>{ playing=false; clearInterval(timer); discs=[]; mode=null; $("game").hidden=true; $("menu").hidden=false; renderText(); });
+
+/* ---------- drag and tap ---------- */
+let drag=null, suppressClick=false;
+const board=$("board");
+board.addEventListener("pointerdown",e=>{
+  const el=e.target.closest(".disc"); if(!el||!playing) return;
+  drag={el,id:+el.dataset.id,x:e.clientX,y:e.clientY,moving:false,over:null};
+  el.setPointerCapture(e.pointerId);
+});
+board.addEventListener("pointermove",e=>{
+  if(!drag) return;
+  const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
+  if(!drag.moving && Math.hypot(dx,dy)<6) return;
+  drag.moving=true; drag.el.classList.add("drag"); drag.el.style.pointerEvents="none";
+  drag.el.style.transform=`translate(${dx}px,${dy}px) scale(1.08)`;
+  const tgt=document.elementFromPoint(e.clientX,e.clientY)?.closest(".disc");
+  if(drag.over && drag.over!==tgt) drag.over.classList.remove("over");
+  if(tgt && tgt!==drag.el){ tgt.classList.add("over"); drag.over=tgt; } else drag.over=null;
+});
+function endDrag(e){
+  if(!drag) return;
+  const d=drag; drag=null;
+  if(!d.moving) return;
+  suppressClick=true; setTimeout(()=>suppressClick=false,0);
+  const tgt=document.elementFromPoint(e.clientX,e.clientY)?.closest(".disc");
+  d.el.style.transform=""; d.el.style.pointerEvents=""; d.el.classList.remove("drag");
+  d.over?.classList.remove("over");
+  if(tgt && tgt!==d.el) attempt(d.id,+tgt.dataset.id);
+}
+board.addEventListener("pointerup",endDrag);
+board.addEventListener("pointercancel",e=>{ if(drag){drag.el.style.transform="";drag.el.style.pointerEvents="";drag.el.classList.remove("drag");drag=null;} });
+board.addEventListener("click",e=>{
+  if(suppressClick) return;
+  const el=e.target.closest(".disc"); if(!el||!playing) return;
+  const id=+el.dataset.id;
+  if(selected===null){ selected=id; el.classList.add("sel"); }
+  else if(selected===id){ selected=null; el.classList.remove("sel"); }
+  else attempt(selected,id);
+});
+
+renderText();
+</script>
+</body>
+</html>
