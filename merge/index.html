@@ -2,67 +2,66 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Merge and Clear</title>
 <style>
-:root{
-  --bg:#f5f1e8; --panel:#fffdf8; --ink:#1d2433; --muted:#6b7280; --line:#ddd5c4;
-  --cell:#ebe4d4; --disc:#ffffff; --accent:#d9572b; --ok:#2f8f5b; --bad:#c2410c; --sel:#f2b705;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#13161d; --panel:#1c2029; --ink:#eef0f4; --muted:#9aa3b2; --line:#2c3240;
-    --cell:#232836; --disc:#2b3142; --accent:#ff7a4d; --ok:#4cc38a; --bad:#ff8a5c; --sel:#ffd34d;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#13161d; --panel:#1c2029; --ink:#eef0f4; --muted:#9aa3b2; --line:#2c3240;
-  --cell:#232836; --disc:#2b3142; --accent:#ff7a4d; --ok:#4cc38a; --bad:#ff8a5c; --sel:#ffd34d;
-}
+/* The Mathskills pixel font, copied from the start page. Nothing loads from outside. */
+@font-face { font-family: "Mathskills Pixel"; src: url(data:font/woff;base64,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) format("woff"); font-display: block; }
+:root{ --bg:#000; --fg:#fff; --mute:#8a8a92; --cell:#1a1a1d; color-scheme:dark;
+  --font:"Mathskills Pixel",Tahoma,"Segoe UI",sans-serif; }
+@media (prefers-color-scheme: light){ :root:not([data-mode="dark"]){ --bg:#fff; --fg:#000; --mute:#6d6d75; --cell:#ececee; color-scheme:light; } }
+:root[data-mode="light"]{ --bg:#fff; --fg:#000; --mute:#6d6d75; --cell:#ececee; color-scheme:light; }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;}
-main{max-width:560px;margin:0 auto;padding:16px}
-h1{font-size:1.5rem;margin:.2em 0 .1em}
-.sub{color:var(--muted);margin:0 0 16px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.langs button,.btn{font:inherit;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:6px 12px;cursor:pointer}
-.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:420px){.modes{grid-template-columns:1fr}}
-.mode{text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:14px;padding:14px;cursor:pointer;font:inherit}
-.mode:hover{border-color:var(--accent)}
-.mode b{display:block;font-size:1.05rem;margin-bottom:4px}
-.mode small{color:var(--muted)}
-.mode .eg{display:block;margin-top:8px;font-weight:600;color:var(--accent)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;text-align:center;padding:6px}
-.stat span{display:block;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.stat strong{font-size:1.25rem;font-variant-numeric:tabular-nums}
-.stat.low strong{color:var(--bad)}
-.rule{font-size:.9rem;color:var(--muted);margin:0 0 10px;min-height:2.6em}
-.board{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:6px;background:var(--line);padding:6px;border-radius:16px;touch-action:none;user-select:none;-webkit-user-select:none}
-.cell{aspect-ratio:1;background:var(--cell);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative}
-.disc{width:94%;height:94%;border-radius:50%;border:3px solid var(--accent);background:var(--disc);color:var(--ink);font:700 clamp(14px,4.6vw,24px)/1 system-ui,sans-serif;display:flex;align-items:center;justify-content:center;cursor:grab;padding:0;touch-action:none;transition:transform .12s, box-shadow .12s}
-.disc.s{font-size:clamp(11px,3.4vw,18px)}
-.disc.xs{font-size:clamp(10px,2.9vw,15px)}
-.disc.sel{border-color:var(--sel);box-shadow:0 0 0 4px color-mix(in srgb,var(--sel) 45%,transparent)}
-.disc.over{transform:scale(1.12);border-color:var(--ok)}
-.disc.drag{position:relative;z-index:10;cursor:grabbing;transition:none;box-shadow:0 8px 20px rgba(0,0,0,.25)}
-.disc.pop{animation:pop .2s ease-in forwards}
-.disc.shake{animation:shake .3s}
-.disc.merged{animation:grow .25s}
-@keyframes pop{to{transform:scale(0);opacity:0}}
-@keyframes grow{50%{transform:scale(1.18)}}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{font:18px/1.45 var(--font);-webkit-font-smoothing:none;font-synthesis:none}
+button{font-family:var(--font);font-synthesis:none}
+main{max-width:600px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left,0px)) 40px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font-size:30px;margin:0;letter-spacing:.04em}
+.sub{color:var(--mute);margin:12px 0 20px}
+.langs{display:flex;gap:6px}
+.langs button{background:var(--bg);color:var(--fg);border:3px solid var(--fg);padding:4px 10px;font-size:15px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:460px){.modes{grid-template-columns:1fr}}
+.mode{text-align:left;background:var(--bg);color:var(--fg);border:3px solid var(--fg);padding:16px;cursor:pointer;font-size:16px;display:flex;flex-direction:column;gap:6px}
+.mode b{font-size:22px;font-weight:normal}
+.mode small{color:var(--mute);font-size:14px;line-height:1.4}
+.mode .eg{font-size:15px}
+.mode:hover,.mode:focus-visible{background:var(--fg);color:var(--bg);outline:none}
+.mode:hover small,.mode:focus-visible small{color:var(--bg)}
+.btn{background:var(--bg);color:var(--fg);border:3px solid var(--fg);padding:8px 16px;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 var(--fg)}
+.btn:hover,.btn:focus-visible{background:var(--fg);color:var(--bg);outline:none}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--fg)}
+.btn.primary{background:var(--fg);color:var(--bg)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 10px}
+.stat{border:3px solid var(--fg);text-align:center;padding:6px 4px}
+.stat span{display:block;font-size:13px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+.stat strong{font-size:24px;font-weight:normal;font-variant-numeric:tabular-nums}
+.stat.low{background:var(--fg);color:var(--bg)}
+.stat.low span{color:var(--bg)}
+.rule{font-size:15px;color:var(--mute);margin:0 0 12px;min-height:2.9em}
+.board{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:4px;border:3px solid var(--fg);padding:6px;touch-action:none;user-select:none;-webkit-user-select:none}
+.cell{aspect-ratio:1;background:var(--cell);display:flex;align-items:center;justify-content:center}
+.disc{width:92%;height:92%;border-radius:50%;border:3px solid var(--fg);background:var(--bg);color:var(--fg);
+  font-size:clamp(15px,4.8vw,26px);line-height:1;display:flex;align-items:center;justify-content:center;cursor:grab;padding:0;touch-action:none}
+.disc.s{font-size:clamp(12px,3.7vw,20px)}
+.disc.xs{font-size:clamp(10px,3vw,16px)}
+.disc.sel,.disc.over{background:var(--fg);color:var(--bg)}
+.disc.drag{position:relative;z-index:10;cursor:grabbing;box-shadow:4px 4px 0 var(--mute)}
+.disc.pop{animation:pop .2s steps(4) forwards}
+.disc.shake{animation:shake .3s steps(4)}
+@keyframes pop{to{transform:scale(0)}}
 @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-.fr{display:inline-flex;flex-direction:column;align-items:center;line-height:1.05}
-.fr span:first-child{border-bottom:2px solid currentColor;padding:0 2px}
+.fr{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}
+.fr span:first-child{border-bottom:2px solid currentColor;padding:0 3px 1px}
 sup{font-size:.6em}
-.tools{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tools{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
 .tools .grow{flex:1}
-.msg{margin-top:10px;min-height:1.4em;font-weight:600;color:var(--bad)}
-.overlay{position:absolute;inset:0;background:color-mix(in srgb,var(--bg) 88%,transparent);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px}
-.overlay h2{margin:0;font-size:1.6rem}
+.msg{margin-top:10px;min-height:1.4em}
+.overlay{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:20px}
+.overlay h2{margin:0;font-size:30px;font-weight:normal}
+.overlay p{margin:0;color:var(--mute);max-width:26em}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -100,28 +99,31 @@ sup{font-size:.6em}
 "use strict";
 /* ---------- text ---------- */
 const T = {
-  en:{title:"Merge and Clear",intro:"Drag one disc onto another (or tap one, then the other). Clear the board before the time runs out.",
+  en:{title:"Merge and Clear",intro:"Drag one disc onto another, in any direction, or tap one and then the other. Clear the board before the time runs out.",
       level:"Level",score:"Score",time:"Time",undo:"Undo",restart:"Restart",back:"Activities",
       cleared:"Board cleared!",bonus:"Time bonus",next:"Next level",timeUp:"Time's up",again:"Try again",
-      stuckTitle:"No moves left",stuckWhy:"Every move you made was allowed, but these discs can't combine. The clock is paused.",undoLast:"Undo last move",restartLevel:"Restart level",l1frac:"Level 1: find two fractions that make exactly 1.",nope:"That doesn't work here.",best:"Best",
+      stuckTitle:"No moves left",stuckWhy:"These discs can't combine any more. The clock is paused.",undoLast:"Undo last move",restartLevel:"Restart level",
+      nope:"That doesn't work here.",best:"Best",
       modes:{
         div:["Common divisor","Drop a number on one that shares a divisor. Both are divided by it; 1s vanish."],
         frac:["Make a whole","Drop a fraction on the one that makes exactly 1 with it. Both vanish."],
         same:["Same value","Drop a fraction, decimal or percentage on one with the same value. Both vanish."],
         alg:["Like terms","Drop a term on a like term to add them. At 0 both vanish. x and x² are not like terms."]}},
-  de:{title:"Verbinden und Leeren",intro:"Zieh eine Scheibe auf eine andere (oder tippe nacheinander beide an). Leere das Feld, bevor die Zeit abläuft.",
+  de:{title:"Verbinden und Leeren",intro:"Zieh eine Scheibe auf eine andere, in jede Richtung, oder tippe nacheinander beide an. Leere das Feld, bevor die Zeit abläuft.",
       level:"Level",score:"Punkte",time:"Zeit",undo:"Zurück",restart:"Neu starten",back:"Spiele",
       cleared:"Feld leer!",bonus:"Zeitbonus",next:"Nächstes Level",timeUp:"Zeit abgelaufen",again:"Nochmal",
-      stuckTitle:"Kein Zug mehr möglich",stuckWhy:"Alle Züge waren erlaubt, aber diese Scheiben passen nicht mehr zusammen. Die Uhr ist angehalten.",undoLast:"Letzten Zug zurück",restartLevel:"Level neu starten",l1frac:"Level 1: Finde zwei Brüche, die zusammen genau 1 ergeben.",nope:"Das geht hier nicht.",best:"Rekord",
+      stuckTitle:"Kein Zug mehr möglich",stuckWhy:"Diese Scheiben passen nicht mehr zusammen. Die Uhr ist angehalten.",undoLast:"Letzten Zug zurück",restartLevel:"Level neu starten",
+      nope:"Das geht hier nicht.",best:"Rekord",
       modes:{
         div:["Gemeinsamer Teiler","Zieh eine Zahl auf eine mit gemeinsamem Teiler. Beide werden durch ihn geteilt; Einsen verschwinden."],
         frac:["Ein Ganzes","Zieh einen Bruch auf den, der mit ihm zusammen genau 1 ergibt. Beide verschwinden."],
         same:["Gleicher Wert","Zieh Bruch, Dezimalzahl oder Prozent auf einen gleichwertigen. Beide verschwinden."],
         alg:["Gleichartige Terme","Zieh einen Term auf einen gleichartigen, um sie zu addieren. Bei 0 verschwinden beide. x und x² sind nicht gleichartig."]}},
-  it:{title:"Unisci e Svuota",intro:"Trascina un dischetto sopra un altro (o tocca prima uno, poi l'altro). Svuota la griglia prima che scada il tempo.",
+  it:{title:"Unisci e Svuota",intro:"Trascina un dischetto sopra un altro, in qualsiasi direzione, o tocca prima uno e poi l'altro. Svuota la griglia prima che scada il tempo.",
       level:"Livello",score:"Punti",time:"Tempo",undo:"Annulla",restart:"Ricomincia",back:"Attività",
       cleared:"Griglia vuota!",bonus:"Bonus tempo",next:"Livello successivo",timeUp:"Tempo scaduto",again:"Riprova",
-      stuckTitle:"Nessuna mossa possibile",stuckWhy:"Tutte le mosse erano valide, ma questi dischetti non si combinano più. Il tempo è in pausa.",undoLast:"Annulla l'ultima mossa",restartLevel:"Ricomincia il livello",l1frac:"Livello 1: trova due frazioni che fanno esattamente 1.",nope:"Qui non funziona.",best:"Record",
+      stuckTitle:"Nessuna mossa possibile",stuckWhy:"Questi dischetti non si combinano più. Il tempo è in pausa.",undoLast:"Annulla l'ultima mossa",restartLevel:"Ricomincia il livello",
+      nope:"Qui non funziona.",best:"Record",
       modes:{
         div:["Divisore comune","Trascina un numero su uno con un divisore in comune. Entrambi vengono divisi; gli 1 spariscono."],
         frac:["Fai un intero","Trascina una frazione su quella che insieme a lei fa esattamente 1. Spariscono entrambe."],
@@ -129,7 +131,8 @@ const T = {
         alg:["Monomi simili","Trascina un monomio su uno simile per sommarli. Se fa 0 spariscono. x e x² non sono simili."]}}
 };
 const store = {get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
-let lang = store.get("merge.lang") || ((navigator.language||"en").slice(0,2) in T ? navigator.language.slice(0,2) : "en");
+const navLang = (navigator.language||"en").slice(0,2);
+let lang = store.get("merge.lang") || (navLang in T ? navLang : "en");
 const t = () => T[lang];
 const sep = () => lang === "en" ? "." : ",";
 
@@ -141,52 +144,108 @@ const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]
 const frac = (n,d) => { const g=gcd(n,d); return {n:n/g,d:d/g}; };
 const fracHTML = (n,d) => `<span class="fr"><span>${n}</span><span>${d}</span></span>`;
 const minus = "−";
-function decStr(n,d){ let s=String(+(n/d).toFixed(4)); return s.replace(".", sep()); }
-function pctStr(n,d){ let s=String(+(100*n/d).toFixed(2)); return s.replace(".", sep()) + (lang==="en"?"%":" %"); }
+const decStr = (n,d) => String(+(n/d).toFixed(4)).replace(".", sep());
+const pctStr = (n,d) => String(+(100*n/d).toFixed(2)).replace(".", sep()) + "%";
+
+/* Apply one move to a list of values (index i dropped on index j). */
+function applyMove(v,i,j,r){ const nv=[]; v.forEach((y,k)=>{ if(k===i){ if(r.a!==null) nv.push(r.a); } else if(k===j){ if(r.b!==null) nv.push(r.b); } else nv.push(y); }); return nv; }
+/* True if EVERY order of allowed moves clears these values (exhaustive, for small groups). */
+function alwaysClears(M,vals,memo=new Map()){
+  if(!vals.length) return true;
+  const key=JSON.stringify(vals.map(x=>JSON.stringify(x)).sort());
+  if(memo.has(key)) return memo.get(key);
+  let any=false, ok=true;
+  for(let i=0;i<vals.length && ok;i++) for(let j=0;j<vals.length && ok;j++){
+    if(i===j) continue; const r=M.merge(vals[i],vals[j]); if(!r) continue;
+    any=true; if(!alwaysClears(M,applyMove(vals,i,j,r),memo)) ok=false;
+  }
+  const res=any&&ok; memo.set(key,res); return res;
+}
 
 /* ---------- activities ---------- */
 const MODES = {
   div:{
-    eg:"12 + 18 → 2, 3",
+    eg:"12 · 18 → 2 · 3",
     gen(L){
-      // Every group uses its own primes, so groups never block each other.
-      // Group shapes that clear in any order: {x·y, x, y} with x, y coprime;
-      // {n, n}; and from level 3 {p·q, p·r, q·r}.
-      const pool = L<2?[2,3,5,7,11,13] : L<3?[2,3,5,7,11,13,17] : L<4?[2,3,5,7,11,13,17,19] : [2,3,5,7,11,13,17,19,23];
-      const max = L<2?50 : L<3?100 : L<4?150 : 200;
-      const ps=pool.slice(), out=[];
-      const take=()=>ps.splice(rnd(ps.length),1)[0];
-      while(ps.length){
-        const q=ps.pop(), r=Math.random();
-        if(L>=3 && ps.length>=2 && r<.35){
-          const p=take(), t=take();
-          if(p*q<=max && t*q<=max){ out.push(p*q,t*q,p*t); continue; }
-          ps.push(p,t); ps.sort((m,n)=>m-n);
+      // Varied boards: groups share small primes. A board is used only if it clears in
+      // EVERY possible order of moves (checked exhaustively). If none is found quickly,
+      // fall back to genSafe, where groups never share a prime and so cannot block each other.
+      const max=[100,100,120,150,180,200][Math.min(L,5)], target=Math.min(14+2*L,24), t0=Date.now();
+      while(Date.now()-t0<700){
+        const big=shuffle([11,13,17,19,23,29,31,37,41,43,47].filter(p=>2*p<=max)), c=[];
+        while(c.length<target){ const P=shuffle([2,3,5,7]).slice(0,1+rnd(2)); if(big.length && Math.random()<.7) P.push(big.pop()); c.push(...this.group(P,max,3+rnd(3))); }
+        const cnt={}; if(c.some(x=>(cnt[x]=(cnt[x]||0)+1)>3)) continue;   // no number more than 3 times
+        if(this.clearsAlways(c)) return c;
+      }
+      return this.genSafe(L);
+    },
+    clearsAlways(vals){
+      const memo=new Map(), merge=this.merge; let states=0;
+      const go=v=>{
+        if(!v.length) return true;
+        const key=v.slice().sort((a,b)=>a-b).join(); if(memo.has(key)) return memo.get(key);
+        if(++states>30000) throw 0;
+        let any=false;
+        for(let i=0;i<v.length;i++) for(let j=i+1;j<v.length;j++){
+          const r=merge(v[i],v[j]); if(!r) continue; any=true;
+          if(!go(applyMove(v,i,j,r))){ memo.set(key,false); return false; }
         }
-        if(ps.length && r<.85){
-          const i=rnd(ps.length); let y=ps[i];
-          if(L>=2 && y*y*q<=max && Math.random()<.5) y*=ps[i];
-          if(q*y<=max){ ps.splice(i,1); out.push(q*y,q,y); continue; }
-        }
-        let n=q; if(L>=2 && n*q<=max && Math.random()<.5) n*=q;
-        out.push(n,n);
+        memo.set(key,any); return any;
+      };
+      try{ return go(vals); }catch(e){ return false; }
+    },
+    genSafe(L){
+      const max=[100,100,120,150,180,200][Math.min(L,5)];
+      const target=Math.min(14+2*L,24);
+      const small=shuffle([2,3,5,7]), big=shuffle([11,13,17,19,23,29,31,37,41,43,47].filter(p=>2*p<=max));
+      const out=[];
+      // Two rich groups built from the small primes (sometimes with a big prime added) ...
+      for(const P of [[small[0],small[1]],[small[2],small[3]]]){
+        if(big.length) P.push(big.pop());
+        out.push(...this.group(P,max,5+rnd(L>1?3:2)));
+      }
+      // ... then big primes, alone or (when the product fits) as {p·q, p, q}.
+      while(out.length<target && big.length){
+        const p=big.pop(), q=big.find(q=>p*q<=max);
+        if(q && Math.random()<.6){ big.splice(big.indexOf(q),1); out.push(p*q,p,q); }
+        else out.push(p,p);
       }
       return out;
+    },
+    group(P,max,m){
+      const gs=[]; for(const p of P){ gs.push(p); if(p*p<=max/2) gs.push(p*p); for(const q of P) if(q>p && p*q<=max/2) gs.push(p*q); }
+      // Try many candidates and keep the most varied one that clears in every order.
+      let best=null, bestScore=-1;
+      for(let tries=0;tries<300;tries++){
+        const size=Math.max(2, m-Math.floor(tries/100));
+        const v=Array(size).fill(1);
+        for(let k=0;k<80;k++){
+          const i=rnd(size), j=rnd(size); if(i===j||gcd(v[i],v[j])!==1) continue;
+          const g=pick(gs); if(v[i]*g>max||v[j]*g>max) continue;
+          v[i]*=g; v[j]*=g;
+          if(v.every(x=>x>1) && k>size+2) break;
+        }
+        if(!v.every(x=>x>1)) continue;
+        const sc=new Set(v).size*10+v.length;
+        if(sc>bestScore && alwaysClears(MODES.div,v)){ best=v; bestScore=sc; }
+      }
+      return best || [P[0],P[0]];
     },
     merge(a,b){ const g=gcd(a,b); if(g<2) return null; const na=a/g, nb=b/g; return {a:na===1?null:na, b:nb===1?null:nb, pts:g}; },
     html:v=>String(v), len:v=>String(v).length
   },
   frac:{
-    eg:"1/4 + 3/4 = 1 · 2/6 + 2/3 = 1",
+    eg:"1/4 + 3/4 · 2/6 + 2/3",
     gen(L){
-      // Pairs that make exactly 1. Only exact wholes merge, so any order clears the board.
-      const dens = L<2?[2,3,4,5] : L<3?[3,4,5,6,8] : L<4?[5,6,8,10,12] : [6,7,8,9,10,12];
-      const out=[];
-      for(let i=0;i<Math.min(4+L,9);i++){
+      // Pairs that make exactly 1. Only exact wholes merge, so every order clears the board.
+      const dens = L<2?[2,3,4,5,6,8,10] : L<3?[3,4,5,6,8,9,10,12] : L<4?[5,6,7,8,9,10,12,15] : [7,8,9,11,12,15,16,20];
+      const pairs=Math.min(7+L,12), seen=new Set(), out=[];
+      for(let tries=0; out.length<2*pairs && tries<500; tries++){
         const d=pick(dens), a=1+rnd(d-1);
         const pair=[frac(a,d), frac(d-a,d)];
-        if(L>=2 && Math.random()<.45){ const j=rnd(2), k=2+rnd(2); if(pair[j].d*k<=24) pair[j]={n:pair[j].n*k,d:pair[j].d*k}; }
-        out.push(...pair);
+        if(Math.random() < (L<2?.25:.45)){ const j=rnd(2), k=2+rnd(2); if(pair[j].d*k<=24) pair[j]={n:pair[j].n*k,d:pair[j].d*k}; }
+        const key=pair.map(f=>f.n+"/"+f.d).sort().join();
+        if(seen.has(key)) continue; seen.add(key); out.push(...pair);
       }
       return out;
     },
@@ -195,45 +254,44 @@ const MODES = {
   },
   same:{
     eg:"3/4 = 0.75 = 75%",
-    count:L=>2*Math.min(4+L,11),
     gen(L){
-      let vals=[[1,2],[1,4],[3,4],[1,10],[3,10],[7,10],[9,10]];
-      if(L>=2) vals=vals.concat([[1,5],[2,5],[3,5],[4,5],[1,20],[3,20]]);
-      if(L>=3) vals=vals.concat([[1,8],[3,8],[5,8],[7,8],[1,25],[6,25]]);
+      let vals=[[1,2],[1,4],[3,4],[1,5],[2,5],[3,5],[4,5],[1,10],[3,10],[7,10],[9,10],[1,20],[1,100]];
+      if(L>=2) vals=vals.concat([[1,8],[3,8],[5,8],[7,8],[3,20],[7,20],[11,20],[3,25]]);
+      if(L>=3) vals=vals.concat([[1,25],[6,25],[12,25],[1,40],[3,50],[17,50],[9,40]]);
       shuffle(vals); const out=[];
-      for(const [n,d] of vals.slice(0,this.count(L)/2)){
-        const forms=shuffle(["f","d","p"]).slice(0,2);
-        for(const f of forms){ const k=(f==="f"&&L>=2&&Math.random()<.4)?2+rnd(2):1; out.push({n:n*k,d:d*k,f}); }
+      for(const [n,d] of vals.slice(0,Math.min(7+L,12))){
+        for(const f of shuffle(["f","d","p"]).slice(0,2)){ const k=(f==="f" && Math.random()<(L<2?.25:.45))?2+rnd(2):1; out.push({n:n*k,d:d*k,f}); }
       }
       return out;
     },
     merge(a,b){ return a.n*b.d===b.n*a.d ? {a:null,b:null,pts:10} : null; },
-    html:v=> v.f==="f"?fracHTML(v.n,v.d) : v.f==="d"?decStr(v.n,v.d) : pctStr(v.n,v.d),
-    len:v=> v.f==="f"?Math.max(String(v.n).length,String(v.d).length) : (v.f==="d"?decStr(v.n,v.d):pctStr(v.n,v.d)).length
+    text:v=> v.f==="d"?decStr(v.n,v.d) : pctStr(v.n,v.d),
+    html(v){ return v.f==="f"?fracHTML(v.n,v.d):this.text(v); },
+    len(v){ return v.f==="f"?Math.max(String(v.n).length,String(v.d).length):this.text(v).length; }
   },
   alg:{
     eg:"3x + (−3x) = 0",
-    count:L=>Math.min(10+2*L,24),
     gen(L){
-      const vars = L<2?["x","y"] : L<3?["x","y","x2"] : L<4?["x","y","x2","xy"] : ["x","x2","y","y2","xy","ab"];
-      const R = L<2?5 : L<4?9 : 12, N=this.count(L), out=[];
+      const vars = L<2?["x","y","x2","a"] : L<3?["x","y","x2","xy","a","b"] : ["x","y","x2","y2","xy","ab","a","x2y"];
+      const R = L<2?9 : L<3?12 : 15, N=Math.min(14+2*L,26), out=[];
       const nz=()=>{let c=0; while(!c) c=rnd(2*R+1)-R; return c;};
       while(out.length<N-1){
         const v=pick(vars);
-        if(L>=2 && Math.random()<.5){ const a=nz(), b=nz(), c=-(a+b); if(!c||Math.abs(c)>R) continue; out.push({c:a,v},{c:b,v},{c,v}); }
+        if(Math.random()<(L<2?.4:.55)){ const a=nz(), b=nz(), c=-(a+b); if(!c||Math.abs(c)>R) continue; out.push({c:a,v},{c:b,v},{c,v}); }
         else { const a=nz(); out.push({c:a,v},{c:-a,v}); }
       }
       return out;
     },
     merge(a,b){ if(a.v!==b.v) return null; const s=a.c+b.c; if(s===0) return {a:null,b:null,pts:10}; return {a:null,b:{c:s,v:a.v},pts:2}; },
-    html(v){ const vs={x:"x",y:"y",x2:"x<sup>2</sup>",y2:"y<sup>2</sup>",xy:"xy",ab:"ab"}[v.v];
+    html(v){ const vs={x:"x",y:"y",a:"a",b:"b",x2:"x<sup>2</sup>",y2:"y<sup>2</sup>",xy:"xy",ab:"ab",x2y:"x<sup>2</sup>y"}[v.v];
       const c = v.c===1?"" : v.c===-1?minus : (v.c<0?minus+(-v.c):String(v.c)); return c+vs; },
-    len:v=>String(Math.abs(v.c)).length+(v.c<0?1:0)+(v.v.length)
+    len:v=>String(Math.abs(v.c)).length+(v.c<0?1:0)+v.v.length
   }
 };
 
 /* ---------- state ---------- */
-let stuck=false, mode=null, level=1, score=0, discs=[], history=[], timeLeft=0, timer=null, selected=null, playing=false, nextId=1;
+let mode=null, level=1, score=0, levelStartScore=0, discs=[], history=[], timeLeft=0, timer=null,
+    selected=null, playing=false, stuck=false, panel=null, nextId=1, moveToken=0;
 const $ = id => document.getElementById(id);
 
 function renderText(){
@@ -241,60 +299,37 @@ function renderText(){
   const x=t();
   $("title").textContent=x.title; $("intro").textContent=x.intro;
   $("lLevel").textContent=x.level; $("lScore").textContent=x.score; $("lTime").textContent=x.time;
-  $("undo").textContent="↶ "+x.undo; $("restart").textContent="⟳ "+x.restart; $("back").textContent=x.back;
-  $("langs").innerHTML=Object.keys(T).map(l=>`<button aria-pressed="${l===lang}" data-l="${l}">${l.toUpperCase()}</button>`).join(" ");
+  $("undo").textContent="↶ "+x.undo; $("restart").textContent=x.restart; $("back").textContent="← "+x.back;
+  $("langs").innerHTML=Object.keys(T).map(l=>`<button aria-pressed="${l===lang}" data-l="${l}">${l.toUpperCase()}</button>`).join("");
   $("modes").innerHTML=Object.keys(MODES).map(k=>{
     const best=store.get("merge.best."+k);
     return `<button class="mode" data-m="${k}"><b>${x.modes[k][0]}</b><small>${x.modes[k][1]}</small>
-      <span class="eg">${MODES[k].eg}${best?` · ${x.best}: ${best}`:""}</span></button>`;}).join("");
-  setRule();
-  if(playing||discs.length) renderBoard();
+      <span class="eg">${MODES[k].eg}${best?` · ${x.best} ${best}`:""}</span></button>`;}).join("");
+  if(mode){ $("rule").textContent=x.modes[mode][1]; renderBoard(); }
 }
 $("langs").addEventListener("click",e=>{const l=e.target.dataset.l; if(l){lang=l; store.set("merge.lang",l); renderText();}});
-$("modes").addEventListener("click",e=>{const b=e.target.closest(".mode"); if(b) startMode(b.dataset.m);});
+$("modes").addEventListener("click",e=>{const b=e.target.closest(".mode"); if(b) startMode(b.dataset.m,1);});
 
-function startMode(m){ mode=m; level=1; score=0; $("menu").hidden=true; $("game").hidden=false; $("rule").textContent=t().modes[m][1]; startLevel(); }
-function trapFree(M,vals){
-  for(let r=0;r<300;r++){
-    let v=vals.slice();
-    while(v.length){
-      const moves=[];
-      for(let i=0;i<v.length;i++) for(let j=0;j<v.length;j++) if(i!==j){ const x=M.merge(v[i],v[j]); if(x) moves.push([i,j,x]); }
-      if(!moves.length) return false;
-      const [i,j,x]=pick(moves), nv=[];
-      v.forEach((y,k)=>{ if(k===i){ if(x.a!==null) nv.push(x.a); } else if(k===j){ if(x.b!==null) nv.push(x.b); } else nv.push(y); });
-      v=nv;
-    }
-  }
-  return true;
-}
-function makeBoard(){
-  const M=MODES[mode]; let vals=M.gen(level);
-  if(level===1) for(let i=0;i<200 && !trapFree(M,vals);i++) vals=M.gen(level);
-  return vals;
-}
+function startMode(m,L){ mode=m; level=L||1; score=0; $("menu").hidden=true; $("game").hidden=false; $("rule").textContent=t().modes[m][1]; startLevel(); }
 function startLevel(){
-  const vals=shuffle(makeBoard());
+  const vals=shuffle(MODES[mode].gen(level));
   const cells=shuffle([...Array(36).keys()]).slice(0,vals.length);
   discs=vals.map((v,i)=>({id:nextId++, cell:cells[i], v}));
-  history=[]; selected=null; playing=true; stuck=false;
-  timeLeft=Math.round(25+5*vals.length - 1.5*(level-1)*vals.length/6);
+  history=[]; selected=null; playing=true; stuck=false; panel=null; moveToken++;
   levelStartScore=score;
+  timeLeft=Math.max(3*vals.length, Math.round(20+5*vals.length-(level-1)*vals.length*0.3));
   clearInterval(timer); timer=setInterval(tick,1000);
   $("msg").textContent=""; updateStats(); renderBoard();
-  setRule();
 }
-function setRule(){ if(mode) $("rule").textContent = t().modes[mode][1] ; }
-let levelStartScore=0;
 function tick(){ if(!playing||stuck) return; timeLeft--; updateStats(); if(timeLeft<=0) endLevel(false); }
 function updateStats(){
   $("vLevel").textContent=level; $("vScore").textContent=score;
   const s=Math.max(0,timeLeft); $("vTime").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
-  $("timeBox").classList.toggle("low", s<=10);
+  $("timeBox").classList.toggle("low", playing && s<=10);
 }
 
 function renderBoard(){
-  const M=MODES[mode], b=$("board");
+  const M=MODES[mode];
   const byCell={}; discs.forEach(d=>byCell[d.cell]=d);
   let h="";
   for(let c=0;c<36;c++){
@@ -303,12 +338,25 @@ function renderBoard(){
     const L=M.len(d.v), sz=L>=5?" xs":L>=4?" s":"";
     h+=`<div class="cell"><button class="disc${sz}${selected===d.id?" sel":""}" data-id="${d.id}">${M.html(d.v)}</button></div>`;
   }
-  b.innerHTML=h;
+  $("board").innerHTML=h;
+  if(panel) showPanel();
 }
+function showPanel(){
+  const x=t(); let h;
+  if(panel.type==="won") h=`<h2>${x.cleared}</h2><p>${x.bonus} +${panel.bonus}</p><button class="btn primary" data-act="next">${x.next} →</button>`;
+  else if(panel.type==="lost") h=`<h2>${x.timeUp}</h2><p>${x.score} ${score}</p><button class="btn primary" data-act="again">${x.again}</button>`;
+  else h=`<h2>${x.stuckTitle}</h2><p>${x.stuckWhy}</p><button class="btn primary" data-act="undo">↶ ${x.undoLast}</button><button class="btn" data-act="restart">${x.restartLevel}</button>`;
+  const o=document.createElement("div"); o.className="overlay"; o.innerHTML=h; $("board").appendChild(o);
+  o.querySelector("button").focus({preventScroll:true});
+}
+$("board").addEventListener("click",e=>{
+  const a=e.target.closest("[data-act]"); if(!a) return;
+  ({next:()=>{level++; startLevel();}, again:()=>{score=levelStartScore; startLevel();}, undo:undo, restart:restart})[a.dataset.act]();
+});
 const discEl = id => $("board").querySelector(`.disc[data-id="${id}"]`);
 
 function attempt(fromId,toId){
-  const A=discs.find(d=>d.id===fromId), B=discs.find(d=>d.id===toId); if(!A||!B||A===B) return;
+  const A=discs.find(d=>d.id===fromId), B=discs.find(d=>d.id===toId); if(!A||!B||A===B||!playing||stuck) return;
   const r=MODES[mode].merge(A.v,B.v);
   selected=null;
   if(!r){ [discEl(fromId),discEl(toId)].forEach(e=>{if(e){e.classList.remove("shake","sel");void e.offsetWidth;e.classList.add("shake");}}); $("msg").textContent=t().nope; return; }
@@ -318,22 +366,12 @@ function attempt(fromId,toId){
   if(r.b===null) discEl(toId)?.classList.add("pop"); else B.v=r.b;
   discs=discs.filter(d=>!((d===A&&r.a===null)||(d===B&&r.b===null)));
   updateStats();
+  const token=++moveToken;
   setTimeout(()=>{
-    renderBoard();
-    [fromId,toId].forEach(id=>discEl(id)?.classList.add("merged"));
+    if(token!==moveToken || !mode) return;      // undo, restart or menu happened meanwhile
     if(!discs.length) endLevel(true);
-      else if(!anyMove()) showStuck();
+    else { if(!anyMove()){ stuck=true; panel={type:"stuck"}; } renderBoard(); }
   },180);
-}
-function showStuck(){
-  stuck=true; const x=t();
-  const o=document.createElement("div"); o.className="overlay"; o.id="stuckPanel";
-  o.innerHTML=`<h2>${x.stuckTitle}</h2><p>${x.stuckWhy}</p>
-    <button class="btn primary" id="sUndo">↶ ${x.undoLast}</button><button class="btn" id="sRestart">⟳ ${x.restartLevel}</button>`;
-  $("board").appendChild(o);
-  o.querySelector("#sUndo").addEventListener("click",()=>$("undo").click());
-  o.querySelector("#sRestart").addEventListener("click",()=>$("restart").click());
-  o.querySelector("#sUndo").focus();
 }
 function anyMove(){
   const M=MODES[mode];
@@ -342,27 +380,23 @@ function anyMove(){
 }
 function endLevel(won){
   playing=false; clearInterval(timer);
-  const x=t(); let h;
-  if(won){
-    const bonus=Math.max(0,timeLeft); score+=bonus; updateStats();
-    h=`<h2>${x.cleared}</h2><p>${x.bonus}: +${bonus}</p><button class="btn primary" id="go">${x.next} →</button>`;
-  } else {
-    h=`<h2>${x.timeUp}</h2><p>${x.score}: ${score}</p><button class="btn primary" id="go">${x.again}</button>`;
-  }
+  if(won){ const bonus=Math.max(0,timeLeft); score+=bonus; panel={type:"won",bonus}; }
+  else panel={type:"lost"};
   const best=+(store.get("merge.best."+mode)||0); if(score>best) store.set("merge.best."+mode,score);
-  const o=document.createElement("div"); o.className="overlay"; o.innerHTML=h; $("board").appendChild(o);
-  o.querySelector("#go").addEventListener("click",()=>{ if(won) level++; else score=levelStartScore; startLevel(); });
-  o.querySelector("#go").focus();
+  updateStats(); renderBoard();
 }
-$("undo").addEventListener("click",()=>{ if(!playing||!history.length) return; const s=history.pop(); stuck=false; discs=s.discs; score=s.score; selected=null; $("msg").textContent=""; updateStats(); renderBoard(); });
-$("restart").addEventListener("click",()=>{ score=levelStartScore; startLevel(); });
-$("back").addEventListener("click",()=>{ playing=false; clearInterval(timer); discs=[]; mode=null; $("game").hidden=true; $("menu").hidden=false; renderText(); });
+function undo(){ if(!playing||!history.length) return; moveToken++; const s=history.pop(); stuck=false; panel=null; discs=s.discs; score=s.score; selected=null; $("msg").textContent=""; updateStats(); renderBoard(); }
+function restart(){ score=levelStartScore; startLevel(); }
+$("undo").addEventListener("click",undo);
+$("restart").addEventListener("click",restart);
+$("back").addEventListener("click",()=>{ playing=false; clearInterval(timer); moveToken++; discs=[]; panel=null; mode=null; $("game").hidden=true; $("menu").hidden=false; renderText(); });
 
 /* ---------- drag and tap ---------- */
 let drag=null, suppressClick=false;
 const board=$("board");
+function resetDrag(d){ d.el.style.transform=""; d.el.style.pointerEvents=""; d.el.classList.remove("drag"); d.over?.classList.remove("over"); }
 board.addEventListener("pointerdown",e=>{
-  const el=e.target.closest(".disc"); if(!el||!playing) return;
+  const el=e.target.closest(".disc"); if(!el||!playing||stuck) return;
   drag={el,id:+el.dataset.id,x:e.clientX,y:e.clientY,moving:false,over:null};
   el.setPointerCapture(e.pointerId);
 });
@@ -371,33 +405,37 @@ board.addEventListener("pointermove",e=>{
   const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
   if(!drag.moving && Math.hypot(dx,dy)<6) return;
   drag.moving=true; drag.el.classList.add("drag"); drag.el.style.pointerEvents="none";
-  drag.el.style.transform=`translate(${dx}px,${dy}px) scale(1.08)`;
+  drag.el.style.transform=`translate(${dx}px,${dy}px)`;
   const tgt=document.elementFromPoint(e.clientX,e.clientY)?.closest(".disc");
   if(drag.over && drag.over!==tgt) drag.over.classList.remove("over");
   if(tgt && tgt!==drag.el){ tgt.classList.add("over"); drag.over=tgt; } else drag.over=null;
 });
-function endDrag(e){
+board.addEventListener("pointerup",e=>{
   if(!drag) return;
   const d=drag; drag=null;
   if(!d.moving) return;
   suppressClick=true; setTimeout(()=>suppressClick=false,0);
   const tgt=document.elementFromPoint(e.clientX,e.clientY)?.closest(".disc");
-  d.el.style.transform=""; d.el.style.pointerEvents=""; d.el.classList.remove("drag");
-  d.over?.classList.remove("over");
+  resetDrag(d);
   if(tgt && tgt!==d.el) attempt(d.id,+tgt.dataset.id);
-}
-board.addEventListener("pointerup",endDrag);
-board.addEventListener("pointercancel",e=>{ if(drag){drag.el.style.transform="";drag.el.style.pointerEvents="";drag.el.classList.remove("drag");drag=null;} });
+});
+board.addEventListener("pointercancel",()=>{ if(drag){ resetDrag(drag); drag=null; } });
 board.addEventListener("click",e=>{
   if(suppressClick) return;
-  const el=e.target.closest(".disc"); if(!el||!playing) return;
+  const el=e.target.closest(".disc"); if(!el||!playing||stuck) return;
   const id=+el.dataset.id;
   if(selected===null){ selected=id; el.classList.add("sel"); }
   else if(selected===id){ selected=null; el.classList.remove("sel"); }
   else attempt(selected,id);
 });
 
+/* Direct link to an activity: #frac, #div/3, #alg/2/de */
 renderText();
+(function(){
+  const [m,L,l]=location.hash.slice(1).split("/");
+  if(l && T[l]){ lang=l; renderText(); }
+  if(MODES[m]) startMode(m, Math.max(1, Math.min(20, parseInt(L,10)||1)));
+})();
 </script>
 </body>
 </html>
